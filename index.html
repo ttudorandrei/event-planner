@@ -14,16 +14,47 @@
     <title>Sights & Sounds | Your Event Planner</title>
   </head>
   <body>
-    <div>
-      <div>
-        <div>
-          <button></button>
-          <button></button>
+    <div
+      class="orbit"
+      role="region"
+      aria-label="Very nice images, oh wow"
+      data-orbit
+    >
+      <div class="orbit-wrapper">
+        <div class="orbit-controls">
+          <button class="orbit-previous">
+            <span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;
+          </button>
+          <button class="orbit-next">
+            <span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;
+          </button>
         </div>
         <ul>
           <li orbit-slide>
             <figure class="orbit-figure">
-              <img class="orbit-image" src="" alt="" />
+              <img
+                class="orbit-image"
+                src="unsplash-images/alex-harmuth-bOICdD-Gulk-unsplash.jpg"
+                alt=""
+              />
+            </figure>
+          </li>
+          <li orbit-slide>
+            <figure class="orbit-figure">
+              <img
+                class="orbit-image"
+                src="unsplash-images/david-todd-mccarty-TUUEdIhwNFQ-unsplash.jpg"
+                alt=""
+              />
+            </figure>
+          </li>
+          <li orbit-slide>
+            <figure class="orbit-figure">
+              <img
+                class="orbit-image"
+                src="unsplash-images/dimitri-photography-jMgoWJKnBcw-unsplash.jpg"
+                alt=""
+              />
             </figure>
           </li>
         </ul>
