@@ -16,42 +16,51 @@
   <body>
     <main>
       <form>
-        <div class="grid-container">
-          <div class="text-center">
-            <h2>Search for City</h2>
-          </div>
-          <div class="grid-x grid-padding-x align-center-middle text-center">
-            <div class="medium-3 cell">
-              <input type="text" placeholder="Enter a city..." />
+        <div class="grid-container fluid grid-y medium-grid-frame">
+          <div class="cell medium-auto"></div>
+          <div class="cell medium-5">
+            <div class="text-center">
+              <h2>Search for City</h2>
             </div>
-            <div class="medium-2 cell">
-              <select>
-                <option value="husker">Husker</option>
-                <option value="starbuck">Starbuck</option>
-                <option value="hotdog">Hot Dog</option>
-                <option value="apollo">Apollo</option>
-              </select>
+            <div
+              class="cell grid-x grid-padding-x align-center-middle text-center"
+            >
+              <div class="medium-3 cell">
+                <input type="text" placeholder="Enter a city..." />
+              </div>
+              <div class="medium-2 cell">
+                <select>
+                  <option value="husker">Husker</option>
+                  <option value="starbuck">Starbuck</option>
+                  <option value="hotdog">Hot Dog</option>
+                  <option value="apollo">Apollo</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-x grid-padding-x align-center-middle text-center">
+              <div class="cell medium-5">
+                <fieldset class="fieldset">
+                  <legend>Check these out</legend>
+                  <input id="checkbox12" type="checkbox" /><label
+                    for="checkbox12"
+                    >Checkbox 1</label
+                  >
+                  <input id="checkbox22" type="checkbox" /><label
+                    for="checkbox22"
+                    >Checkbox 2</label
+                  >
+                  <input id="checkbox32" type="checkbox" /><label
+                    for="checkbox32"
+                    >Checkbox 3</label
+                  >
+                </fieldset>
+              </div>
+            </div>
+            <div class="grid-padding-x align-center-middle text-center">
+              <a class="button primary" href="#">Primary</a>
             </div>
           </div>
-          <div class="grid-x grid-padding-x align-center-middle text-center">
-            <div class="cell medium-5">
-              <fieldset class="fieldset">
-                <legend>Check these out</legend>
-                <input id="checkbox12" type="checkbox" /><label for="checkbox12"
-                  >Checkbox 1</label
-                >
-                <input id="checkbox22" type="checkbox" /><label for="checkbox22"
-                  >Checkbox 2</label
-                >
-                <input id="checkbox32" type="checkbox" /><label for="checkbox32"
-                  >Checkbox 3</label
-                >
-              </fieldset>
-            </div>
-          </div>
-          <div class="grid-padding-x align-center-middle text-center">
-            <a class="button">Search</a>
-          </div>
+          <div class="cell medium-auto"></div>
         </div>
       </form>
     </main>
