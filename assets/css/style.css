@@ -5,3 +5,7 @@
   --highlight: #219ebc;
   --border: #8ecae6;
 }
+
+.button {
+  margin-left: 1.2rem;
+}
