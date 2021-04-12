@@ -10,7 +10,7 @@
       integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="carousel.css" />
     <!-- <link
       rel="stylesheet"
       type="text/css"
@@ -31,61 +31,48 @@
     <title>Document</title>
   </head>
   <body>
-    <div
-      class="orbit"
-      role="region"
-      aria-label="Favorite Space Pictures"
-      data-orbit
-    >
-      <div class="orbit-wrapper">
-        <div class="orbit-controls">
-          <button class="orbit-previous">
-            <span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;
-          </button>
-          <button class="orbit-next">
-            <span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;
-          </button>
-        </div>
-        <ul class="orbit-container">
-          <li class="orbit-slide">
-            <figure class="orbit-figure">
-              <img
-                class="orbit-image"
-                src="https://images.unsplash.com/photo-1515939483462-f227183fb55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=564&q=80"
-                alt="Space"
-              />
-              <figcaption class="orbit-caption">Lets Rocket!</figcaption>
-            </figure>
-          </li>
-          <li class="orbit-slide">
-            <figure class="orbit-figure">
-              <img
-                class="orbit-image"
-                src="https://images.unsplash.com/photo-1526189118825-c0d741dd5f98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1154&q=80"
-                alt="Space"
-              />
-              <figcaption class="orbit-caption">Encapsulating</figcaption>
-            </figure>
-          </li>
-        </ul>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+      <!-- Full-width images with number and caption text -->
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img
+          src="https://images.unsplash.com/photo-1515939483462-f227183fb55f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=564&q=80"
+          style="width: 100%"
+        />
+        <div class="text">Caption Text</div>
       </div>
-      <nav class="orbit-bullets">
-        <button class="is-active" data-slide="0">
-          <span class="show-for-sr">First slide details.</span>
-          <span class="show-for-sr" data-slide-active-label>Current Slide</span>
-        </button>
-        <button data-slide="1">
-          <span class="show-for-sr">Second slide details.</span>
-        </button>
-        <button data-slide="2">
-          <span class="show-for-sr">Third slide details.</span>
-        </button>
-        <button data-slide="3">
-          <span class="show-for-sr">Fourth slide details.</span>
-        </button>
-      </nav>
-    </div>
 
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img
+          src="https://images.unsplash.com/photo-1506710766034-d5b43d2af393?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=658&q=80"
+          style="width: 100%"
+        />
+        <div class="text">Caption Two</div>
+      </div>
+
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img
+          src="https://images.unsplash.com/photo-1526189118825-c0d741dd5f98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1154&q=80"
+          style="width: 100%"
+        />
+        <div class="text">Caption Three</div>
+      </div>
+
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br />
+
+    <!-- The dots/circles -->
+    <div style="text-align: center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -103,6 +90,6 @@
       integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
       crossorigin="anonymous"
     ></script>
-    <script src="script.js"></script>
+    <script src="carousel.js"></script>
   </body>
 </html>
