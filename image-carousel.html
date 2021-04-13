@@ -14,31 +14,68 @@
     <title>Sights & Sounds | Your Event Planner</title>
   </head>
   <body>
-    <div class="grid-x">
-      <div class="cell">full width cell</div>
-      <div class="cell">full width cell</div>
-    </div>
-    <div class="grid-x">
-      <div class="cell small-6">6 cells</div>
-      <div class="cell small-6">6 cells</div>
-    </div>
-    <div class="grid-x">
-      <div class="cell medium-6 large-4">12/6/4 cells</div>
-      <div class="cell medium-6 large-8">12/6/8 cells</div>
-    </div>
+    <main>
+      <div
+        class="orbit"
+        role="region"
+        aria-label="Favorite Space Pictures"
+        data-orbit
+      >
+        <div class="orbit-controls">
+          <button class="orbit-previous">
+            <span class="show-for-sr">Previous Slide</span> &#9664;&#xFE0E;
+          </button>
+          <button class="orbit-next">
+            <span class="show-for-sr">Next Slide</span> &#9654;&#xFE0E;
+          </button>
+        </div>
+        <ul class="orbit-container">
+          <li class="orbit-slide">
+            <figure class="orbit-figure">
+              <img
+                class="orbit-image"
+                src="assets/unsplash-images/dimitri-photography-jMgoWJKnBcw-unsplash.jpg"
+                alt="Space"
+              />
+              <figcaption class="orbit-caption">
+                Space, the final frontier.
+              </figcaption>
+            </figure>
+          </li>
+          <li class="orbit-slide is-active">
+            <figure class="orbit-figure">
+              <img
+                class="orbit-image"
+                src="assets/unsplash-images/reagan-nicole-sA_HHy_dGAg-unsplash.jpg"
+                alt="Space"
+              />
+              <figcaption class="orbit-caption">
+                Space, the final frontier.
+              </figcaption>
+            </figure>
+          </li>
+          <li class="orbit-slide">
+            <figure class="orbit-figure">
+              <img
+                class="orbit-image"
+                src="assets/unsplash-images/samantha-weisburg-hFTcxZFsG6g-unsplash.jpg"
+                alt="Space"
+              />
+              <figcaption class="orbit-caption">
+                Space, the final frontier.
+              </figcaption>
+            </figure>
+          </li>
+          <!-- More slides... -->
+        </ul>
+      </div>
+    </main>
     <!-- Script links -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
-    <script src="/assets/js/plugins/foundation.core.js"></script>
-    <script src="/assets/js/plugins/foundation.orbit.js"></script>
-    <script src="assets/js/plugins/foundation.util.keyboard.js"></script>
-    <script src="assets/js/plugins/foundation.util.motion.js"></script>
-    <script src="/assets/js/plugins/foundation.util.timer.js"></script>
-    <script src="assets/js/plugins/foundation.util.imageLoader.js"></script>
-    <script src="assets/js/plugins/foundation.util.touch.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
       integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
