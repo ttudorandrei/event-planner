@@ -1,0 +1,15 @@
+:root {
+  --bg: #023047;
+  --font: #ffb703;
+  --link: #fb8500;
+  --highlight: #219ebc;
+  --border: #8ecae6;
+}
+
+.form {
+  margin: 0 15rem;
+  padding: 1rem;
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px grey;
+  border-radius: 5px;
+}
