@@ -2,15 +2,14 @@
   box-sizing: border-box;
 }
 
+/* Container for the slideshow images */
 .slideshow-container {
-  /* display: flex; */
   display: grid;
   place-items: center;
   position: relative;
-  /* justify-content: center;
-  align-items: center; */
 }
 
+/* Styles and positions the search form */
 .search-form {
   position: absolute;
   top: 50%;
