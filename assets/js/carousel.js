@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  $(".carousel.carousel-slider").carousel({
-    fullWidth: true,
-    originalHeight: true,
-    indicators: true,
+  $(".slider").slider({
+    indicators: false,
+    interval: 3000,
   });
+  $("select").formSelect();
 });
