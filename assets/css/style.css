@@ -5,6 +5,10 @@
   --highlight: #219ebc;
   --border: #8ecae6;
 }
+.header {
+  background-color: #219ebc;
+  padding: 10px;
+}
 
 .button {
   margin-left: 1.2rem;
@@ -16,4 +20,21 @@
   border: 1px solid black;
   box-shadow: 10px 10px 5px grey;
   border-radius: 5px;
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form {
+  margin: 0 15rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.m-1 {
+  margin: 1rem;
 }
