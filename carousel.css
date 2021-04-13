@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Container for the slideshow images */
+.slideshow-container {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+/* Styles and positions the search form */
+.search-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  z-index: 1;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100vw;
+  max-height: 100vh;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* make carousel fit to screen */
+.fit {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 0.5s;
+  animation-name: fade;
+  animation-duration: 0.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
