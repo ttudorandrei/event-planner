@@ -39,17 +39,34 @@
             class="circle center-block"
           />
           <div class="info-container m-1 border-test">
-            <div>Opening Hours</div>
-            <div>Address</div>
-            <div>Contact Details</div>
-            <div>Reviews</div>
-            <div>URL</div>
+            <div>Basic information goes here about the venue.</div>
+            <ul>
+              <li>- Opening Hours</li>
+              <li>- Address</li>
+              <li>- Contact Details</li>
+              <li>- Reviews</li>
+              <li>- URL</li>
+            </ul>
           </div>
         </div>
         <form class="m-1 row">
-          <input type="text" class="col s12 m12 l12" />
-          <div class="mb-1 col s12 m6 l6">DATE</div>
-          <a href="#" class="btn blue mb-1 col s12 m6 l6">Add to whishlist</a>
+          <input
+            type="text"
+            class="col s12 m12 l12"
+            placeholder="User can write text here"
+          />
+          <input
+            type="text"
+            class="datepicker"
+            placeholder="Select your date"
+          />
+          <a href="#" class="btn blue mb-1 col s12 m6 l6">Add to wishlist</a>
+          <a
+            href="#"
+            class="btn red mb-1 col s12 m6 l6 modal-close"
+            id="close-button"
+            >Close</a
+          >
         </form>
       </div>
     </div>
