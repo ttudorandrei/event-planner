@@ -6,80 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
-      integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I="
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <link rel="stylesheet" href="assets/css/carousel.css" />
     <title>Sights & Sounds | Your Event Planner</title>
   </head>
   <body>
-    <main>
-      <div
-        class="orbit"
-        role="region"
-        aria-label="Favorite Space Pictures"
-        data-orbit
-      >
-        <div class="orbit-controls">
-          <button class="orbit-previous">
-            <span class="show-for-sr">Previous Slide</span> &#9664;&#xFE0E;
-          </button>
-          <button class="orbit-next">
-            <span class="show-for-sr">Next Slide</span> &#9654;&#xFE0E;
-          </button>
-        </div>
-        <ul class="orbit-container">
-          <li class="orbit-slide">
-            <figure class="orbit-figure">
-              <img
-                class="orbit-image"
-                src="assets/unsplash-images/dimitri-photography-jMgoWJKnBcw-unsplash.jpg"
-                alt="Space"
-              />
-              <figcaption class="orbit-caption">
-                Space, the final frontier.
-              </figcaption>
-            </figure>
-          </li>
-          <li class="orbit-slide is-active">
-            <figure class="orbit-figure">
-              <img
-                class="orbit-image"
-                src="assets/unsplash-images/reagan-nicole-sA_HHy_dGAg-unsplash.jpg"
-                alt="Space"
-              />
-              <figcaption class="orbit-caption">
-                Space, the final frontier.
-              </figcaption>
-            </figure>
-          </li>
-          <li class="orbit-slide">
-            <figure class="orbit-figure">
-              <img
-                class="orbit-image"
-                src="assets/unsplash-images/samantha-weisburg-hFTcxZFsG6g-unsplash.jpg"
-                alt="Space"
-              />
-              <figcaption class="orbit-caption">
-                Space, the final frontier.
-              </figcaption>
-            </figure>
-          </li>
-          <!-- More slides... -->
-        </ul>
+    <div class="carousel carousel-slider center">
+      <div class="carousel-fixed-item center">
+        <a class="btn waves-effect white grey-text darken-text-2">button</a>
       </div>
-    </main>
-    <!-- Script links -->
+      <div class="carousel-item red white-text" href="#one!">
+        <h2>First Panel</h2>
+        <img
+          src="/foundation/unsplash-images/aranxa-esteve-pOXHU0UEDcg-unsplash.jpg"
+          alt=""
+        />
+        <p class="white-text">This is your first panel</p>
+      </div>
+      <div class="carousel-item amber white-text" href="#two!">
+        <h2>Second Panel</h2>
+        <p class="white-text">This is your second panel</p>
+      </div>
+      <div class="carousel-item green white-text" href="#three!">
+        <h2>Third Panel</h2>
+        <p class="white-text">This is your third panel</p>
+      </div>
+      <div class="carousel-item blue white-text" href="#four!">
+        <h2>Fourth Panel</h2>
+        <p class="white-text">This is your fourth panel</p>
+      </div>
+    </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
-      integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/js/carousel.js"></script>
   </body>
 </html>
