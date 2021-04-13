@@ -5,6 +5,11 @@
   --highlight: #219ebc;
   --border: #8ecae6;
 }
+<<<<<<< HEAD
+.header {
+  background-color: #219ebc;
+  padding: 10px;
+=======
 
 .form {
   margin: 0 15rem;
@@ -12,4 +17,5 @@
   border: 1px solid black;
   box-shadow: 10px 10px 5px grey;
   border-radius: 5px;
+>>>>>>> origin
 }
