@@ -1,6 +1,18 @@
+:root {
+  --bg: #023047;
+  --font: #ffb703;
+  --link: #fb8500;
+  --highlight: #219ebc;
+  --border: #8ecae6;
+}
+.landing-header {
+  padding: 0;
+  margin: 0;
+}
 .header {
   background-color: #219ebc;
-  padding: 10px;
+  position: static;
+  font-size: 10px;
 }
 
 .form {
@@ -15,7 +27,7 @@
 
 .form-container {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -32,14 +44,13 @@
 
 #text-on-slider {
   position: absolute;
-  height: calc(95vh);
-  margin-top: 0px;
+  height: calc(80vh);
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: left;
   z-index: 2;
   top: 0;
-  pointer-events: none;
   width: 100%;
 }
