@@ -35,6 +35,10 @@
   border-radius: 10px;
 }
 
+.checkbox {
+  margin: 5px;
+}
+
 .m-1 {
   margin: 1rem;
 }
