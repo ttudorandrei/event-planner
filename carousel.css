@@ -3,7 +3,12 @@
 }
 
 .slideshow-container {
+  /* display: flex; */
+  display: grid;
+  place-items: center;
   position: relative;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .search-form {
@@ -13,6 +18,7 @@
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
+  z-index: 1;
 }
 
 /* Slideshow container */
@@ -36,7 +42,7 @@
 }
 
 /* Fading animation */
-/* .fade {
+.fade {
   -webkit-animation-name: fade;
   -webkit-animation-duration: 0.5s;
   animation-name: fade;
@@ -59,4 +65,4 @@
   to {
     opacity: 1;
   }
-} */
+}
