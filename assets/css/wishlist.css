@@ -5,3 +5,21 @@
   --highlight: #219ebc;
   --border: #8ecae6;
 }
+
+.header {
+  background-color: #219ebc;
+  padding: 10px;
+}
+
+.wishlist-title-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wishlist-title-div h2 {
+  display: inline;
+}
+
+.wishlist-item img {
+  width: 50px;
+}
