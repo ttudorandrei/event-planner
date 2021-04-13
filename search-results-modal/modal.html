@@ -24,7 +24,7 @@
     <!-- MODAL -->
 
     <div class="container">
-      <h2>Modal</h2>
+      <h2>Venue Modal</h2>
 
       <a href="#details" class="btn orange modal-trigger">Details</a>
 
@@ -39,18 +39,65 @@
             class="circle center-block"
           />
           <div class="info-container m-1 border-test">
-            <div>Opening Hours</div>
-            <div>Address</div>
-            <div>Contact Details</div>
-            <div>Reviews</div>
-            <div>URL</div>
+            <div>Basic information goes here about the venue.</div>
+            <ul>
+              <li>- Opening Hours</li>
+              <li>- Address</li>
+              <li>- Contact Details</li>
+              <li>- Reviews</li>
+              <li>- URL</li>
+            </ul>
           </div>
         </div>
         <form class="m-1 row">
-          <input type="text" class="col s12 m12 l12" />
-          <div class="mb-1 col s12 m6 l6">DATE</div>
-          <a href="#" class="btn blue mb-1 col s12 m6 l6">Add to whishlist</a>
+          <input
+            type="text"
+            class="col s12 m12 l12"
+            placeholder="User can write text here"
+          />
+          <input
+            type="text"
+            class="datepicker"
+            placeholder="Select your date"
+          />
+          <a href="#" class="btn blue mb-1 col s12 m6 l6">Add to wishlist</a>
+          <a
+            href="#"
+            class="btn red mb-1 col s12 m6 l6 modal-close"
+            id="close-button"
+            >Close</a
+          >
         </form>
+      </div>
+    </div>
+
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1"
+      >Comments and Notes</a
+    >
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Comments and Notes</h4>
+        <form class="m-1 row">
+          <input
+            type="text"
+            class="col s12 m12 l12"
+            placeholder="User can write text here"
+          > Previously Written Notes </input>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Save</a>
+          <a
+            href="#"
+            class="waves-effect waves-red btn-flat modal-close"
+            id="close-button"
+            >Close
+            </a
+          >
       </div>
     </div>
 

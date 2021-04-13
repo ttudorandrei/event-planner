@@ -10,6 +10,10 @@
   padding: 10px;
 }
 
+.button {
+  margin-left: 1.2rem;
+}
+
 .form {
   margin: 0 15rem;
   padding: 1rem;
@@ -29,6 +33,10 @@
   margin: 0 15rem;
   padding: 1rem;
   border-radius: 10px;
+}
+
+.checkbox {
+  margin: 5px;
 }
 
 .m-1 {
