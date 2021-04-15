@@ -7,6 +7,7 @@ $(document).ready(function () {
   });
 
   const getFormData = (event) => {
+    // get city, country and venue types
     console.log(event);
   };
 
@@ -15,6 +16,7 @@ $(document).ready(function () {
     getFormData(event);
   };
 
+  // target form and add submit event listener
   $("#form").submit(onSubmit);
 
   // activates dropdown on form
