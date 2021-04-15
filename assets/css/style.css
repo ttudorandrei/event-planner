@@ -18,12 +18,21 @@ body {
   padding-top: 1px;
   padding-bottom: 1px;
   background-color: #219ebc;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  padding: 10px;
+<<<<<<< HEAD
+=======
+=======
+=======
   position: static;
   font-size: 10px;
+>>>>>>> origin
 }
 
 .button {
   margin-left: 1.2rem;
+>>>>>>> origin
 }
 
 .form {
@@ -55,6 +64,7 @@ body {
 
 .m-1 {
   margin: 1rem;
+>>>>>>> origin
 }
 
 .navbar-item-color {
