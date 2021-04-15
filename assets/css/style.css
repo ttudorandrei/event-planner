@@ -10,11 +10,16 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.landing-header {
+  padding: 0;
+  margin: 0;
+}
 .header {
   padding-top: 1px;
   padding-bottom: 1px;
   background-color: #219ebc;
+  position: static;
+  font-size: 10px;
 }
 
 .button {
@@ -25,13 +30,15 @@ body {
   margin: 0 15rem;
   padding: 1rem;
   border: 1px solid black;
-  box-shadow: 10px 10px 5px grey;
+  box-shadow: 5px 5px 5px grey;
   border-radius: 5px;
+  background-color: white;
+  opacity: 0.9;
 }
 
 .form-container {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -52,6 +59,18 @@ body {
 
 .navbar-item-color {
   background-color: #ee6e73;
+}
+#text-on-slider {
+  position: absolute;
+  height: calc(80vh);
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  z-index: 2;
+  top: 0;
+  width: 100%;
 }
 
 /* .h1-m {
