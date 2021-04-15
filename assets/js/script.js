@@ -20,11 +20,43 @@ const getFormData = () => {
 
   return formData;
 };
+const getVenueType = (venue) => {
+  if (venue.length === 0) {
+    return "Unknown";
+  } else {
+    return venue[0].name;
+  }
+};
+
+const getDataFromSearch = (venue) => {
+  const data = {
+    venueName: venue.name,
+    venueId: venue.id,
+    venueType: getVenueType(venue.categories),
+  };
+  return data;
+};
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const fetchFoursquareData = async (url) => {
+  const data = await fetchData(url);
+  const venue = data.response.venues;
+  const venueData = venue.map(getDataFromSearch);
+  console.log(venueData);
+};
 
 const onSubmit = (event) => {
   event.preventDefault();
   const formData = getFormData();
   const foursquareUrl = createFoursquareUrl(formData);
+  fetchFoursquareData(foursquareUrl);
   console.log(formData);
   console.log(foursquareUrl);
 };
