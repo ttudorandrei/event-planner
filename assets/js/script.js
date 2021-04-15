@@ -6,14 +6,29 @@ $(document).ready(function () {
     interval: 3000,
   });
 
-  const getFormData = (event) => {
-    // get city, country and venue types
-    console.log(event);
+  const getFormData = () => {
+    const inputValue = $("#form-input").val();
+    const countryValue = $("#country-input").val();
+
+    const wantsRestaurants = $("#restaurant").is(":checked");
+    const wantsArts = $("#arts-entertainment").is(":checked");
+    const wantsOutdoors = $("#outdoor-recreation").is(":checked");
+
+    const formData = {
+      inputValue,
+      countryValue,
+      wantsRestaurants,
+      wantsArts,
+      wantsOutdoors,
+    };
+
+    return formData;
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    getFormData(event);
+    const formData = getFormData();
+    console.log(formData);
   };
 
   // target form and add submit event listener
