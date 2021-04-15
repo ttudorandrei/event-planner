@@ -14,7 +14,7 @@ body {
 .header {
   padding-top: 1px;
   padding-bottom: 1px;
-  background-color: #219ebc;
+  background-color: (var(--highlight));
 }
 
 .button {
@@ -44,10 +44,6 @@ body {
 
 .checkbox {
   margin: 5px;
-}
-
-.m-1 {
-  margin: 1rem;
 }
 
 .navbar-item-color {
