@@ -5,11 +5,26 @@
   --highlight: #219ebc;
   --border: #8ecae6;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .header {
+  padding-top: 1px;
+  padding-bottom: 1px;
   background-color: #219ebc;
+<<<<<<< HEAD
   padding: 10px;
 <<<<<<< HEAD
 =======
+=======
+}
+
+.button {
+  margin-left: 1.2rem;
+>>>>>>> origin
 }
 
 .form {
@@ -33,7 +48,49 @@
   border-radius: 10px;
 }
 
+.checkbox {
+  margin: 5px;
+}
+
 .m-1 {
   margin: 1rem;
 >>>>>>> origin
+}
+
+.navbar-item-color {
+  background-color: #ee6e73;
+}
+
+/* .h1-m {
+  font-size: 20px;
+}
+
+.h1-s {
+  font-size: 13px;
+} */
+
+.header-font-size {
+  font-size: 38px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+  .header-responsive {
+    font-size: 32px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-responsive {
+    font-size: 25px;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .header-responsive {
+    font-size: 20px;
+    font-weight: 600;
+  }
 }
