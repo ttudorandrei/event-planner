@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $(".slider").slider({
-    height: 900,
+    height: 700,
     indicators: false,
     interval: 3000,
   });
