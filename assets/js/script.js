@@ -64,6 +64,7 @@ const renderSearchResultsPage = (city) => {
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
 `;
 
+  //gnerates navbar
   const navBar = `
   <div class="nav-wrapper row">
   <form>
@@ -190,6 +191,7 @@ const renderSearchResultsPage = (city) => {
   </form>
 </div>`;
 
+  //genrated card based on data from api
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
   <div class="card-panel white p-1">
@@ -209,8 +211,10 @@ const renderSearchResultsPage = (city) => {
 </div></a
 >`;
 
+  //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
 
+  //creates the venues section
   const venuesSection = `<section class="col l8 m12 s12 venues-section" id="venues-section">
   <div class="row" id="restaurants-container">
 <h5 class="mx-1 px-1" id="restaurant-header">Restaurants</h5>
@@ -225,17 +229,17 @@ const renderSearchResultsPage = (city) => {
 </div>
   </section>`;
 
+  //creates the widget section
   const widgetSection = `
   <!-- Section for Ticketmaster Widget -->
         <section class="col l4 m12 s12 widget-section">
                     <div class="container" id="widget-container"></div>
         </section>`;
 
+  //widget source code
   const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
-
-  // $("#body").append(navbarContainer);
 
   $(".header").after(navbarContainer);
 
@@ -251,8 +255,6 @@ const renderSearchResultsPage = (city) => {
   $("#widget-container").append(widget);
 
   $("#widget-script").append(widgetScript);
-
-  console.log();
 
   // $("#venues-section").append(
   //   restaurantsSection,
