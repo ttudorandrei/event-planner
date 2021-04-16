@@ -52,6 +52,23 @@ const fetchFoursquareData = async (url) => {
   console.log(venueData);
 };
 
+const card = `<div class="col s12 l6">
+<div class="card-panel white">
+  <div class="row valign-wrapper">
+    <div class="col s2">
+      <img
+        src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+        alt=""
+        class="circle responsive-img"
+      />
+    </div>
+    <div class="col s10">
+      <span class="black-text">Venue Name Here</span>
+    </div>
+  </div>
+</div>
+</div>`;
+
 const onSubmit = (event) => {
   event.preventDefault();
   const formData = getFormData();
