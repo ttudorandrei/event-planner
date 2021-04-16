@@ -18,21 +18,13 @@ body {
   padding-top: 1px;
   padding-bottom: 1px;
   background-color: #219ebc;
-<<<<<<< HEAD
-<<<<<<< HEAD
   padding: 10px;
-<<<<<<< HEAD
-=======
-=======
-=======
   position: static;
   font-size: 10px;
->>>>>>> origin
 }
 
 .button {
   margin-left: 1.2rem;
->>>>>>> origin
 }
 
 .form {
@@ -64,12 +56,12 @@ body {
 
 .m-1 {
   margin: 1rem;
->>>>>>> origin
 }
 
 .navbar-item-color {
   background-color: #ee6e73;
 }
+
 #text-on-slider {
   position: absolute;
   height: calc(80vh);
@@ -81,6 +73,10 @@ body {
   z-index: 2;
   top: 0;
   width: 100%;
+}
+
+.mt-2 {
+  margin-top: 20px;
 }
 
 /* .h1-m {
