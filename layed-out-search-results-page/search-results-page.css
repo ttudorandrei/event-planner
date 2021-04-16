@@ -14,7 +14,7 @@ body {
 .header {
   padding-top: 1px;
   padding-bottom: 1px;
-  background-color: (var(--highlight));
+  background-color: var(--highlight);
 }
 
 .button {
