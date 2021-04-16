@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Sights & Sounds | Your Event Planner</title>
   </head>
-  <body>
-    <nav class="header">
+  <body id="body">
+    <header class="header">
       <h4 class="landing-header center">
         Sights & Sounds | Your Event Planner
       </h4>
-    </nav>
-    <div class="slider">
+    </header>
+
+    <main class="mt-2" id="content-container"></main>
+    <div class="slider" id="slider">
       <ul class="slides">
         <li>
           <img
@@ -220,6 +222,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <div id="widget-script"></div>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
