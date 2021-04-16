@@ -200,9 +200,7 @@ const searchBar = () => {
   $("#slider").append(navBar);
 };
 
-const restaurantCard = (fourSquareData) => {
-  const h5 = `<h5>Restaurants</h5>`;
-  const card = `<div class="col s12 l6">
+const card = `<div class="col s12 l6">
   <div class="card-panel white">
     <div class="row valign-wrapper">
       <div class="col s2">
@@ -219,50 +217,18 @@ const restaurantCard = (fourSquareData) => {
   </div>
   </div>`;
 
+const restaurantCard = (fourSquareData) => {
+  const h5 = `<h5>Restaurants</h5>`;
   $("#slider").append(h5, card);
 };
 
 const artsCard = (fourSquareData) => {
   const h5 = `<h5>Arts & Entertainment</h5>`;
-  const card = `<div class="col s12 l6">
-  <div class="card-panel white">
-    <div class="row valign-wrapper">
-      <div class="col s2">
-        <img
-          src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-          alt=""
-          class="circle responsive-img"
-        />
-      </div>
-      <div class="col s10">
-        <span class="black-text">Venue Name Here</span>
-      </div>
-    </div>
-  </div>
-  </div>`;
-
   $("#slider").append(h5, card);
 };
 
 const outdoorCard = (fourSquareData) => {
   const h5 = `<h5>Outdoor & Recreation</h5>`;
-  const card = `<div class="col s12 l6">
-  <div class="card-panel white">
-    <div class="row valign-wrapper">
-      <div class="col s2">
-        <img
-          src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-          alt=""
-          class="circle responsive-img"
-        />
-      </div>
-      <div class="col s10">
-        <span class="black-text">Venue Name Here</span>
-      </div>
-    </div>
-  </div>
-  </div>`;
-
   $("#slider").append(h5, card);
 };
 
