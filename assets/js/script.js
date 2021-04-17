@@ -98,7 +98,6 @@ const onClick = async (event) => {
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
   const venueData = getDataAboutVenue(venue);
-  console.log(venueData);
 };
 
 const renderFoursquareCards = (data) => {
@@ -127,11 +126,7 @@ const renderFoursquareCards = (data) => {
 };
 
 const renderModal = () => {
-  const modal = `<div class="container">
-  <h2>Venue Modal</h2>
-
-  <a href="#details" class="btn orange modal-trigger">Details</a>
-
+  const modal = `
   <div class="modal" id="details">
     <h4 class="m-1 center-align">Venue Name</h4>
     <div class="container details-container">
@@ -172,8 +167,10 @@ const renderModal = () => {
         >Close</a
       >
     </form>
-  </div>
-</div>`;
+  </div>`;
+
+  $("#foursquare-container").append(modal);
+  $(".modal").modal();
 };
 
 const renderSearchResultsPage = (city) => {
