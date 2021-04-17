@@ -54,26 +54,27 @@ const onRemoveFromFavorites = function (event) {
 // this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
 const appendWishlistCard = (mockArray) => {
   const appendCard = (item) => {
-    const wishlistCard = `<div class="col s12 m8 offset-m2 l6 offset-l3" >
+    const wishlistCard = `<div class="col m12 l10 offset-l1" >
     <div class="card-panel grey lighten-5 z-depth-1">
       <div class="row valign-wrapper">
-        <div class="col l2">Date</div>
-        <div class="col s2 l2">
+        <div class="col l1 m12">Date</div>
+        <div class="col l2 m12">
           <img
             src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
             alt=""
-            class="circle responsive-img"
+            class="circle"
+            width="80px" 
+            height="auto"
           />
           <!-- notice the "circle" class -->
         </div>
-        <div class="col l4">
+        <div class="col l2 m12">
           <span class="black-text">
-            This is a square image. Add the "circle" class to it to make
-            it appear circular.
+Venue Name Here
           </span>
         </div>
-        <div class="col l2">comments</div>
-        <div class="col l2">
+        <div class="col l5 m12 offset-m1">comments</div>
+        <div class="col l2 m12">
           <button class="btn remove-button" name="remove-btn" data-venue="${item.venueId}">Remove</button>
         </div>
       </div>
