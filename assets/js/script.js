@@ -51,11 +51,13 @@ const fetchData = async (url) => {
 const fetchFoursquareData = async (url) => {
   const data = await fetchData(url);
   const venue = data.response.venues;
+  console.log(venue);
   const venueData = venue.map(getDataFromSearch);
   return venueData;
 };
 
 const renderFoursquareCards = (data) => {
+  console.log(data);
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
   <div class="card-panel white p-1">
@@ -68,7 +70,8 @@ const renderFoursquareCards = (data) => {
         />
       </div>
       <div class="col s9">
-        <span class="black-text">Venue Name Here</span>
+        <div class="black-text">${data.venueName}</div>
+        <div class="black-text">${data.venueType}</div>
       </div>
     </div>
   </div>
