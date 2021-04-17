@@ -2,11 +2,6 @@ const CLIENT_ID = "IKFBFDDPWTL4CBLFKOWMQ0KLJVBZCPZH0R0ZO3Q3RLW54XOK";
 const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
-//function for date picker in results modal
-$(document).ready(function () {
-  $(".datepicker").datepicker();
-});
-
 const getFormData = () => {
   const city = $("#form-input").val();
   const countryValue = $("#country-input").val();
@@ -25,6 +20,7 @@ const getFormData = () => {
 
   return formData;
 };
+
 const getVenueType = (venue) => {
   if (venue.length === 0) {
     return "Unknown";
@@ -33,14 +29,25 @@ const getVenueType = (venue) => {
   }
 };
 
+const getVenueTypeIcon = (venue) => {
+  const venueIcon = venue[0].icon;
+  const prefix = venueIcon.prefix;
+  const suffix = venueIcon.suffix;
+
+  return `${prefix}64${suffix}`;
+};
+
 const getDataFromSearch = (venue) => {
   const data = {
     venueName: venue.name,
     venueId: venue.id,
     venueType: getVenueType(venue.categories),
+    venueTypeIcon: getVenueTypeIcon(venue.categories),
   };
+  console.log(data);
   return data;
 };
+
 const fetchData = async (url) => {
   try {
     const response = await fetch(url);
@@ -50,16 +57,42 @@ const fetchData = async (url) => {
     console.log(error);
   }
 };
+
 const fetchFoursquareData = async (url) => {
   const data = await fetchData(url);
   const venue = data.response.venues;
+  console.log(venue);
   const venueData = venue.map(getDataFromSearch);
-  console.log(venueData);
+  return venueData;
+};
+
+const renderFoursquareCards = (data) => {
+  console.log(data.venueTypeIcon);
+  const card = `<a href="#details" class="modal-trigger"
+><div class="col s12 l6">
+  <div class="card-panel black p-1">
+    <div class="row valign-wrapper">
+      <div class="col s3">
+        <img
+          src="${data.venueTypeIcon}"
+          alt=""
+          class="responsive-img"
+        />
+      </div>
+      <div class="col s9">
+        <div class="white-text">${data.venueName}</div>
+        <div class="white-text">${data.venueType}</div>
+      </div>
+    </div>
+  </div>
+</div></a
+>`;
+
+  $("#foursquare-container").append(card);
 };
 
 const renderSearchResultsPage = (city) => {
   $("#slider").empty();
-  $("#slider").remove();
 
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
 `;
@@ -192,48 +225,37 @@ const renderSearchResultsPage = (city) => {
 </div>`;
 
   //genrated card based on data from api
-  const card = `<a href="#details" class="modal-trigger"
-><div class="col s12 l6">
-  <div class="card-panel white p-1">
-    <div class="row valign-wrapper">
-      <div class="col s3">
-        <img
-          src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-          alt=""
-          class="responsive-img"
-        />
-      </div>
-      <div class="col s9">
-        <span class="black-text">Venue Name Here</span>
-      </div>
-    </div>
-  </div>
-</div></a
->`;
+  //   const card = `<a href="#details" class="modal-trigger"
+  // ><div class="col s12 l6">
+  //   <div class="card-panel white p-1">
+  //     <div class="row valign-wrapper">
+  //       <div class="col s3">
+  //         <img
+  //           src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+  //           alt=""
+  //           class="responsive-img"
+  //         />
+  //       </div>
+  //       <div class="col s9">
+  //         <span class="black-text">Venue Name Here</span>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div></a
+  // >`;
 
   //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
 
   //creates the venues section
-  const venuesSection = `<section class="col l8 m12 s12 venues-section" id="venues-section">
-  <div class="row" id="restaurants-container">
-<h5 class="mx-1 px-1" id="restaurant-header">Restaurants</h5>
-</div>
-
-<div class="row" id="entertainment-container">
-<h5 class="mx-1 px-1" id="entertainment-header">
-</div>
-
-<div class="row" id="recreation-container">
-<h5 class="mx-1 px-1">Recreation</h5>
-</div>
+  const foursquareSection = `<section class="col l8 m12 s12 venues-section" id="foursquare-container">
   </section>`;
 
   //creates the widget section
-  const widgetSection = `
+  const ticketmasterSection = `
   <!-- Section for Ticketmaster Widget -->
         <section class="col l4 m12 s12 widget-section">
-                    <div class="container" id="widget-container"></div>
+                    <div class="container" id="ticketmaster-container"></div>
         </section>`;
 
   //widget source code
@@ -250,61 +272,14 @@ const renderSearchResultsPage = (city) => {
 
   $("#content-container").append(searchResultsPageContainer);
 
-  $("#search-results-page-container").append(venuesSection, widgetSection);
+  $("#search-results-page-container").append(
+    foursquareSection,
+    ticketmasterSection
+  );
 
-  $("#widget-container").append(widget);
+  $("#ticketmaster-container").append(widget);
 
   $("#widget-script").append(widgetScript);
-
-  // $("#venues-section").append(
-  //   restaurantsSection,
-  //   entertainmentSection,
-  //   recreationContainer
-  // );
-
-  // $("#restaurants-container").append();
-};
-
-// const restaurantCard = (fourSquareData) => {
-//   const h5 = `<h5>Restaurants</h5>`;
-//   $("#slider").append(h5, card);
-// };
-
-// const artsCard = (fourSquareData) => {
-//   const h5 = `<h5>Arts & Entertainment</h5>`;
-//   $("#slider").append(h5, card);
-// };
-
-// const outdoorCard = (fourSquareData) => {
-//   const h5 = `<h5>Outdoor & Recreation</h5>`;
-//   $("#slider").append(h5, card);
-// };
-
-const onSubmit = (event) => {
-  event.preventDefault();
-  const formData = getFormData();
-  const foursquareUrl = createFoursquareUrl(formData);
-  fetchFoursquareData(foursquareUrl);
-  console.log(formData);
-  console.log(foursquareUrl);
-  renderSearchResultsPage(formData.city);
-  // restaurantCard();
-  // artsCard();
-  // outdoorCard();
-};
-
-const onReady = () => {
-  $(".slider").slider({
-    height: 900,
-    indicators: false,
-    interval: 3000,
-  });
-
-  // target form and add submit event listener
-  $("#form").submit(onSubmit);
-
-  // activates dropdown on form
-  $("select").formSelect();
 };
 
 const createFoursquareUrl = (data) => {
@@ -327,5 +302,31 @@ const createFoursquareUrl = (data) => {
   return foursquareUrl;
 };
 
-// activates carousel
+const onSubmit = async (event) => {
+  event.preventDefault();
+  const formData = getFormData();
+  const foursquareUrl = createFoursquareUrl(formData);
+  const foursquareData = await fetchFoursquareData(foursquareUrl);
+  renderSearchResultsPage(formData.city);
+  foursquareData.forEach(renderFoursquareCards);
+};
+
+const onReady = () => {
+  // activates carousel
+  $(".slider").slider({
+    height: 900,
+    indicators: false,
+    interval: 3000,
+  });
+
+  // target form and add submit event listener
+  $("#form").submit(onSubmit);
+
+  // activates dropdown on form
+  $("select").formSelect();
+
+  // activates date picker in results modal
+  $(".datepicker").datepicker();
+};
+
 $(document).ready(onReady);
