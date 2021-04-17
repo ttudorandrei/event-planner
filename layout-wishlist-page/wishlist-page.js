@@ -1,3 +1,4 @@
+// these will not be needed if we have the array of objects from index.html in local storage
 const mockObject = {
   venueId: "55e208b8498e8745284c3f82",
   venueName: "Starbucks",
@@ -16,8 +17,10 @@ const mockObjectThree = {
   venueType: "Coffee Shop",
 };
 
+// this, ultimately, should be the array in local storage we retrieve from the main index.html
 const mockArray = [mockObject, mockObjectTwo, mockObjectThree];
 
+// this function will retrieve whatever data is in local storage
 const getFromLocalStorage = () => {
   const localStorageData = JSON.parse(localStorage.getItem("favorites"));
   if (localStorageData === null) {
@@ -27,12 +30,10 @@ const getFromLocalStorage = () => {
   }
 };
 
+// this will target the button and remove the object from local storage
 const onRemoveFromFavorites = function (event) {
-  // const removeButton = $(this);
-  // const venueId = removeButton.data("venue");
-  // console.log(removeButton, venueId);
   const target = $(event.target);
-  const currentTarget = $(event.currentTarget);
+  // const currentTarget = $(event.currentTarget);
   if (target.is(`button[name="remove-btn"]`)) {
     const venueId = target.data("venue");
     const favorites = getFromLocalStorage();
@@ -50,6 +51,7 @@ const onRemoveFromFavorites = function (event) {
   }
 };
 
+// this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
 const appendWishlistCard = (mockArray) => {
   const appendCard = (item) => {
     const wishlistCard = `<div class="col s12 m8 offset-m2 l6 offset-l3" >
@@ -81,21 +83,13 @@ const appendWishlistCard = (mockArray) => {
     $("#wishlist-card-container").append(wishlistCard);
   };
 
+  // this is going to append a card to the card container, for every object in local storage
   mockArray.forEach(appendCard);
 };
 
-//DONE for each favorite inside the array render a card
-//for each card deleteFromFavorites()
 //take the favorites as an array or go an re fetch the favorites from local storage
 //update favorites array without the favorite that we are deleting
 //reset favorites in storage
-
-const removeFromLocalStorage = (event) => {
-  //this should remove the targeted item from the array
-  //use splice?
-};
-
-$("#remove-button").on("click,", removeFromLocalStorage(event));
 
 const onReady = () => {
   //this sets the mock array in local storage
