@@ -44,7 +44,6 @@ const getDataFromSearch = (venue) => {
     venueType: getVenueType(venue.categories),
     venueTypeIcon: getVenueTypeIcon(venue.categories),
   };
-  console.log(data);
   return data;
 };
 
@@ -61,17 +60,24 @@ const fetchData = async (url) => {
 const fetchFoursquareData = async (url) => {
   const data = await fetchData(url);
   const venue = data.response.venues;
-  console.log(venue);
   const venueData = venue.map(getDataFromSearch);
   return venueData;
 };
 
+const onClick = (event) => {
+  // const data = await fetchData(
+  //   "https://api.foursquare.com/v2/venues/574ee86d498ed3dc81888e48?client_id=IKFBFDDPWTL4CBLFKOWMQ0KLJVBZCPZH0R0ZO3Q3RLW54XOK&client_secret=04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF&v=20210406"
+  // );
+  // const venue = data.response.venue;
+  // const venueData = getDataAboutVenue(venue);
+  console.log(event.currentTarget);
+};
+
 const renderFoursquareCards = (data) => {
-  console.log(data.venueTypeIcon);
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel black p-1">
-    <div class="row valign-wrapper">
+  <div class="card-panel black p-1" data-id="venue-card-${data.venueName}">
+    <div class="row valign-wrapper>
       <div class="col s3">
         <img
           src="${data.venueTypeIcon}"
@@ -89,6 +95,57 @@ const renderFoursquareCards = (data) => {
 >`;
 
   $("#foursquare-container").append(card);
+  $(`[data-id='venue-card-${data.venueName}']`).click(onClick);
+};
+
+const renderModal = () => {
+  const modal = `<div class="container">
+  <h2>Venue Modal</h2>
+
+  <a href="#details" class="btn orange modal-trigger">Details</a>
+
+  <div class="modal" id="details">
+    <h4 class="m-1 center-align">Venue Name</h4>
+    <div class="container details-container">
+      <img
+        src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+        width="100"
+        height="auto"
+        alt=""
+        class="circle center-block"
+      />
+      <div class="info-container m-1 border-test">
+        <div>Basic information goes here about the venue.</div>
+        <ul>
+          <li>- Opening Hours</li>
+          <li>- Address</li>
+          <li>- Contact Details</li>
+          <li>- Reviews</li>
+          <li>- URL</li>
+        </ul>
+      </div>
+    </div>
+    <form class="m-1 row">
+      <input
+        type="text"
+        class="col s12 m12 l12"
+        placeholder="User can write text here"
+      />
+      <input
+        type="text"
+        class="datepicker"
+        placeholder="Select your date"
+      />
+      <a href="#" class="btn blue mb-1 col s12 m6 l6">Add to wishlist</a>
+      <a
+        href="#"
+        class="btn red mb-1 col s12 m6 l6 modal-close"
+        id="close-button"
+        >Close</a
+      >
+    </form>
+  </div>
+</div>`;
 };
 
 const renderSearchResultsPage = (city) => {
@@ -309,6 +366,7 @@ const onSubmit = async (event) => {
   const foursquareData = await fetchFoursquareData(foursquareUrl);
   renderSearchResultsPage(formData.city);
   foursquareData.forEach(renderFoursquareCards);
+  renderModal();
 };
 
 const onReady = () => {
