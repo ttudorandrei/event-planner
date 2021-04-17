@@ -98,6 +98,7 @@ const onClick = async (event) => {
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
   const venueData = getDataAboutVenue(venue);
+  renderModal(venueData);
 };
 
 const renderFoursquareCards = (data) => {
@@ -151,26 +152,26 @@ const renderModal = () => {
     <form class="m-1 row">
       <input
         type="text"
-        class="col s12 m12 l12"
+        class="col s10 m10 l10 center-align"
         placeholder="User can write text here"
       />
       <input
         type="text"
-        class="datepicker"
+        class="datepicker col s10 m10 l10 center-align"
         placeholder="Select your date"
       />
-      <a href="#" class="btn blue mb-1 col s12 m6 l6">Add to wishlist</a>
+      <a href="#" class="btn blue mb-1 col s10 m5 l5">Add to wishlist</a>
       <a
         href="#"
-        class="btn red mb-1 col s12 m6 l6 modal-close"
+        class="btn red mb-1 col s10 m5 l5 modal-close"
         id="close-button"
         >Close</a
       >
     </form>
   </div>`;
-
-  $("#foursquare-container").append(modal);
   $(".modal").modal();
+  $(".datepicker").datepicker();
+  $("#foursquare-container").append(modal);
 };
 
 const renderSearchResultsPage = (city) => {
@@ -391,7 +392,6 @@ const onSubmit = async (event) => {
   const foursquareData = await fetchFoursquareData(foursquareUrl);
   renderSearchResultsPage(formData.city);
   foursquareData.forEach(renderFoursquareCards);
-  renderModal();
 };
 
 const onReady = () => {
