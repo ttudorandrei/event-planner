@@ -29,12 +29,22 @@ const getVenueType = (venue) => {
   }
 };
 
+const getVenueTypeIcon = (venue) => {
+  const venueIcon = venue[0].icon;
+  const prefix = venueIcon.prefix;
+  const suffix = venueIcon.suffix;
+
+  return `${prefix}64${suffix}`;
+};
+
 const getDataFromSearch = (venue) => {
   const data = {
     venueName: venue.name,
     venueId: venue.id,
     venueType: getVenueType(venue.categories),
+    venueTypeIcon: getVenueTypeIcon(venue.categories),
   };
+  console.log(data);
   return data;
 };
 
@@ -57,21 +67,21 @@ const fetchFoursquareData = async (url) => {
 };
 
 const renderFoursquareCards = (data) => {
-  console.log(data);
+  console.log(data.venueTypeIcon);
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel white p-1">
+  <div class="card-panel black p-1">
     <div class="row valign-wrapper">
       <div class="col s3">
         <img
-          src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+          src="${data.venueTypeIcon}"
           alt=""
           class="responsive-img"
         />
       </div>
       <div class="col s9">
-        <div class="black-text">${data.venueName}</div>
-        <div class="black-text">${data.venueType}</div>
+        <div class="white-text">${data.venueName}</div>
+        <div class="white-text">${data.venueType}</div>
       </div>
     </div>
   </div>
