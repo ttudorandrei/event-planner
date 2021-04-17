@@ -71,9 +71,21 @@ const constructImageUrl = (image) => {
 };
 
 const getImages = (venueImages) => {
-  const imagesArray = venueImages.groups[0].items;
-  const imageUrl = imagesArray.map(constructImageUrl);
-  return imageUrl;
+  if (venueImages.groups.length === 0) {
+    return "no image";
+  } else {
+    const imagesArray = venueImages.groups[0].items;
+    const imageUrl = imagesArray.map(constructImageUrl);
+    return imageUrl;
+  }
+};
+
+const getOpeningHours = (openingHours) => {
+  if (openingHours === undefined) {
+    return "n/a";
+  } else {
+    return openingHours.status;
+  }
 };
 
 const getDataAboutVenue = (venue) => {
@@ -82,12 +94,64 @@ const getDataAboutVenue = (venue) => {
     description: venue.description,
     images: getImages(venue.photos),
     url: venue.url,
-    openingHours: venue.hours.status,
+    openingHours: getOpeningHours(venue.defaultHours),
     address: venue.location.formattedAddress,
     contactDetails: venue.contact.phone,
     rating: venue.rating,
   };
+  console.log(data);
   return data;
+};
+
+const renderModal = (data) => {
+  const modal = `
+  <div class="modal" id="details">
+    <h4 class="m-1 center-align">${data.name}</h4>
+    <div class="container details-container">
+      <img
+        src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+        width="100"
+        height="auto"
+        alt=""
+        class="circle center-block"
+      />
+      <div class="info-container m-1 border-test">
+        <div>Basic information goes here about the venue.</div>
+        <ul>
+          <li>- Opening Hours: ${data.openingHours}</li>
+          <li>- Address: </li>
+          <li>- Contact Details: ${data.contactDetails}</li>
+          <li>- Rating: ${data.rating}</li>
+          <li>- URL</li>
+        </ul>
+      </div>
+    </div>
+    <form class="m-1 row">
+      <input
+        type="text"
+        class="col s10 m10 l10 center-align"
+        placeholder="User can write text here"
+      />
+      <input
+        type="text"
+        class="datepicker col s10 m10 l10 center-align"
+        placeholder="Select your date"
+      />
+      <a href="#" class="btn blue mb-1 col s10 m5 l5">Add to wishlist</a>
+      <a
+        href="#"
+        class="btn red mb-1 col s10 m5 l5 modal-close"
+        id="close-button"
+        >Close</a
+      >
+    </form>
+  </div>`;
+
+  // console.log(modal);
+
+  $("#foursquare-container").append(modal);
+  $(".modal").modal();
+  $(".datepicker").datepicker();
 };
 
 const onClick = async (event) => {
@@ -124,54 +188,6 @@ const renderFoursquareCards = (data) => {
 
   $("#foursquare-container").append(card);
   $(`[data-id='${data.venueId}']`).click(onClick);
-};
-
-const renderModal = () => {
-  const modal = `
-  <div class="modal" id="details">
-    <h4 class="m-1 center-align">Venue Name</h4>
-    <div class="container details-container">
-      <img
-        src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-        width="100"
-        height="auto"
-        alt=""
-        class="circle center-block"
-      />
-      <div class="info-container m-1 border-test">
-        <div>Basic information goes here about the venue.</div>
-        <ul>
-          <li>- Opening Hours</li>
-          <li>- Address</li>
-          <li>- Contact Details</li>
-          <li>- Reviews</li>
-          <li>- URL</li>
-        </ul>
-      </div>
-    </div>
-    <form class="m-1 row">
-      <input
-        type="text"
-        class="col s10 m10 l10 center-align"
-        placeholder="User can write text here"
-      />
-      <input
-        type="text"
-        class="datepicker col s10 m10 l10 center-align"
-        placeholder="Select your date"
-      />
-      <a href="#" class="btn blue mb-1 col s10 m5 l5">Add to wishlist</a>
-      <a
-        href="#"
-        class="btn red mb-1 col s10 m5 l5 modal-close"
-        id="close-button"
-        >Close</a
-      >
-    </form>
-  </div>`;
-  $(".modal").modal();
-  $(".datepicker").datepicker();
-  $("#foursquare-container").append(modal);
 };
 
 const renderSearchResultsPage = (city) => {
@@ -306,26 +322,6 @@ const renderSearchResultsPage = (city) => {
     </span>
   </form>
 </div>`;
-
-  //genrated card based on data from api
-  //   const card = `<a href="#details" class="modal-trigger"
-  // ><div class="col s12 l6">
-  //   <div class="card-panel white p-1">
-  //     <div class="row valign-wrapper">
-  //       <div class="col s3">
-  //         <img
-  //           src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-  //           alt=""
-  //           class="responsive-img"
-  //         />
-  //       </div>
-  //       <div class="col s9">
-  //         <span class="black-text">Venue Name Here</span>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div></a
-  // >`;
 
   //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
