@@ -2,18 +2,6 @@ const CLIENT_ID = "IKFBFDDPWTL4CBLFKOWMQ0KLJVBZCPZH0R0ZO3Q3RLW54XOK";
 const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
-const getFromLocalStorage = () => {
-  const localStorageData = JSON.parse(localStorage.getItem("wishlistItem"));
-
-  if (localStorageData === null) {
-    console.log("null");
-    return [];
-  } else {
-    console.log("exist");
-    return localStorageData;
-  }
-};
-
 //function for date picker in results modal
 $(document).ready(function () {
   $(".datepicker").datepicker();
@@ -304,7 +292,6 @@ const onSubmit = (event) => {
   // restaurantCard();
   // artsCard();
   // outdoorCard();
-  getFromLocalStorage();
 };
 
 const onReady = () => {
