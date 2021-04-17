@@ -52,8 +52,30 @@ const fetchFoursquareData = async (url) => {
   const data = await fetchData(url);
   const venue = data.response.venues;
   const venueData = venue.map(getDataFromSearch);
-
   return venueData;
+};
+
+const renderFoursquareCards = (data) => {
+  const card = `<a href="#details" class="modal-trigger"
+><div class="col s12 l6">
+  <div class="card-panel white p-1">
+    <div class="row valign-wrapper">
+      <div class="col s3">
+        <img
+          src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+          alt=""
+          class="responsive-img"
+        />
+      </div>
+      <div class="col s9">
+        <span class="black-text">Venue Name Here</span>
+      </div>
+    </div>
+  </div>
+</div></a
+>`;
+
+  $("#foursquare-container").append(card);
 };
 
 const renderSearchResultsPage = (city) => {
@@ -190,24 +212,24 @@ const renderSearchResultsPage = (city) => {
 </div>`;
 
   //genrated card based on data from api
-  const card = `<a href="#details" class="modal-trigger"
-><div class="col s12 l6">
-  <div class="card-panel white p-1">
-    <div class="row valign-wrapper">
-      <div class="col s3">
-        <img
-          src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-          alt=""
-          class="responsive-img"
-        />
-      </div>
-      <div class="col s9">
-        <span class="black-text">Venue Name Here</span>
-      </div>
-    </div>
-  </div>
-</div></a
->`;
+  //   const card = `<a href="#details" class="modal-trigger"
+  // ><div class="col s12 l6">
+  //   <div class="card-panel white p-1">
+  //     <div class="row valign-wrapper">
+  //       <div class="col s3">
+  //         <img
+  //           src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
+  //           alt=""
+  //           class="responsive-img"
+  //         />
+  //       </div>
+  //       <div class="col s9">
+  //         <span class="black-text">Venue Name Here</span>
+  //       </div>
+  //     </div>
+  //   </div>
+  // </div></a
+  // >`;
 
   //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
@@ -267,13 +289,13 @@ const createFoursquareUrl = (data) => {
   return foursquareUrl;
 };
 
-const onSubmit = (event) => {
+const onSubmit = async (event) => {
   event.preventDefault();
   const formData = getFormData();
   const foursquareUrl = createFoursquareUrl(formData);
-  const foursquareData = fetchFoursquareData(foursquareUrl);
-
+  const foursquareData = await fetchFoursquareData(foursquareUrl);
   renderSearchResultsPage(formData.city);
+  foursquareData.forEach(renderFoursquareCards);
 };
 
 const onReady = () => {
