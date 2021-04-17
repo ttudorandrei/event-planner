@@ -64,19 +64,47 @@ const fetchFoursquareData = async (url) => {
   return venueData;
 };
 
-const onClick = (event) => {
-  // const data = await fetchData(
-  //   "https://api.foursquare.com/v2/venues/574ee86d498ed3dc81888e48?client_id=IKFBFDDPWTL4CBLFKOWMQ0KLJVBZCPZH0R0ZO3Q3RLW54XOK&client_secret=04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF&v=20210406"
-  // );
-  // const venue = data.response.venue;
-  // const venueData = getDataAboutVenue(venue);
-  console.log(event.currentTarget);
+const constructImageUrl = (image) => {
+  const prefix = image.prefix;
+  const suffix = image.suffix;
+  return `${prefix}300x500${suffix}`;
+};
+
+const getImages = (venueImages) => {
+  const imagesArray = venueImages.groups[0].items;
+  const imageUrl = imagesArray.map(constructImageUrl);
+  return imageUrl;
+};
+
+const getDataAboutVenue = (venue) => {
+  const data = {
+    name: venue.name,
+    description: venue.description,
+    images: getImages(venue.photos),
+    url: venue.url,
+    openingHours: venue.hours.status,
+    address: venue.location.formattedAddress,
+    contactDetails: venue.contact.phone,
+    rating: venue.rating,
+  };
+  return data;
+};
+
+const onClick = async (event) => {
+  const currentTarget = event.currentTarget;
+  const venueId = $(currentTarget).data("id");
+  const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
+
+  const data = await fetchData(venueUrl);
+  const venue = data.response.venue;
+  const venueData = getDataAboutVenue(venue);
+  console.log(venueData);
 };
 
 const renderFoursquareCards = (data) => {
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel black p-1" data-id="venue-card-${data.venueName}">
+  <div class="card-panel black p-1" data-id="${data.venueId}">
     <div class="row valign-wrapper>
       <div class="col s3">
         <img
@@ -95,7 +123,7 @@ const renderFoursquareCards = (data) => {
 >`;
 
   $("#foursquare-container").append(card);
-  $(`[data-id='venue-card-${data.venueName}']`).click(onClick);
+  $(`[data-id='${data.venueId}']`).click(onClick);
 };
 
 const renderModal = () => {
