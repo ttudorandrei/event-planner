@@ -32,10 +32,13 @@ const getVenueType = (venue) => {
 
 const getVenueTypeIcon = (venue) => {
   const venueIcon = venue[0].icon;
-  const prefix = venueIcon.prefix;
-  const suffix = venueIcon.suffix;
-
-  return `${prefix}64${suffix}`;
+  if (venueIcon === undefined) {
+    return "";
+  } else {
+    const prefix = venueIcon.prefix;
+    const suffix = venueIcon.suffix;
+    return `${prefix}64${suffix}`;
+  }
 };
 
 const getDataFromSearch = (venue) => {
@@ -197,6 +200,8 @@ const renderFoursquareCards = (data) => {
 
 const renderSearchResultsPage = (data) => {
   $("#slider").empty();
+  $("#navbar-wrapper").remove();
+  $("#search-results-page-container").empty();
 
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
 `;
@@ -204,10 +209,10 @@ const renderSearchResultsPage = (data) => {
   //gnerates navbar
   const navBar = `
   <div class="nav-wrapper row">
-  <form>
+  <form id="nav-form">
     <!-- search icon -->
     <div class="input-field col l2">
-      <input id="search" type="search" required />
+      <input id="form-input" type="search" required />
       <label class="label-icon" for="search"
         ><i class="fas fa-icon">Search</i></label
       >
@@ -215,7 +220,7 @@ const renderSearchResultsPage = (data) => {
 
     <!-- Choose a Country dropdown -->
     <div class="input-field navbar-item-color col l2 m12 s12">
-      <select>
+      <select id="country-input">
         <option value="" disabled selected>Choose a Country</option>
         <option value="GB">Great Britain</option>
         <option value="AD">Andorra</option>
@@ -308,15 +313,15 @@ const renderSearchResultsPage = (data) => {
     <div class="input-field navbar-item-color col l2 m12 s12">
       <select multiple>
         <option value="" disabled selected>Choose a Category</option>
-        <option value="1">Restaurants</option>
-        <option value="2">Arts & Entertainment</option>
-        <option value="3">Outdoor & Recreation</option>
+        <option value="1" id="restaurant">Restaurants</option>
+        <option value="2" id="arts-entertainment">Arts & Entertainment</option>
+        <option value="3" id="outdoor-recreation">Outdoor & Recreation</option>
       </select>
     </div>
 
     <!-- button -->
     <div class="col navbar-item-color l2 m12 s12">
-      <a class="waves-effect waves-light btn-small">Button</a>
+      <button class="waves-effect waves-light btn-small">Button</button>
     </div>
 
     <!-- Link to Wishlist page -->
@@ -364,6 +369,8 @@ const renderSearchResultsPage = (data) => {
   $("#ticketmaster-container").append(widget);
 
   $("#widget-script").append(widgetScript);
+
+  $("#nav-form").submit(onSubmit);
 };
 
 const createFoursquareUrl = (data) => {
