@@ -5,6 +5,7 @@ const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 const getFormData = () => {
   const city = $("#form-input").val();
   const countryValue = $("#country-input").val();
+  console.log(countryValue);
 
   const wantsRestaurants = $("#restaurant").is(":checked");
   const wantsArts = $("#arts-entertainment").is(":checked");
@@ -31,10 +32,13 @@ const getVenueType = (venue) => {
 
 const getVenueTypeIcon = (venue) => {
   const venueIcon = venue[0].icon;
-  const prefix = venueIcon.prefix;
-  const suffix = venueIcon.suffix;
-
-  return `${prefix}64${suffix}`;
+  if (venueIcon === undefined) {
+    return "";
+  } else {
+    const prefix = venueIcon.prefix;
+    const suffix = venueIcon.suffix;
+    return `${prefix}64${suffix}`;
+  }
 };
 
 const getDataFromSearch = (venue) => {
@@ -104,6 +108,14 @@ const getRating = (rating) => {
   }
 };
 
+const getDescription = (description) => {
+  if (description === undefined) {
+    return "";
+  } else {
+    return description;
+  }
+};
+
 const getUrl = (url) => {
   if (url === undefined) {
     return "Currently Unavailable";
@@ -115,7 +127,7 @@ const getUrl = (url) => {
 const getDataAboutVenue = (venue) => {
   const data = {
     name: venue.name,
-    description: venue.description,
+    description: getDescription(venue.description),
     images: getImages(venue.photos),
     url: getUrl(venue.url),
     openingHours: getOpeningHours(venue.defaultHours),
@@ -142,6 +154,7 @@ const renderModal = (data) => {
 
   $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
+  $("#description").text(data.description);
   $("#opening-hours").text(data.openingHours);
   $("#address").text(data.address);
   $("#contact-details").text(data.contactDetails);
@@ -185,8 +198,10 @@ const renderFoursquareCards = (data) => {
   $(`[data-id='${data.venueId}']`).click(onClick);
 };
 
-const renderSearchResultsPage = (city) => {
+const renderSearchResultsPage = (data) => {
   $("#slider").empty();
+  $("#navbar-wrapper").remove();
+  $("#search-results-page-container").empty();
 
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
 `;
@@ -194,10 +209,10 @@ const renderSearchResultsPage = (city) => {
   //gnerates navbar
   const navBar = `
   <div class="nav-wrapper row">
-  <form>
+  <form id="nav-form">
     <!-- search icon -->
     <div class="input-field col l2">
-      <input id="search" type="search" required />
+      <input id="form-input" type="search" required />
       <label class="label-icon" for="search"
         ><i class="fas fa-icon">Search</i></label
       >
@@ -205,91 +220,91 @@ const renderSearchResultsPage = (city) => {
 
     <!-- Choose a Country dropdown -->
     <div class="input-field navbar-item-color col l2 m12 s12">
-      <select>
+      <select id="country-input">
         <option value="" disabled selected>Choose a Country</option>
-        <option value="greatBritain">Great Britain</option>
-        <option value="andorra">Andorra</option>
-        <option value="argentina">Argentina</option>
-        <option value="australia">Australia</option>
-        <option value="austria">Austria</option>
-        <option value="azerbaijan">Azerbaijan</option>
-        <option value="bahamas">Bahamas</option>
-        <option value="barbados">Barbados</option>
-        <option value="belgium">Belgium</option>
-        <option value="bermuda">Bermuda</option>
-        <option value="brazil">Brazil</option>
-        <option value="bulgaria">Bulgaria</option>
-        <option value="canada">Canada</option>
-        <option value="chile">Chile</option>
-        <option value="china">China</option>
-        <option value="colombia">Colombia</option>
-        <option value="costaRica">Costa Rica</option>
-        <option value="croatia">Croatia</option>
-        <option value="cyprus">Cyprus</option>
-        <option value="czechRepublic">Czech Republic</option>
-        <option value="denmark">Denmark</option>
-        <option value="dominicanRepublic">Dominican Republic</option>
-        <option value="ecuador">Ecuador</option>
-        <option value="estonia">Estonia</option>
-        <option value="faroeIslands">Faroe Islands</option>
-        <option value="finland">Finland</option>
-        <option value="france">France</option>
-        <option value="georgia">Georgia</option>
-        <option value="germany">Germany</option>
-        <option value="ghana">Ghana</option>
-        <option value="gibraltar">Gibraltar</option>
-        <option value="greece">Greece</option>
-        <option value="hongKong">Hong Kong</option>
-        <option value="hungary">Hungary</option>
-        <option value="iceland">Iceland</option>
-        <option value="india">India</option>
-        <option value="ireland">Ireland</option>
-        <option value="israel">Israel</option>
-        <option value="italy">Italy</option>
-        <option value="jamaica">Jamaica</option>
-        <option value="japan">Japan</option>
-        <option value="koreaRepublicOf">Korea, Republic of</option>
-        <option value="latvia">Latvia</option>
-        <option value="lebanon">Lebanon</option>
-        <option value="lithuania">Lithuania</option>
-        <option value="luxembourg">Luxembourg</option>
-        <option value="malaysia">Malaysia</option>
-        <option value="malta">Malta</option>
-        <option value="mexico">Mexico</option>
-        <option value="monaco">Monaco</option>
-        <option value="montenegro">Montenegro</option>
-        <option value="morocco">Morocco</option>
-        <option value="netherlands">Netherlands</option>
-        <option value="netherlandsAntilles">Netherlands Antilles</option>
-        <option value="newZealand">New Zealand</option>
-        <option value="northernIreland">Northern Ireland</option>
-        <option value="norway">Norway</option>
-        <option value="peru">Peru</option>
-        <option value="poland">Poland</option>
-        <option value="portugal">Portugal</option>
-        <option value="romania">Romania</option>
-        <option value="russianFederation">Russian Federation</option>
-        <option value="saintLucia">Saint Lucia</option>
-        <option value="saudiArabia">Saudi Arabia</option>
-        <option value="serbia">Serbia</option>
-        <option value="singapore">Singapore</option>
-        <option value="slovakia">Slovakia</option>
-        <option value="slovenia">Slovenia</option>
-        <option value="southAfrica">South Africa</option>
-        <option value="spain">Spain</option>
-        <option value="sweden">Sweden</option>
-        <option value="switzerland">Switzerland</option>
-        <option value="taiwan">Taiwan</option>
-        <option value="thailand">Thailand</option>
-        <option value="trinidadAndTobago">Trinidad and Tobago</option>
-        <option value="turkey">Turkey</option>
-        <option value="ukraine">Ukraine</option>
-        <option value="unitedArabEmirates">United Arab Emirates</option>
-        <option value="unitedStatesOfAmerica">
+        <option value="GB">Great Britain</option>
+        <option value="AD">Andorra</option>
+        <option value="AR">Argentina</option>
+        <option value="AU">Australia</option>
+        <option value="AT">Austria</option>
+        <option value="AZ">Azerbaijan</option>
+        <option value="BS">Bahamas</option>
+        <option value="BB">Barbados</option>
+        <option value="BE">Belgium</option>
+        <option value="BM">Bermuda</option>
+        <option value="BR">Brazil</option>
+        <option value="BG">Bulgaria</option>
+        <option value="CA">Canada</option>
+        <option value="CL">Chile</option>
+        <option value="CN">China</option>
+        <option value="CO">Colombia</option>
+        <option value="CR">Costa Rica</option>
+        <option value="HR">Croatia</option>
+        <option value="CY">Cyprus</option>
+        <option value="CZ">Czech Republic</option>
+        <option value="DK">Denmark</option>
+        <option value="DO">Dominican Republic</option>
+        <option value="EC">Ecuador</option>
+        <option value="EE">Estonia</option>
+        <option value="FO">Faroe Islands</option>
+        <option value="FI">Finland</option>
+        <option value="FR">France</option>
+        <option value="GE">Georgia</option>
+        <option value="DE">Germany</option>
+        <option value="GH">Ghana</option>
+        <option value="GI">Gibraltar</option>
+        <option value="GR">Greece</option>
+        <option value="HK">Hong Kong</option>
+        <option value="HU">Hungary</option>
+        <option value="IS">Iceland</option>
+        <option value="IN">India</option>
+        <option value="IE">Ireland</option>
+        <option value="IL">Israel</option>
+        <option value="IT">Italy</option>
+        <option value="JM">Jamaica</option>
+        <option value="JP">Japan</option>
+        <option value="KR">Korea, Republic of</option>
+        <option value="LV">Latvia</option>
+        <option value="LB">Lebanon</option>
+        <option value="LT">Lithuania</option>
+        <option value="LU">Luxembourg</option>
+        <option value="MY">Malaysia</option>
+        <option value="MT">Malta</option>
+        <option value="MX">Mexico</option>
+        <option value="MC">Monaco</option>
+        <option value="ME">Montenegro</option>
+        <option value="MA">Morocco</option>
+        <option value="NL">Netherlands</option>
+        <option value="AN">Netherlands Antilles</option>
+        <option value="NZ">New Zealand</option>
+        <option value="ND">Northern Ireland</option>
+        <option value="NO">Norway</option>
+        <option value="PE">Peru</option>
+        <option value="PL">Poland</option>
+        <option value="PT">Portugal</option>
+        <option value="RO">Romania</option>
+        <option value="RU">Russian Federation</option>
+        <option value="LC">Saint Lucia</option>
+        <option value="SA">Saudi Arabia</option>
+        <option value="RS">Serbia</option>
+        <option value="SG">Singapore</option>
+        <option value="SK">Slovakia</option>
+        <option value="SI">Slovenia</option>
+        <option value="ZA">South Africa</option>
+        <option value="ES">Spain</option>
+        <option value="SE">Sweden</option>
+        <option value="CH">Switzerland</option>
+        <option value="TW">Taiwan</option>
+        <option value="TH">Thailand</option>
+        <option value="TT">Trinidad and Tobago</option>
+        <option value="TR">Turkey</option>
+        <option value="UA">Ukraine</option>
+        <option value="AE">United Arab Emirates</option>
+        <option value="US">
           United States of America
         </option>
-        <option value="uruguay">Uruguay</option>
-        <option value="venezuela">Venezuela</option>
+        <option value="UY">Uruguay</option>
+        <option value="VE">Venezuela</option>
       </select>
     </div>
 
@@ -298,15 +313,15 @@ const renderSearchResultsPage = (city) => {
     <div class="input-field navbar-item-color col l2 m12 s12">
       <select multiple>
         <option value="" disabled selected>Choose a Category</option>
-        <option value="1">Restaurants</option>
-        <option value="2">Arts & Entertainment</option>
-        <option value="3">Outdoor & Recreation</option>
+        <option value="1" id="restaurant">Restaurants</option>
+        <option value="2" id="arts-entertainment">Arts & Entertainment</option>
+        <option value="3" id="outdoor-recreation">Outdoor & Recreation</option>
       </select>
     </div>
 
     <!-- button -->
     <div class="col navbar-item-color l2 m12 s12">
-      <a class="waves-effect waves-light btn-small">Button</a>
+      <button class="waves-effect waves-light btn-small">Button</button>
     </div>
 
     <!-- Link to Wishlist page -->
@@ -333,7 +348,7 @@ const renderSearchResultsPage = (city) => {
         </section>`;
 
   //widget source code
-  const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
+  const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${data.city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="${data.countryValue}" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
 
@@ -354,6 +369,8 @@ const renderSearchResultsPage = (city) => {
   $("#ticketmaster-container").append(widget);
 
   $("#widget-script").append(widgetScript);
+
+  $("#nav-form").submit(onSubmit);
 };
 
 const createFoursquareUrl = (data) => {
@@ -371,7 +388,7 @@ const createFoursquareUrl = (data) => {
     url += "4d4b7105d754a06377d81259,";
   }
 
-  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city}&categoryId=${url}`;
+  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${url}`;
 
   return foursquareUrl;
 };
@@ -382,7 +399,7 @@ const onSubmit = async (event) => {
 
   const foursquareUrl = createFoursquareUrl(formData);
   const foursquareData = await fetchFoursquareData(foursquareUrl);
-  renderSearchResultsPage(formData.city);
+  renderSearchResultsPage(formData);
   foursquareData.forEach(renderFoursquareCards);
 };
 
