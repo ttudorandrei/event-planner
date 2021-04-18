@@ -195,7 +195,7 @@ const renderFoursquareCards = (data) => {
   $(`[data-id='${data.venueId}']`).click(onClick);
 };
 
-const renderSearchResultsPage = (city) => {
+const renderSearchResultsPage = (data) => {
   $("#slider").empty();
 
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
@@ -343,7 +343,7 @@ const renderSearchResultsPage = (city) => {
         </section>`;
 
   //widget source code
-  const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
+  const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${data.city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="${data.countryValue}" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
 
@@ -392,7 +392,7 @@ const onSubmit = async (event) => {
 
   const foursquareUrl = createFoursquareUrl(formData);
   const foursquareData = await fetchFoursquareData(foursquareUrl);
-  renderSearchResultsPage(formData.city);
+  renderSearchResultsPage(formData);
   foursquareData.forEach(renderFoursquareCards);
 };
 
