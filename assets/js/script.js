@@ -305,6 +305,7 @@ const createFoursquareUrl = (data) => {
 const onSubmit = async (event) => {
   event.preventDefault();
   const formData = getFormData();
+
   const foursquareUrl = createFoursquareUrl(formData);
   const foursquareData = await fetchFoursquareData(foursquareUrl);
   renderSearchResultsPage(formData.city);
