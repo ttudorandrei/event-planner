@@ -82,7 +82,7 @@ const getImages = (venueImages) => {
 
 const getOpeningHours = (openingHours) => {
   if (openingHours === undefined) {
-    return "n/a";
+    return "Currently Unavailable";
   } else {
     return openingHours.status;
   }
@@ -105,10 +105,20 @@ const getDataAboutVenue = (venue) => {
 
 const renderModal = (data) => {
   $("#url").empty();
-  const modalUrl = `<a href="${data.url}">${data.url}</a>`;
+  $("#modal-image").empty();
 
+  const modalUrl = `<a href="${data.url}">${data.url}</a>`;
+  const modalImage = `<img
+  src="${data.images[1]}"
+  width="100"
+  height="auto"
+  alt=""
+  class="center-block"
+/>`;
+
+  $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
-  $("#opening-hours").text(data.openingHours);
+  $("#opening-hours").text(data.openingHous);
   $("#address").text(data.address);
   $("#contact-details").text(data.contactDetails);
   $("#rating").text(data.rating);
