@@ -44,7 +44,6 @@ const getDataFromSearch = (venue) => {
     venueType: getVenueType(venue.categories),
     venueTypeIcon: getVenueTypeIcon(venue.categories),
   };
-  console.log(data);
   return data;
 };
 
@@ -61,17 +60,111 @@ const fetchData = async (url) => {
 const fetchFoursquareData = async (url) => {
   const data = await fetchData(url);
   const venue = data.response.venues;
-  console.log(venue);
   const venueData = venue.map(getDataFromSearch);
   return venueData;
 };
 
+const constructImageUrl = (image) => {
+  const prefix = image.prefix;
+  const suffix = image.suffix;
+  return `${prefix}300x500${suffix}`;
+};
+
+const getImages = (venueImages) => {
+  if (venueImages.groups.length === 0) {
+    return "no image";
+  } else {
+    const imagesArray = venueImages.groups[0].items;
+    const imageUrl = imagesArray.map(constructImageUrl);
+    return imageUrl;
+  }
+};
+
+const getOpeningHours = (openingHours) => {
+  if (openingHours === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return openingHours.status;
+  }
+};
+
+const getContactDetails = (contactDetails) => {
+  if (contactDetails === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return contactDetails.phone;
+  }
+};
+
+const getRating = (rating) => {
+  if (rating === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return rating;
+  }
+};
+
+const getUrl = (url) => {
+  if (url === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return url;
+  }
+};
+
+const getDataAboutVenue = (venue) => {
+  const data = {
+    name: venue.name,
+    description: venue.description,
+    images: getImages(venue.photos),
+    url: getUrl(venue.url),
+    openingHours: getOpeningHours(venue.defaultHours),
+    address: venue.location.formattedAddress,
+    contactDetails: getContactDetails(venue.contact),
+    rating: getRating(venue.rating),
+  };
+  console.log(data);
+  return data;
+};
+
+const renderModal = (data) => {
+  $("#url").empty();
+  $("#modal-image").empty();
+
+  const modalUrl = `<a href="${data.url}" target="_blank">${data.url}</a>`;
+  const modalImage = `<img
+  src="${data.images[1]}"
+  width="100"
+  height="auto"
+  alt=""
+  class="center-block"
+/>`;
+
+  $("#modal-image").append(modalImage);
+  $("#h4-modal").text(data.name);
+  $("#opening-hours").text(data.openingHours);
+  $("#address").text(data.address);
+  $("#contact-details").text(data.contactDetails);
+  $("#rating").text(data.rating);
+  $("#url").append(modalUrl);
+};
+
+const onClick = async (event) => {
+  const currentTarget = event.currentTarget;
+  const venueId = $(currentTarget).data("id");
+  const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
+
+  const data = await fetchData(venueUrl);
+  const venue = data.response.venue;
+  const venueData = getDataAboutVenue(venue);
+  renderModal(venueData);
+};
+
 const renderFoursquareCards = (data) => {
-  console.log(data.venueTypeIcon);
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel black p-1">
-    <div class="row valign-wrapper">
+  <div class="card-panel black p-1" data-id="${data.venueId}">
+    <div class="row valign-wrapper>
       <div class="col s3">
         <img
           src="${data.venueTypeIcon}"
@@ -89,6 +182,7 @@ const renderFoursquareCards = (data) => {
 >`;
 
   $("#foursquare-container").append(card);
+  $(`[data-id='${data.venueId}']`).click(onClick);
 };
 
 const renderSearchResultsPage = (city) => {
@@ -224,26 +318,6 @@ const renderSearchResultsPage = (city) => {
   </form>
 </div>`;
 
-  //genrated card based on data from api
-  //   const card = `<a href="#details" class="modal-trigger"
-  // ><div class="col s12 l6">
-  //   <div class="card-panel white p-1">
-  //     <div class="row valign-wrapper">
-  //       <div class="col s3">
-  //         <img
-  //           src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-  //           alt=""
-  //           class="responsive-img"
-  //         />
-  //       </div>
-  //       <div class="col s9">
-  //         <span class="black-text">Venue Name Here</span>
-  //       </div>
-  //     </div>
-  //   </div>
-  // </div></a
-  // >`;
-
   //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
 
@@ -319,6 +393,9 @@ const onReady = () => {
     indicators: false,
     interval: 3000,
   });
+
+  // activates modal
+  $(".modal").modal();
 
   // target form and add submit event listener
   $("#form").submit(onSubmit);
