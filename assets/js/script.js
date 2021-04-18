@@ -162,6 +162,46 @@ const renderModal = (data) => {
   $("#url").append(modalUrl);
 };
 
+//changes on 18-08-2021
+// this function will retrieve whatever data is in local storage
+// const getFromLocalStorage = () => {
+//   const localStorageData = JSON.parse(localStorage.getItem("favorites"));
+//   if (localStorageData === null) {
+//     return [];
+//   } else {
+//     return localStorageData;
+//   }
+// };
+
+//   const addToFavourite = (event, data) => {
+//   event.preventDefault();
+
+//   // const favoriteItems = JSON.parse(localStorage.getItem("favorites"));
+//   const favoriteItems = getFromLocalStorage();
+
+//   favoriteItems.push(data);
+
+//   localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+// };
+
+// const onClickAddFavourite = (event) => {
+//   event.preventDefault();
+//   const currentTarget = $(event.currentTarget);
+
+// const elementName =
+
+//   //this is working with mock data
+//   const objectIntoWishlist = {
+//     name: currentTarget,
+//     // date: "today",
+//   };
+//   console.log(objectIntoWishlist);
+// };
+
+// $("#set-to-wishlist").click(addToFavourite, onClickAddFavourite);
+
+// end of changes
+
 const onClick = async (event) => {
   const currentTarget = event.currentTarget;
   const venueId = $(currentTarget).data("id");
@@ -206,7 +246,7 @@ const renderSearchResultsPage = (data) => {
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
 `;
 
-  //gnerates navbar
+  //generates navbar
   const navBar = `
   <div class="nav-wrapper row">
   <form id="nav-form">
@@ -422,6 +462,9 @@ const onReady = () => {
 
   // activates date picker in results modal
   $(".datepicker").datepicker();
+
+  //this will read data from local storage
+  getFromLocalStorage();
 };
 
 $(document).ready(onReady);
