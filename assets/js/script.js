@@ -88,16 +88,40 @@ const getOpeningHours = (openingHours) => {
   }
 };
 
+const getContactDetails = (contactDetails) => {
+  if (contactDetails === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return contactDetails.phone;
+  }
+};
+
+const getRating = (rating) => {
+  if (rating === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return rating;
+  }
+};
+
+const getUrl = (url) => {
+  if (url === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return url;
+  }
+};
+
 const getDataAboutVenue = (venue) => {
   const data = {
     name: venue.name,
     description: venue.description,
     images: getImages(venue.photos),
-    url: venue.url,
+    url: getUrl(venue.url),
     openingHours: getOpeningHours(venue.defaultHours),
     address: venue.location.formattedAddress,
-    contactDetails: venue.contact.phone,
-    rating: venue.rating,
+    contactDetails: getContactDetails(venue.contact),
+    rating: getRating(venue.rating),
   };
   console.log(data);
   return data;
@@ -107,7 +131,7 @@ const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
 
-  const modalUrl = `<a href="${data.url}">${data.url}</a>`;
+  const modalUrl = `<a href="${data.url}" target="_blank">${data.url}</a>`;
   const modalImage = `<img
   src="${data.images[1]}"
   width="100"
@@ -118,7 +142,7 @@ const renderModal = (data) => {
 
   $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
-  $("#opening-hours").text(data.openingHous);
+  $("#opening-hours").text(data.openingHours);
   $("#address").text(data.address);
   $("#contact-details").text(data.contactDetails);
   $("#rating").text(data.rating);
