@@ -23,6 +23,11 @@ body {
   font-size: 10px;
 }
 
+.slider {
+  width: 100%;
+  height: auto;
+}
+
 .button {
   margin-left: 1.2rem;
 }
@@ -62,7 +67,7 @@ body {
   background-color: #ee6e73;
 }
 
-#text-on-slider {
+.text-on-slider {
   position: absolute;
   height: calc(80vh);
   margin-top: 10px;
