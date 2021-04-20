@@ -163,6 +163,7 @@ const renderModal = (data) => {
 
   // set value of hidden inputs for the form submission
   $("#name-value").val(data.name);
+  $("#image-value").val(data.images[1]);
   $("#description-value").val(data.description);
   $("#hours-value").val(data.openingHours);
   $("#address-value").val(data.address);
@@ -171,8 +172,6 @@ const renderModal = (data) => {
   $("#url-value").val(data.url);
 };
 
-//changes on 18-08-2021
-// this function will retrieve whatever data is in local storage
 const getFromLocalStorage = () => {
   const localStorageData = JSON.parse(localStorage.getItem("favorites"));
   if (localStorageData === null) {
