@@ -208,8 +208,8 @@ const renderSearchResultsPage = (data) => {
 
   //gnerates navbar
   const navBar = `
-  <div class="nav-wrapper row">
-  <form id="nav-form">
+  <div >
+  <form id="nav-form" class="nav-wrapper row">
     <!-- search icon -->
     <div class="input-field col l2">
       <input id="form-input" type="search" required />
@@ -319,17 +319,19 @@ const renderSearchResultsPage = (data) => {
       </select>
     </div>
 
-    <!-- button -->
-    <div class="col navbar-item-color l2 m12 s12">
-      <button class="waves-effect waves-light btn-small">Button</button>
-    </div>
+    <div class="row col l6 m12 s12 navbar-item-color">
+          <!-- button -->
+          <div class="col navbar-item-color l4 m6 s6">
+            <a class="waves-effect waves-light btn-small">Button</a>
+          </div>
 
-    <!-- Link to Wishlist page -->
-    <span class="col navbar-item-color l2 m12 s12 offset-l2">
-      <ul id="nav-mobile" class="right">
-        <li><a href="wishlist.html">Wishlist</a></li>
-      </ul>
-    </span>
+          <!-- Link to Wishlist page -->
+          <span class="col navbar-item-color l4 m6 s6 offset-l4">
+            <ul id="nav-mobile" class="right">
+              <li><a href="wishlist.html">Wishlist</a></li>
+            </ul>
+          </span>
+        </div>
   </form>
 </div>`;
 
