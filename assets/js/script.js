@@ -163,6 +163,7 @@ const renderModal = (data) => {
   $("#rating").text(data.rating);
   $("#url").append(modalUrl);
   $("#details").attr("data-venue-id", data.id);
+  $("#details").data("venue-id", data.id);
 };
 
 const getFromLocalStorage = () => {
