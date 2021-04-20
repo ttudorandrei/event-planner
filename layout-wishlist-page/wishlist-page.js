@@ -29,40 +29,98 @@ const onRemoveFromFavorites = function (event) {
   }
 };
 
+const saveWishlistItem = (data) => {
+  // we have our favourites from local storage as favourite items
+  const favoriteItems = getFromLocalStorage();
+  const findId = (favorite) => {
+    return favorite.id === data.id;
+  };
+  // we have index of the favourite that we want to update
+  const favoriteItemToUpdateIndex = favoriteItems.findIndex(findId);
+
+  // we need a new array for our favourites that we can then update the item
+  const newFavorites = [...favoriteItems];
+  newFavorites[favoriteItemToUpdateIndex].textInput = data.textInput;
+
+  // we need to remove the old favourites
+  localStorage.removeItem("favorites");
+  // set the local storage to the new favourites
+  localStorage.setItem("favorites", JSON.stringify(newFavorites));
+};
+
+const updateWishlist = (event) => {
+  event.preventDefault();
+  const image = $("#image").attr("src");
+  const name = $("#h4-modal").text();
+  const description = $("#description").text();
+  const hours = $("#opening-hours").text();
+  const address = $("#address").text();
+  const contact = $("#contact-details").text();
+  const rating = $("#rating").text();
+  const url = $("#modal-url").attr("href");
+  const textInput = $("#comments-input").val();
+  const dateInput = $("#date-input").val();
+  const id = $("#details").data("venue-id");
+  const wishlistItem = {
+    id,
+    image,
+    name,
+    description,
+    hours,
+    address,
+    contact,
+    rating,
+    url,
+    textInput,
+    dateInput,
+  };
+  saveWishlistItem(wishlistItem);
+};
+
 const renderModal = (data) => {
-  //   $("#url").empty();
-  //   $("#modal-image").empty();
-  //   const modalUrl = `<a href="${data.url}" target="_blank">${data.url}</a>`;
-  //   const modalImage = `<img
-  //   src="${data.images[1]}"
-  //   width="100"
-  //   height="auto"
-  //   alt=""
-  //   class="center-block"
-  // />`;
-  //   // append modal display information
-  //   $("#modal-image").append(modalImage);
-  // $("#h4-modal").text("name");
-  //   $("#description").text(data.description);
-  //   $("#opening-hours").text(data.openingHours);
-  //   $("#address").text(data.address);
-  //   $("#contact-details").text(data.contactDetails);
-  //   $("#rating").text(data.rating);
-  //   $("#url").append(modalUrl);
-  // };
+  console.log(data);
+  $("#url").empty();
+  $("#modal-image").empty();
+
+  const modalUrl = `<a href="${data.url}" target="_blank">${data.url}</a>`;
+  const modalImage = `<img
+    src="${data.image}"
+    width="100"
+    height="auto"
+    alt=""
+    class="center-block"
+  />`;
+  // append modal display information
+  $("#modal-image").append(modalImage);
+  $("#h4-modal").text(data.name);
+  $("#description").text(data.description);
+  $("#opening-hours").text(data.openingHours);
+  $("#address").text(data.address);
+  $("#contact-details").text(data.contactDetails);
+  $("#rating").text(data.rating);
+  $("#url").append(modalUrl);
+  $("#details").attr("data-venue-id", data.id);
+  $("#details").data("venue-id", data.id);
+  console.log("thing", data.textInput);
+  $("#comments-input").val(data.textInput);
 };
 
 const onClick = (event) => {
   const currentTarget = event.currentTarget;
-  console.log(currentTarget);
+  const venueId = $(currentTarget).data("favorite-id");
+  const favorites = getFromLocalStorage();
+  const findId = (favorites) => {
+    return favorites.id === venueId;
+  };
+  const favoriteItem = favorites.find(findId);
+  renderModal(favoriteItem);
 };
 
 // this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
-    console.log(favorite);
     const wishlistCard = `<div class="col m12 l10 offset-l1" >
-    <div class="card-panel grey lighten-5 z-depth-1 modal-trigger" data-favorite-id="${favorite.id}">
+    <div class="card-panel grey lighten-5 z-depth-1" data-favorite-id="${favorite.id}">
       <div class="row valign-wrapper">
         <div class="col l1 m12">${favorite.dateInput}</div>
         <div class="col l2 m12">
@@ -78,7 +136,7 @@ const appendWishlistCard = (favorites) => {
         <div class="col l2 m12">
           <span class="black-text">${favorite.name}</span>
         </div>
-        <div class="col l5 m12 offset-m1">${favorite.textInput}</div>
+        <a href="#details" class="btn orange modal-trigger"><div class="col l5 m12 offset-m1">Details</div></a>
         <div class="col l2 m12">
           <button class="btn remove-button" name="remove-btn" data-venue="">Remove</button>
         </div>
@@ -104,8 +162,12 @@ const onReady = () => {
 
   //this generates a card for every object inside the array
   appendWishlistCard(favorites);
+
+  $(".modal").modal();
 };
 
 $("#wishlist-card-container").on("click", onRemoveFromFavorites);
+
+$("#set-to-wishlist").submit(updateWishlist);
 
 $(document).ready(onReady);
