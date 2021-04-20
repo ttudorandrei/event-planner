@@ -358,7 +358,7 @@ const renderSearchResultsPage = (data) => {
 
   // Function to facilitate form select in navbar
   $("select").formSelect();
-
+  $("#content-container").addClass("mt-2");
   $("#content-container").append(searchResultsPageContainer);
 
   $("#search-results-page-container").append(

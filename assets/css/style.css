@@ -33,13 +33,13 @@ body {
 }
 
 .form {
-  margin: 0 15rem;
+  margin: 0;
   padding: 1rem;
   border: 1px solid black;
   box-shadow: 5px 5px 5px grey;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 
 .form-container {
@@ -47,12 +47,6 @@ body {
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.form {
-  margin: 0 15rem;
-  padding: 1rem;
-  border-radius: 10px;
 }
 
 .checkbox {
@@ -109,11 +103,19 @@ body {
     font-size: 25px;
     font-weight: 600;
   }
+  .form {
+    width: 80vw;
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 350px) {
   .header-responsive {
     font-size: 20px;
     font-weight: 600;
+  }
+  .form {
+    width: 90vw;
+    height: auto;
   }
 }
