@@ -192,6 +192,15 @@ const onClickAddFavourite = (event) => {
   const currentTarget = $(event.currentTarget);
   const modalForm = $(currentTarget).closest("form");
   const modalInfo = modalForm.serializeArray();
+  const textInput = {
+    name: "comment",
+    value: $("#comments-input").val(),
+  };
+  const dateInput = {
+    name: "date",
+    value: $("#date-input").val(),
+  };
+  modalInfo.push(textInput, dateInput);
   addToFavourite(modalInfo);
 };
 
@@ -206,8 +215,6 @@ const onClickAddFavourite = (event) => {
 // };
 
 $("#set-to-wishlist").submit(onClickAddFavourite);
-
-// end of changes
 
 const onClick = async (event) => {
   const currentTarget = event.currentTarget;
