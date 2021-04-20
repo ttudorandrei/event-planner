@@ -181,13 +181,13 @@ const getFromLocalStorage = () => {
   }
 };
 
-const addToFavourite = (data) => {
+const addToWishlist = (data) => {
   const favoriteItems = getFromLocalStorage();
   favoriteItems.push(data);
   localStorage.setItem("favorites", JSON.stringify(favoriteItems));
 };
 
-const onClickAddFavourite = (event) => {
+const onSubmitAddToWishlist = (event) => {
   event.preventDefault();
   const currentTarget = $(event.currentTarget);
   const modalForm = $(currentTarget).closest("form");
@@ -201,7 +201,7 @@ const onClickAddFavourite = (event) => {
     value: $("#date-input").val(),
   };
   modalInfo.push(textInput, dateInput);
-  addToFavourite(modalInfo);
+  addToWishlist(modalInfo);
 };
 
 // const elementName =
@@ -214,7 +214,7 @@ const onClickAddFavourite = (event) => {
 //   console.log(objectIntoWishlist);
 // };
 
-$("#set-to-wishlist").submit(onClickAddFavourite);
+$("#set-to-wishlist").submit(onSubmitAddToWishlist);
 
 const onClick = async (event) => {
   const currentTarget = event.currentTarget;
