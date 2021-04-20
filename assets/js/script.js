@@ -202,6 +202,7 @@ const renderSearchResultsPage = (data) => {
   $("#slider").empty();
   $("#navbar-wrapper").remove();
   $("#search-results-page-container").empty();
+  $("#slider").remove();
 
   const navbarContainer = `    <nav id="navbar-wrapper"></nav>
 `;
