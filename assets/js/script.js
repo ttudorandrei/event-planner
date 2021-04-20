@@ -204,6 +204,11 @@ const onSubmitAddToWishlist = (event) => {
   addToWishlist(modalInfo);
 };
 
+const onClickClose = () => {
+  $("#comments-input").val("");
+  $("#date-input").val("");
+};
+
 // const elementName =
 
 //   //this is working with mock data
@@ -213,8 +218,6 @@ const onSubmitAddToWishlist = (event) => {
 //   };
 //   console.log(objectIntoWishlist);
 // };
-
-$("#set-to-wishlist").submit(onSubmitAddToWishlist);
 
 const onClick = async (event) => {
   const currentTarget = event.currentTarget;
@@ -482,3 +485,7 @@ const onReady = () => {
 };
 
 $(document).ready(onReady);
+
+$("#set-to-wishlist").submit(onSubmitAddToWishlist);
+
+$("#close-button").click(onClickClose);
