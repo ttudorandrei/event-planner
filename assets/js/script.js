@@ -204,8 +204,7 @@ const renderSearchResultsPage = (data) => {
   $("#search-results-page-container").empty();
   $("#slider").remove();
 
-  const navbarContainer = `    <nav id="navbar-wrapper"></nav>
-`;
+  const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
 
   //gnerates navbar
   const navBar = `
