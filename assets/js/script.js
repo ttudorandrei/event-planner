@@ -127,6 +127,7 @@ const getUrl = (url) => {
 const getDataAboutVenue = (venue) => {
   const data = {
     name: venue.name,
+    id: venue.id,
     description: getDescription(venue.description),
     images: getImages(venue.photos),
     url: getUrl(venue.url),
@@ -142,13 +143,14 @@ const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
 
-  const modalUrl = `<a href="${data.url}" target="_blank">${data.url}</a>`;
+  const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
   const modalImage = `<img
   src="${data.images[1]}"
   width="100"
   height="auto"
   alt=""
   class="center-block"
+  id="image"
 />`;
 
   // append modal display information
@@ -160,16 +162,7 @@ const renderModal = (data) => {
   $("#contact-details").text(data.contactDetails);
   $("#rating").text(data.rating);
   $("#url").append(modalUrl);
-
-  // set value of hidden inputs for the form submission
-  $("#name-value").val(data.name);
-  $("#image-value").val(data.images[1]);
-  $("#description-value").val(data.description);
-  $("#hours-value").val(data.openingHours);
-  $("#address-value").val(data.address);
-  $("#contact-value").val(data.contactDetails);
-  $("#rating-value").val(data.rating);
-  $("#url-value").val(data.url);
+  $("#details").attr("data-venue-id", data.id);
 };
 
 const getFromLocalStorage = () => {
@@ -189,35 +182,37 @@ const addToWishlist = (data) => {
 
 const onSubmitAddToWishlist = (event) => {
   event.preventDefault();
-  const currentTarget = $(event.currentTarget);
-  const modalForm = $(currentTarget).closest("form");
-  const modalInfo = modalForm.serializeArray();
-  const textInput = {
-    name: "comment",
-    value: $("#comments-input").val(),
+  const image = $("#image").attr("src");
+  const name = $("#h4-modal").text();
+  const description = $("#description").text();
+  const hours = $("#opening-hours").text();
+  const address = $("#address").text();
+  const contact = $("#contact-details").text();
+  const rating = $("#rating").text();
+  const url = $("#modal-url").attr("href");
+  const textInput = $("#comments-input").val();
+  const dateInput = $("#date-input").val();
+  const id = $("#details").data("venue-id");
+  const wishlistItem = {
+    id,
+    image,
+    name,
+    description,
+    hours,
+    address,
+    contact,
+    rating,
+    url,
+    textInput,
+    dateInput,
   };
-  const dateInput = {
-    name: "date",
-    value: $("#date-input").val(),
-  };
-  modalInfo.push(textInput, dateInput);
-  addToWishlist(modalInfo);
+  addToWishlist(wishlistItem);
 };
 
 const onClickClose = () => {
   $("#comments-input").val("");
   $("#date-input").val("");
 };
-
-// const elementName =
-
-//   //this is working with mock data
-//   const objectIntoWishlist = {
-//     name: currentTarget,
-//     // date: "today",
-//   };
-//   console.log(objectIntoWishlist);
-// };
 
 const onClick = async (event) => {
   const currentTarget = event.currentTarget;
@@ -226,6 +221,7 @@ const onClick = async (event) => {
 
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
+  console.log(venue);
   const venueData = getDataAboutVenue(venue);
   renderModal(venueData);
 };
