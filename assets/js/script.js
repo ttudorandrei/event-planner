@@ -135,7 +135,6 @@ const getDataAboutVenue = (venue) => {
     contactDetails: getContactDetails(venue.contact),
     rating: getRating(venue.rating),
   };
-  console.log(data);
   return data;
 };
 
@@ -152,6 +151,7 @@ const renderModal = (data) => {
   class="center-block"
 />`;
 
+  // append modal display information
   $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
   $("#description").text(data.description);
@@ -160,33 +160,41 @@ const renderModal = (data) => {
   $("#contact-details").text(data.contactDetails);
   $("#rating").text(data.rating);
   $("#url").append(modalUrl);
+
+  // set value of hidden inputs for the form submission
+  $("#name-value").val(data.name);
+  $("#description-value").val(data.description);
+  $("#hours-value").val(data.openingHours);
+  $("#address-value").val(data.address);
+  $("#contact-value").val(data.contactDetails);
+  $("#rating-value").val(data.rating);
+  $("#url-value").val(data.url);
 };
 
 //changes on 18-08-2021
 // this function will retrieve whatever data is in local storage
-// const getFromLocalStorage = () => {
-//   const localStorageData = JSON.parse(localStorage.getItem("favorites"));
-//   if (localStorageData === null) {
-//     return [];
-//   } else {
-//     return localStorageData;
-//   }
-// };
+const getFromLocalStorage = () => {
+  const localStorageData = JSON.parse(localStorage.getItem("favorites"));
+  if (localStorageData === null) {
+    return [];
+  } else {
+    return localStorageData;
+  }
+};
 
-//   const addToFavourite = (event, data) => {
-//   event.preventDefault();
+const addToFavourite = (data) => {
+  const favoriteItems = getFromLocalStorage();
+  favoriteItems.push(data);
+  localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+};
 
-//   // const favoriteItems = JSON.parse(localStorage.getItem("favorites"));
-//   const favoriteItems = getFromLocalStorage();
-
-//   favoriteItems.push(data);
-
-//   localStorage.setItem("favorites", JSON.stringify(favoriteItems));
-// };
-
-// const onClickAddFavourite = (event) => {
-//   event.preventDefault();
-//   const currentTarget = $(event.currentTarget);
+const onClickAddFavourite = (event) => {
+  event.preventDefault();
+  const currentTarget = $(event.currentTarget);
+  const modalForm = $(currentTarget).closest("form");
+  const modalInfo = modalForm.serializeArray();
+  addToFavourite(modalInfo);
+};
 
 // const elementName =
 
@@ -198,7 +206,7 @@ const renderModal = (data) => {
 //   console.log(objectIntoWishlist);
 // };
 
-// $("#set-to-wishlist").click(addToFavourite, onClickAddFavourite);
+$("#set-to-wishlist").submit(onClickAddFavourite);
 
 // end of changes
 
