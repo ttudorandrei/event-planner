@@ -406,6 +406,12 @@ const renderSearchResultsPage = (data) => {
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
 
+  // Footer Code
+  const footer = `<!-- Footer -->
+  <footer class="page-footer ">
+    <div class="container center-align pb-1">© 2021 Copyright Sights & Sounds Team</div>
+  </footer>`;
+
   $(".header").after(navbarContainer);
 
   $("#navbar-wrapper").append(navBar);
@@ -425,6 +431,8 @@ const renderSearchResultsPage = (data) => {
   $("#widget-script").append(widgetScript);
 
   $("#nav-form").submit(onSubmit);
+
+  $("body").append(footer);
 };
 
 const createFoursquareUrl = (data) => {
