@@ -10,36 +10,38 @@ const getFromLocalStorage = () => {
 
 // this will target the button and remove the object from local storage
 const onRemoveFromFavorites = (event) => {
-  const target = $(event.target);
-  const favoriteId = target.data("venue");
+  const favoriteId = event.data.favoriteId;
   const favoriteItems = getFromLocalStorage();
-  const filterItemToBeRemoved = (favorite) => favorite.venueId !== favoriteId;
+  const filterItemToBeRemoved = (favorite) => favorite.id !== favoriteId;
 
   const filteredFavorites = favoriteItems.filter(filterItemToBeRemoved);
-  console.log(target);
+  console.log(favoriteId);
 
-  // we need to remove the old favourites
+  // // we need to remove the old favorites
   localStorage.removeItem("favorites");
-  // set the local storage to the new favourites
+
+  // // set the local storage to the new favorites
   localStorage.setItem("favorites", JSON.stringify(filteredFavorites));
+
+  appendWishlistCard(filteredFavorites);
 };
 
 const saveWishlistItem = (data) => {
-  // we have our favourites from local storage as favourite items
+  // we have our favorites from local storage as favorite items
   const favoriteItems = getFromLocalStorage();
   const findId = (favorite) => {
     return favorite.id === data.id;
   };
-  // we have index of the favourite that we want to update
+  // we have index of the favorite that we want to update
   const favoriteItemToUpdateIndex = favoriteItems.findIndex(findId);
 
-  // we need a new array for our favourites that we can then update the item
+  // we need a new array for our favorites that we can then update the item
   const newFavorites = [...favoriteItems];
   newFavorites[favoriteItemToUpdateIndex].textInput = data.textInput;
 
-  // we need to remove the old favourites
+  // we need to remove the old favorites
   localStorage.removeItem("favorites");
-  // set the local storage to the new favourites
+  // set the local storage to the new favorites
   localStorage.setItem("favorites", JSON.stringify(newFavorites));
 };
 
@@ -100,9 +102,10 @@ const renderModal = (data) => {
   $("#comments-input").val(data.textInput);
 };
 
-const onClick = (event) => {
-  const currentTarget = event.currentTarget;
-  const venueId = $(currentTarget).data("favorite-id");
+const onDetailsClick = (event) => {
+  // const currentTarget = event.currentTarget;
+  const venueId = event.data.favoriteId;
+  // console.log(event.data);
   const favorites = getFromLocalStorage();
   const findId = (favorites) => {
     return favorites.id === venueId;
@@ -115,7 +118,7 @@ const onClick = (event) => {
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
     const wishlistCard = `<div class="col m12 l10 offset-l1" >
-    <div class="card-panel grey lighten-5 z-depth-1" data-favorite-id="${favorite.id}">
+    <div class="card-panel grey lighten-5 z-depth-1">
       <div class="row valign-wrapper">
         <div class="col l1 m12">${favorite.dateInput}</div>
         <div class="col l2 m12">
@@ -131,17 +134,26 @@ const appendWishlistCard = (favorites) => {
         <div class="col l2 m12">
           <span class="black-text">${favorite.name}</span>
         </div>
-        <a href="#details" class="btn orange modal-trigger"><div class="col l5 m12 offset-m1">Details</div></a>
+        <a href="#details" class="btn orange modal-trigger details" data-favorite-id="${favorite.id}"><div class="col l5 m12 offset-m1">Details</div></a>
         <div class="col l2 m12">
-          <button class="btn remove-button" name="remove-btn">Remove</button>
+          <button class="btn remove-button remove" name="remove-btn" data-favorite-id="${favorite.id}">Remove</button>
         </div>
       </div>
     </div>
   </div>`;
 
     $("#wishlist-card-container").append(wishlistCard);
-    $(`[data-favorite-id='${favorite.id}']`).click(onClick);
+    $(`.details[data-favorite-id='${favorite.id}']`).click(
+      { favoriteId: favorite.id },
+      onDetailsClick
+    );
+    $(`.remove[data-favorite-id='${favorite.id}']`).click(
+      { favoriteId: favorite.id },
+      onRemoveFromFavorites
+    );
   };
+
+  $("#wishlist-card-container").empty();
 
   // this is going to append a card to the card container, for every object in local storage
   favorites.forEach(appendCard);
@@ -161,11 +173,11 @@ const onReady = () => {
   $(".modal").modal();
 };
 
-$("#wishlist-card-container").click(onRemoveFromFavorites);
+// $("#wishlist-card-container").click(onRemoveFromFavorites);
 
 $("#set-to-wishlist").submit(updateWishlist);
 
 $(document).ready(onReady);
 
-// change scope of the on click to be the details button
-// get the favourite id when clicking the remove button
+// DONE change scope of the on click to be the details button
+// get the favorite id when clicking the remove button
