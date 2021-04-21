@@ -61,12 +61,18 @@ SO THAT I can view be linked to current events in the area
 
 We used Materialize to create various elements in our application. A variety of Materialize classes were used to create the following elements:
 
-- The form on the landing page was made using a combination of inputs, select elements, checkboxes, and buttons.
-- The navigation bar using the same elements as the form as well as a multiple select dropdown.
+- The form on the landing page was made using a combination of [text inputs](https://materializecss.com/text-inputs.html), [select elements](https://materializecss.com/select.html), [checkboxes](https://materializecss.com/checkboxes.html), and [buttons](https://materializecss.com/buttons.html).
+- The [navigation bar](https://materializecss.com/navbar.html) using the same elements as the form as well as a [multiple select dropdown](https://materializecss.com/select.html).
 - The search results cards using the Materialize card elements.
-- The modal on the search results page and the wishlist page was created using the Materialize modal element and accompanying JavaScript. We also added an input box and a date picker from Materialize to the modals.
+- The modal on the search results page and the wishlist page was created using the [Materialize modal element](https://materializecss.com/modals.html) and accompanying JavaScript. We also added a [text input](https://materializecss.com/text-inputs.html) and a [date picker](https://materializecss.com/pickers.html) from Materialize to the modals.
 
 ### Foursquare - [Places API](https://developer.foursquare.com/docs/places-api/)
+
+The main API that we use in this application is the Foursquare Places API. In order to use this API, we had to create an account and were assigned a CLIENT_ID and a CLIENT_SECRET. This is added to every url used when fetching the data.
+
+When the user searches for a city and a country, we use the [search endpoint](https://developer.foursquare.com/docs/venues/search) to get venues in that area. This uses the near parameter to search for venues near the requested city. We have narrowed down the search to three categories: Restaurants, Arts and Entertainment and Outdoor and Recreation using the categoryId parameter. This endpoint returns information such as venue name, venue id, venue type and an icon depending on the type of venue. This information is used to render the search results cards.
+
+When the user clicks on a venue, we use the [venue endpoint](https://developer.foursquare.com/docs/api-reference/venues/details) to get more details about that particular venue. This requires the venue ID that we retrieve from the search request. The venue endpoint returns information such as opening hours, contact information, address, website urls, images etc. We then render this information onto the modal.
 
 ### Ticketmaster - [Event Discovery Widget](https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/)
 
