@@ -127,6 +127,7 @@ const getUrl = (url) => {
 const getDataAboutVenue = (venue) => {
   const data = {
     name: venue.name,
+    id: venue.id,
     description: getDescription(venue.description),
     images: getImages(venue.photos),
     url: getUrl(venue.url),
@@ -135,7 +136,6 @@ const getDataAboutVenue = (venue) => {
     contactDetails: getContactDetails(venue.contact),
     rating: getRating(venue.rating),
   };
-  console.log(data);
   return data;
 };
 
@@ -143,15 +143,17 @@ const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
 
-  const modalUrl = `<a href="${data.url}" target="_blank">${data.url}</a>`;
+  const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
   const modalImage = `<img
   src="${data.images[1]}"
   width="100"
   height="auto"
   alt=""
   class="center-block"
+  id="image"
 />`;
 
+  // append modal display information
   $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
   $("#description").text(data.description);
@@ -160,6 +162,57 @@ const renderModal = (data) => {
   $("#contact-details").text(data.contactDetails);
   $("#rating").text(data.rating);
   $("#url").append(modalUrl);
+  $("#details").attr("data-venue-id", data.id);
+  $("#details").data("venue-id", data.id);
+};
+
+const getFromLocalStorage = () => {
+  const localStorageData = JSON.parse(localStorage.getItem("favorites"));
+  if (localStorageData === null) {
+    return [];
+  } else {
+    return localStorageData;
+  }
+};
+
+const addToWishlist = (data) => {
+  const favoriteItems = getFromLocalStorage();
+  favoriteItems.push(data);
+  localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+};
+
+const onSubmitAddToWishlist = (event) => {
+  event.preventDefault();
+  const image = $("#image").attr("src");
+  const name = $("#h4-modal").text();
+  const description = $("#description").text();
+  const hours = $("#opening-hours").text();
+  const address = $("#address").text();
+  const contact = $("#contact-details").text();
+  const rating = $("#rating").text();
+  const url = $("#modal-url").attr("href");
+  const textInput = $("#comments-input").val();
+  const dateInput = $("#date-input").val();
+  const id = $("#details").data("venue-id");
+  const wishlistItem = {
+    id,
+    image,
+    name,
+    description,
+    hours,
+    address,
+    contact,
+    rating,
+    url,
+    textInput,
+    dateInput,
+  };
+  addToWishlist(wishlistItem);
+};
+
+const onClickClose = () => {
+  $("#comments-input").val("");
+  $("#date-input").val("");
 };
 
 const onClick = async (event) => {
@@ -169,6 +222,7 @@ const onClick = async (event) => {
 
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
+  console.log(venue);
   const venueData = getDataAboutVenue(venue);
   renderModal(venueData);
 };
@@ -206,7 +260,7 @@ const renderSearchResultsPage = (data) => {
 
   const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
 
-  //gnerates navbar
+  //generates navbar
   const navBar = `
   <div >
   <form id="nav-form" class="nav-wrapper row">
@@ -424,6 +478,13 @@ const onReady = () => {
 
   // activates date picker in results modal
   $(".datepicker").datepicker();
+
+  //this will read data from local storage
+  getFromLocalStorage();
 };
 
 $(document).ready(onReady);
+
+$("#set-to-wishlist").submit(onSubmitAddToWishlist);
+
+$("#close-button").click(onClickClose);

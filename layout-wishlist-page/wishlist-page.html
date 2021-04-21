@@ -11,7 +11,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="./layout-wishlist-page/wishlist-page.css"
+      href="layout-wishlist-page/wishlist-page.css"
     />
     <title>Document</title>
   </head>
@@ -30,6 +30,50 @@
         <div class="col l12" id="wishlist-card-container"></div>
       </div>
     </main>
+
+    <div class="modal" id="details">
+      <h4 class="m-1 center-align" id="h4-modal"></h4>
+      <div class="container details-container">
+        <div id="modal-image"></div>
+        <div class="info-container m-1 border-test" id="modal-info">
+          <div id="description"></div>
+          <ul>
+            <li>- Opening Hours: <span id="opening-hours"></span></li>
+            <li>- Address: <span id="address"></span></li>
+            <li>- Contact Details: <span id="contact-details"></span></li>
+            <li>- Rating: <span id="rating"></span></li>
+            <li>- URL: <span id="url"></span></li>
+          </ul>
+        </div>
+      </div>
+      <form class="m-1 row" id="set-to-wishlist">
+        <input
+          type="text"
+          class="col s10 m10 l10 offset-l1 center-align"
+          id="comments-input"
+          placeholder="User can write text here"
+        />
+        <input
+          type="text"
+          class="datepicker col s10 m10 l10 offset-l1 center-align"
+          id="date-input"
+          placeholder="Select your date"
+        />
+        <button
+          href="#"
+          class="btn blue mb-1 col s10 m5 l5 offset-l1"
+          type="submit"
+        >
+          Add to wishlist
+        </button>
+        <a
+          href="#"
+          class="btn red mb-1 col s10 m5 l5 modal-close"
+          id="close-button"
+          >Close</a
+        >
+      </form>
+    </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
