@@ -266,7 +266,7 @@ const renderSearchResultsPage = (data) => {
   <form id="nav-form" class="nav-wrapper row">
     <!-- search icon -->
     <div class="input-field  col l2 text-black">
-        <input id="form-input" class="city-input text-black" type="search" placeholder="Search for a city" required />
+        <input id="form-input-search" class="city-input text-black" type="search" placeholder="Search for a city" required />
       
     </div>
 
