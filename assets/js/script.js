@@ -263,10 +263,10 @@ const renderSearchResultsPage = (data) => {
   //generates navbar
   const navBar = `
   <div >
-  <form id="nav-form" class="nav-wrapper row pb-2 clearfix">
+  <form id="nav-form" class="nav-wrapper row">
     <!-- search icon -->
-    <div class="input-field  col l2">
-        <input id="form-input" class="city-input" type="search" placeholder="Search for a city" required />
+    <div class="input-field  col l2 text-black">
+        <input id="form-input" class="city-input text-black" type="search" placeholder="Search for a city" required />
       
     </div>
 
@@ -374,7 +374,7 @@ const renderSearchResultsPage = (data) => {
     <div class="row col l6 m12 s12 navbar-item-color">
           <!-- button -->
           <div class="col navbar-item-color l4 m6 s6">
-            <button class="waves-effect waves-light btn-small">Button</button>
+            <button class="waves-effect waves-light btn-small">Search</button>
           </div>
 
           <!-- Link to Wishlist page -->

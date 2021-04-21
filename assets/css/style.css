@@ -23,9 +23,9 @@ h4 {
   padding-bottom: 10px;
 }
 
-.pb-2 {
+/* .pb-2 {
   padding-bottom: 20px;
-}
+} */
 
 .landing-header {
   padding: 0;
@@ -77,8 +77,19 @@ h4 {
   margin: 1rem;
 }
 
+#navbar-wrapper {
+  background-color: var(--highlight);
+}
 .navbar-item-color {
-  background-color: #ee6e73;
+  background-color: var(--highlight);
+}
+
+.waves-light {
+  background-color: var(--font);
+}
+
+.input-field {
+  color: black;
 }
 
 .text-on-slider {
