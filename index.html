@@ -18,7 +18,7 @@
       </h4>
     </header>
 
-    <main class="mt-2" id="content-container"></main>
+    <main id="content-container"></main>
     <div class="slider" id="slider">
       <ul class="slides">
         <li>
@@ -68,23 +68,26 @@
         </li>
       </ul>
 
-      <div id="text-on-slider">
+      <div class="text-on-slider" id="text-on-slider">
         <div class="row form-container">
-          <form class="col m12 container center-align z-depth-4 form" id="form">
-            <div class="row">
+          <form
+            class="col m12 container center-align z-depth-4 form row"
+            id="form"
+          >
+            <div class="col l12 m12 s12">
               <div class="text-center">
                 <h4>Search for a City</h4>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s4 offset-s2">
+              <div class="input-field col l5 s12 offset-l1">
                 <input
                   placeholder="Enter a city..."
                   id="form-input"
                   type="text"
                 />
               </div>
-              <div class="input-field col s4">
+              <div class="input-field col l5 s12">
                 <select id="country-input">
                   <option value="" disabled selected>Choose a Country</option>
                   <option value="GB">Great Britain</option>
@@ -172,9 +175,10 @@
               </div>
             </div>
             <div class="row">
-              <p></p>
-              <div class="center-align m-1">Choose a venue type</div>
-              <label for="restaurant" class="m-1">
+              <div class="center-align m-1 col l12 m12 s12">
+                Choose a venue type
+              </div>
+              <label for="restaurant" class="m-1 col l3 m12 s12 offset-l1">
                 <input
                   type="checkbox"
                   class="filled-in"
@@ -183,7 +187,7 @@
                 />
                 <span>Restaurants</span>
               </label>
-              <label class="m-1">
+              <label class="m-1 col l3 m12 s12">
                 <input
                   type="checkbox"
                   class="filled-in"
@@ -192,7 +196,7 @@
                 />
                 <span>Arts & Entertainment</span>
               </label>
-              <label class="m-1">
+              <label class="m-1 col l3 m12 s12">
                 <input
                   type="checkbox"
                   class="filled-in"
@@ -202,7 +206,7 @@
                 <span>Outdoor & Recreation</span>
               </label>
 
-              <div class="row">
+              <div class="row col l12 m12 s12">
                 <button class="waves-effect waves-light btn m-1">button</button>
               </div>
             </div>
@@ -248,7 +252,6 @@
         >
       </form>
     </div>
-    `
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
