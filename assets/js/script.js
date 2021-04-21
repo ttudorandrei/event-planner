@@ -263,13 +263,11 @@ const renderSearchResultsPage = (data) => {
   //generates navbar
   const navBar = `
   <div >
-  <form id="nav-form" class="nav-wrapper row">
+  <form id="nav-form" class="nav-wrapper row pb-2 clearfix">
     <!-- search icon -->
-    <div class="input-field col l2">
-      <input id="form-input" type="search" required />
-      <label class="label-icon" for="search"
-        ><i class="fas fa-icon">Search</i></label
-      >
+    <div class="input-field  col l2">
+        <input id="form-input" class="city-input" type="search" placeholder="Search for a city" required />
+      
     </div>
 
     <!-- Choose a Country dropdown -->
