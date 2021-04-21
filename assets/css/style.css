@@ -88,10 +88,6 @@ h4 {
   background-color: var(--font);
 }
 
-.input-field {
-  color: black;
-}
-
 .card-panel {
   background-color: var(--link);
   border-radius: 10px;
