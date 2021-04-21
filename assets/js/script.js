@@ -376,7 +376,7 @@ const renderSearchResultsPage = (data) => {
     <div class="row col l6 m12 s12 navbar-item-color">
           <!-- button -->
           <div class="col navbar-item-color l4 m6 s6">
-            <a class="waves-effect waves-light btn-small">Button</a>
+            <button class="waves-effect waves-light btn-small">Button</button>
           </div>
 
           <!-- Link to Wishlist page -->
