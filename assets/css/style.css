@@ -9,6 +9,12 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--bg);
+}
+
+h4 {
+  font-family: Pacifico;
+  color: var(--font);
 }
 
 .pb-1 {
@@ -24,12 +30,11 @@ body {
   margin: 0;
 }
 .header {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  background-color: #219ebc;
-  padding: 10px;
+  background-color: var(--bg);
+  padding: 1rem;
   position: static;
-  font-size: 10px;
+  font-size: 12px;
+  margin: 1rem;
 }
 
 .slider {
