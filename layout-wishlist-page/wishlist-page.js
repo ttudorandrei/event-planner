@@ -117,9 +117,9 @@ const onDetailsClick = (event) => {
 // this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
-    const wishlistCard = `<div class="col m12 l10 offset-l1" >
+    const wishlistCard = `<div class="col l10 m12 offset-l1" >
     <div class="card-panel grey lighten-5 z-depth-1">
-      <div class="row valign-wrapper">
+      <div class="row">
         <div class="col l1 m12">${favorite.dateInput}</div>
         <div class="col l2 m12">
           <img
@@ -131,11 +131,11 @@ const appendWishlistCard = (favorites) => {
           />
           <!-- notice the "circle" class -->
         </div>
-        <div class="col l2 m12">
+        <div class="col l3 m12">
           <span class="black-text">${favorite.name}</span>
         </div>
-        <a href="#details" class="btn orange modal-trigger details" data-favorite-id="${favorite.id}"><div class="col l5 m12 offset-m1">Details</div></a>
-        <div class="col l2 m12">
+        <a href="#details" class="btn orange modal-trigger details" data-favorite-id="${favorite.id}"><div class="col l3 m12 offset-m1">Details</div></a>
+        <div class="col l4 m12">
           <button class="btn remove-button remove" name="remove-btn" data-favorite-id="${favorite.id}">Remove</button>
         </div>
       </div>
