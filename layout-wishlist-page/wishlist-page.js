@@ -9,24 +9,19 @@ const getFromLocalStorage = () => {
 };
 
 // this will target the button and remove the object from local storage
-const onRemoveFromFavorites = function (event) {
+const onRemoveFromFavorites = (event) => {
   const target = $(event.target);
-  // const currentTarget = $(event.currentTarget);
-  if (target.is(`button[name="remove-btn"]`)) {
-    const venueId = target.data("venue");
-    const favorites = getFromLocalStorage();
+  const favoriteId = target.data("venue");
+  const favoriteItems = getFromLocalStorage();
+  const filterItemToBeRemoved = (favorite) => favorite.venueId !== favoriteId;
 
-    const callback = (each) => {
-      if (venueId !== each.venueId) {
-        return true;
-      } else {
-        return false;
-      }
-    };
+  const filteredFavorites = favoriteItems.filter(filterItemToBeRemoved);
+  console.log(target);
 
-    const filteredFavorites = mockArray.filter(callback);
-    console.log(filteredFavorites);
-  }
+  // we need to remove the old favourites
+  localStorage.removeItem("favorites");
+  // set the local storage to the new favourites
+  localStorage.setItem("favorites", JSON.stringify(filteredFavorites));
 };
 
 const saveWishlistItem = (data) => {
@@ -138,7 +133,7 @@ const appendWishlistCard = (favorites) => {
         </div>
         <a href="#details" class="btn orange modal-trigger"><div class="col l5 m12 offset-m1">Details</div></a>
         <div class="col l2 m12">
-          <button class="btn remove-button" name="remove-btn" data-venue="">Remove</button>
+          <button class="btn remove-button" name="remove-btn">Remove</button>
         </div>
       </div>
     </div>
@@ -166,8 +161,11 @@ const onReady = () => {
   $(".modal").modal();
 };
 
-$("#wishlist-card-container").on("click", onRemoveFromFavorites);
+$("#wishlist-card-container").click(onRemoveFromFavorites);
 
 $("#set-to-wishlist").submit(updateWishlist);
 
 $(document).ready(onReady);
+
+// change scope of the on click to be the details button
+// get the favourite id when clicking the remove button
