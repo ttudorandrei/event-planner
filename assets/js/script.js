@@ -231,15 +231,15 @@ const renderFoursquareCards = (data) => {
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
   <div class="card-panel black p-1" data-id="${data.venueId}">
-    <div class="row valign-wrapper>
-      <div class="col s3">
+    <div class="row">
+      <div class="col l3 s3">
         <img
           src="${data.venueTypeIcon}"
           alt=""
           class="responsive-img"
         />
       </div>
-      <div class="col s9">
+      <div class="col l8 s8 m-1">
         <div class="white-text">${data.venueName}</div>
         <div class="white-text">${data.venueType}</div>
       </div>
