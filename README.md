@@ -2,16 +2,28 @@
 
 ## Table of Contents
 
-- _Project Link_
-- _About our Project_
-- _Screenshots_
+- [Sights & Sounds](#sights--sounds)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Description](#description)
+  - [User Story](#user-story)
+  - [Tech](#tech)
+  - [Wire Frames](#wire-frames)
+  - [Deployed Link to Application](#deployed-link-to-application)
+  - [Getting Started](#getting-started)
 
-## Project Link
+## Introduction
 
-[_View our project here_](https://chelseanicholls95.github.io/event-planner/)
+## Description
 
-## About our Project
+## User Story
 
-## Screenshots
+## Tech
 
-## Fin
+## Wire Frames
+
+## Deployed Link to Application
+
+Click [here](https://chelseanicholls95.github.io/event-planner/) to view our project!
+
+## Getting Started
