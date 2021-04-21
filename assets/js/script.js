@@ -230,7 +230,7 @@ const onClick = async (event) => {
 const renderFoursquareCards = (data) => {
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel black p-1" data-id="${data.venueId}">
+  <div class="card-panel p-1" data-id="${data.venueId}">
     <div class="row">
       <div class="col l3 s3">
         <img

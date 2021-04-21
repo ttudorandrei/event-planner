@@ -92,6 +92,13 @@ h4 {
   color: black;
 }
 
+.card-panel {
+  background-color: var(--link);
+  border-radius: 10px;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 2px var(--highlight);
+}
+
 .text-on-slider {
   position: absolute;
   height: calc(80vh);
