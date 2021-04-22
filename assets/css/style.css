@@ -17,6 +17,7 @@ body {
 h4 {
   font-family: Pacifico;
   color: var(--font);
+  text-shadow: 1px 1px 1px black;
 }
 
 .pb-1 {
@@ -115,6 +116,60 @@ h4 {
 .city-input {
   margin: auto 0 !important;
   height: 4rem !important;
+}
+
+a {
+  color: var(--font);
+}
+
+.modal {
+  background-color: var(--highlight);
+  padding: 1rem;
+  width: 50rem;
+  border: 5px solid var(--font);
+  border-radius: 10px;
+}
+
+.btn-save {
+  background-color: var(--font);
+}
+
+th {
+  background-color: var(--font);
+  border: 1px solid white;
+}
+
+.is-today {
+  color: white;
+}
+
+.is-selected {
+  color: white;
+}
+
+.datepicker-date-display {
+  background-color: var(--highlight);
+}
+
+.datepicker-day-button {
+  color: white;
+}
+
+.datepicker-day-button:active {
+  background-color: var(--font);
+}
+.datepicker-day-button:hover {
+  background-color: var(--font);
+}
+
+.datepicker-done {
+  background-color: var(--font);
+  color: white;
+}
+
+.datepicker-cancel {
+  background-color: tomato;
+  color: white;
 }
 
 #form-input-search {
