@@ -3,7 +3,7 @@ const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
 const getFormData = () => {
-  const city = $("#form-input").val();
+  const city = $("#form-input-search").val();
   const countryValue = $("#country-input").val();
   console.log(countryValue);
 
