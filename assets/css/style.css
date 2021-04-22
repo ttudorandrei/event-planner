@@ -134,7 +134,6 @@ a {
 .modal {
   background-color: var(--highlight);
   padding: 1rem;
-  width: 50rem;
   border: 2px solid var(--font);
   border-radius: 10px;
 }
