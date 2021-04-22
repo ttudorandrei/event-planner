@@ -8,34 +8,36 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="layout-wishlist-page/wishlist-page.css"
-    />
+    <link rel="stylesheet" href="./wishlist-page.css" />
     <title>Document</title>
   </head>
   <body>
     <header class="header">
-      <h4 class="landing-header center">Sights & Sounds</h4>
+      <h4 class="landing-header center">
+        Sights & Sounds | Your Event Planner
+      </h4>
+
+      <nav>
+        <div class="row">
+          <div class="col l3 m6 s12 center-align navbar-item-color">
+            <h1 class="format-header">My Wishlist</h1>
+          </div>
+          <div class="col l3 m6 s12 offset-l6 center-align navbar-item-color">
+            <a href="/index.html" class="btn">Return Home</a>
+          </div>
+        </div>
+      </nav>
     </header>
 
-    <nav class="row">
-      <div class="col l6 m12"><h4>My Wishlist</h4></div>
-      <div class="col l6 m12"><button class="btn">Return Home</button></div>
-    </nav>
-
     <main>
-      <div class="row">
-        <div class="col l12" id="wishlist-card-container"></div>
-      </div>
+      <div class="row mt-2" id="wishlist-card-container"></div>
     </main>
 
     <div class="modal" id="details">
       <h4 class="m-1 center-align" id="h4-modal"></h4>
       <div class="container details-container">
         <div id="modal-image"></div>
-        <div class="info-container m-1 border-test" id="modal-info">
+        <div class="info-container m-1" id="modal-info">
           <div id="description"></div>
           <ul>
             <li>- Opening Hours: <span id="opening-hours"></span></li>
@@ -46,34 +48,41 @@
           </ul>
         </div>
       </div>
-      <form class="m-1 row" id="set-to-wishlist">
+      <form class="m-1 row center-align" id="set-to-wishlist">
         <input
           type="text"
-          class="col s10 m10 l10 offset-l1 center-align"
+          class="col s10 m10 l10 offset-l1 offset-m1 offset-s1"
           id="comments-input"
           placeholder="User can write text here"
         />
         <input
           type="text"
-          class="datepicker col s10 m10 l10 offset-l1 center-align"
+          class="datepicker col s10 m10 l10 offset-l1 offset-m1 offset-s1"
           id="date-input"
           placeholder="Select your date"
         />
         <button
           href="#"
-          class="btn blue mb-1 col s10 m5 l5 offset-l1"
+          class="btn blue mb-1 col s10 m5 l5 offset-l1 offset-m1 offset-s1"
           type="submit"
         >
           Add to wishlist
         </button>
         <a
           href="#"
-          class="btn red mb-1 col s10 m5 l5 modal-close"
+          class="btn red mb-1 col s10 m5 l5 modal-close offset-s1"
           id="close-button"
           >Close</a
         >
       </form>
     </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div class="container mb-1 center-align">
+        © 2021 Copyright Sights & Sounds Team
+      </div>
+    </footer>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
