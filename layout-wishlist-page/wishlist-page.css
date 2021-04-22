@@ -17,10 +17,11 @@ body {
   color: white;
 }
 
-h4 {
+h1 {
   font-family: Pacifico;
   color: var(--font);
   text-shadow: 1px 1px 1px black;
+  font-size: 45px;
 }
 
 main {
@@ -34,13 +35,20 @@ main {
 }
 
 .format-header {
-  margin-top: 8px;
+  margin-top: 15px;
   margin-bottom: 5px;
-  font-size: 40px;
+  font-size: 30px;
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
+}
+
+.nav-colour {
+  background-color: var(--highlight);
 }
 
 .navbar-item-color {
-  background-color: #ee6e73;
+  background-color: var(--highlight);
 }
 
 /* padding and margin classes */
