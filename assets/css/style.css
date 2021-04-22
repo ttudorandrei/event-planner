@@ -74,6 +74,11 @@ h4 {
   margin: 5px;
 }
 
+[type="checkbox"].filled-in:checked + span:not(.lever):after {
+  background-color: var(--link);
+  border: var(--font) 1px solid;
+}
+
 .m-1 {
   margin: 1rem;
 }
@@ -126,7 +131,7 @@ a {
   background-color: var(--highlight);
   padding: 1rem;
   width: 50rem;
-  border: 5px solid var(--font);
+  border: 2px solid var(--font);
   border-radius: 10px;
 }
 
@@ -153,6 +158,14 @@ th {
 
 .datepicker-day-button {
   color: white;
+}
+
+.datepicker-table abbr {
+  color: white;
+}
+
+.datepicker-table td.is-selected {
+  background-color: var(--link);
 }
 
 .datepicker-day-button:active {
