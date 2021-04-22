@@ -184,6 +184,10 @@ th {
   background: transparent;
 }
 
+.page-footer {
+  background-color: var(--font);
+}
+
 /* .h1-m {
   font-size: 20px;
 }
