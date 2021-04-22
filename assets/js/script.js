@@ -257,6 +257,7 @@ const renderSearchResultsPage = (data) => {
   $("#navbar-wrapper").remove();
   $("#search-results-page-container").empty();
   $("#slider").remove();
+  $("#search-results-footer").remove();
 
   const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
 
@@ -408,7 +409,7 @@ const renderSearchResultsPage = (data) => {
 
   // Footer Code
   const footer = `<!-- Footer -->
-  <footer class="page-footer ">
+  <footer class="page-footer" id="search-results-footer">
     <div class="container center-align pb-1">© 2021 Copyright Sights & Sounds Team</div>
   </footer>`;
 
