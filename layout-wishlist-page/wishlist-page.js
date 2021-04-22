@@ -91,14 +91,14 @@ const renderModal = (data) => {
   $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
   $("#description").text(data.description);
-  $("#opening-hours").text(data.openingHours);
+  $("#opening-hours").text(data.hours);
   $("#address").text(data.address);
-  $("#contact-details").text(data.contactDetails);
+  $("#contact-details").text(data.contact);
   $("#rating").text(data.rating);
   $("#url").append(modalUrl);
   $("#details").attr("data-venue-id", data.id);
   $("#details").data("venue-id", data.id);
-  console.log("thing", data.textInput);
+  console.log("thing", data.hours);
   $("#comments-input").val(data.textInput);
 };
 

@@ -93,7 +93,7 @@ const getOpeningHours = (openingHours) => {
 };
 
 const getContactDetails = (contactDetails) => {
-  if (contactDetails === undefined) {
+  if (contactDetails === undefined || contactDetails === "") {
     return "Currently Unavailable";
   } else {
     return contactDetails.phone;
@@ -142,10 +142,11 @@ const getDataAboutVenue = (venue) => {
 const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
+  $("#contact-details").text("");
 
   const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
   const modalImage = `<img
-  src="${data.images[1]}"
+  src="${data.images[0]}"
   width="100"
   height="auto"
   alt=""
