@@ -254,26 +254,33 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) {
 
 .header-font-size {
   font-size: 38px;
-  font-weight: 600;
 }
 
-/* @media screen and (max-width: 1024px) {
-  .header-responsive {
+@media screen and (max-width: 1024px) {
+  h1 {
     font-size: 32px;
-    font-weight: 600;
+  }
+
+  .format-header {
+    font-size: 26px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .header-responsive {
-    font-size: 25px;
-    font-weight: 600;
+  h1 {
+    font-size: 28px;
+  }
+
+  .format-header {
+    font-size: 22px;
   }
 }
 
 @media screen and (max-width: 350px) {
-  .header-responsive {
-    font-size: 20px;
-    font-weight: 600;
+  h1 {
+    font-size: 25px;
   }
-} */
+  .format-header {
+    font-size: 20px;
+  }
+}
