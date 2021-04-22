@@ -76,6 +76,10 @@ When the user clicks on a venue, we use the [venue endpoint](https://developer.f
 
 ### Ticketmaster - [Event Discovery Widget](https://developer.ticketmaster.com/products-and-docs/widgets/event-discovery/)
 
+The Ticketmaster API was the API used to generate the widget on the right-hand side of the page. To use this API we needed an API key which was acquired by creating an account.
+
+To use the Event Discovery Widget, we rendered the code that was provided to us on the search results page and passed in the city and country code that was selected by the user. The widget allows the user to scroll through events local to the location entered and provides a link for them to book a ticket for an event.
+
 ## Wire Frames
 
 ## Deployed Link to Application
