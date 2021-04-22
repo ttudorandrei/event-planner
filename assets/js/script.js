@@ -3,7 +3,7 @@ const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
 const getFormData = () => {
-  const city = $("#form-input").val();
+  const city = $("#form-input-search").val();
   const countryValue = $("#country-input").val();
   console.log(countryValue);
 
@@ -230,16 +230,16 @@ const onClick = async (event) => {
 const renderFoursquareCards = (data) => {
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel black p-1" data-id="${data.venueId}">
-    <div class="row valign-wrapper>
-      <div class="col s3">
+  <div class="card-panel p-1" data-id="${data.venueId}">
+    <div class="row">
+      <div class="col l3 s3">
         <img
           src="${data.venueTypeIcon}"
           alt=""
           class="responsive-img"
         />
       </div>
-      <div class="col s9">
+      <div class="col l8 s8 m-1">
         <div class="white-text">${data.venueName}</div>
         <div class="white-text">${data.venueType}</div>
       </div>
@@ -257,6 +257,7 @@ const renderSearchResultsPage = (data) => {
   $("#navbar-wrapper").remove();
   $("#search-results-page-container").empty();
   $("#slider").remove();
+  $("#search-results-footer").remove();
 
   const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
 
@@ -265,11 +266,9 @@ const renderSearchResultsPage = (data) => {
   <div >
   <form id="nav-form" class="nav-wrapper row">
     <!-- search icon -->
-    <div class="input-field col l2">
-      <input id="form-input" type="search" required />
-      <label class="label-icon" for="search"
-        ><i class="fas fa-icon">Search</i></label
-      >
+    <div class="input-field  col l2 text-black">
+        <input id="form-input-search" class="city-input text-black" type="search" placeholder="Search for a city" required />
+      
     </div>
 
     <!-- Choose a Country dropdown -->
@@ -376,7 +375,7 @@ const renderSearchResultsPage = (data) => {
     <div class="row col l6 m12 s12 navbar-item-color">
           <!-- button -->
           <div class="col navbar-item-color l4 m6 s6">
-            <a class="waves-effect waves-light btn-small">Button</a>
+            <button class="waves-effect waves-light btn-small">Search</button>
           </div>
 
           <!-- Link to Wishlist page -->
@@ -408,6 +407,12 @@ const renderSearchResultsPage = (data) => {
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
 
+  // Footer Code
+  const footer = `<!-- Footer -->
+  <footer class="page-footer" id="search-results-footer">
+    <div class="container center-align pb-1">© 2021 Copyright Sights & Sounds Team</div>
+  </footer>`;
+
   $(".header").after(navbarContainer);
 
   $("#navbar-wrapper").append(navBar);
@@ -427,6 +432,8 @@ const renderSearchResultsPage = (data) => {
   $("#widget-script").append(widgetScript);
 
   $("#nav-form").submit(onSubmit);
+
+  $("body").append(footer);
 };
 
 const createFoursquareUrl = (data) => {

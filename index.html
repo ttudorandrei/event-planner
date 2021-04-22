@@ -8,17 +8,28 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Sights & Sounds | Your Event Planner</title>
   </head>
+
   <body id="body">
+    <!-- Header -->
     <header class="header">
-      <h4 class="landing-header center">
+      <h4 class="landing-header center header-override">
         Sights & Sounds | Your Event Planner
       </h4>
     </header>
 
     <main id="content-container"></main>
+    <!-- Carousel -->
     <div class="slider" id="slider">
       <ul class="slides">
         <li>
@@ -68,23 +79,25 @@
         </li>
       </ul>
 
+      <!-- Landing page Search Form -->
       <div class="text-on-slider" id="text-on-slider">
         <div class="row form-container">
           <form
             class="col m12 container center-align z-depth-4 form row"
             id="form"
           >
-            <div class="col l12 m12 s12">
-              <div class="text-center">
+            <div class="col l12 m12 s12 white-text">
+              <div class="text-center white-text">
                 <h4>Search for a City</h4>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col l5 s12 offset-l1">
+              <div class="input-field col l5 s12 offset-l1 white-text">
                 <input
                   placeholder="Enter a city..."
-                  id="form-input"
+                  id="form-input-search"
                   type="text"
+                  class="white-text"
                 />
               </div>
               <div class="input-field col l5 s12">
@@ -178,7 +191,10 @@
               <div class="center-align m-1 col l12 m12 s12">
                 Choose a venue type
               </div>
-              <label for="restaurant" class="m-1 col l3 m12 s12 offset-l1">
+              <label
+                for="restaurant"
+                class="m-1 col l3 m12 s12 offset-l1 white-text"
+              >
                 <input
                   type="checkbox"
                   class="filled-in"
@@ -187,7 +203,7 @@
                 />
                 <span>Restaurants</span>
               </label>
-              <label class="m-1 col l3 m12 s12">
+              <label class="m-1 col l3 m12 s12 white-text">
                 <input
                   type="checkbox"
                   class="filled-in"
@@ -196,7 +212,7 @@
                 />
                 <span>Arts & Entertainment</span>
               </label>
-              <label class="m-1 col l3 m12 s12">
+              <label class="m-1 col l3 m12 s12 white-text">
                 <input
                   type="checkbox"
                   class="filled-in"
@@ -207,7 +223,7 @@
               </label>
 
               <div class="row col l12 m12 s12">
-                <button class="waves-effect waves-light btn m-1">button</button>
+                <button class="waves-effect waves-light btn m-1">Search</button>
               </div>
             </div>
           </form>
@@ -215,6 +231,7 @@
       </div>
     </div>
 
+    <!-- Modal -->
     <div class="modal" id="details">
       <h4 class="m-1 center-align" id="h4-modal"></h4>
       <div class="container details-container">
@@ -233,26 +250,26 @@
       <form class="m-1 row" id="set-to-wishlist">
         <input
           type="text"
-          class="col s10 m10 l10 offset-l1 center-align"
+          class="col s10 offset-l1 offset-m1 center-align text-white"
           id="comments-input"
-          placeholder="User can write text here"
+          placeholder="Enter Comments"
         />
         <input
           type="text"
-          class="datepicker col s10 m10 l10 offset-l1 center-align"
+          class="datepicker col s10 offset-l1 offset-m1 text-white center-align"
           id="date-input"
           placeholder="Select your date"
         />
         <button
           href="#"
-          class="btn blue mb-1 col s10 m5 l5 offset-l1"
+          class="btn btn-save mb-1 col m5 s10 offset-l1 offset-m1"
           type="submit"
         >
           Add to wishlist
         </button>
         <a
           href="#"
-          class="btn red mb-1 col s10 m5 l5 modal-close"
+          class="btn red mb-1 col m5 s10 modal-close"
           id="close-button"
           >Close</a
         >
