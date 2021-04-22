@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Sights & Sounds | Your Event Planner</title>
   </head>
+
   <body id="body">
+    <!-- Header -->
     <header class="header">
       <h4 class="landing-header center header-override">
         Sights & Sounds | Your Event Planner
@@ -27,6 +29,7 @@
     </header>
 
     <main id="content-container"></main>
+    <!-- Carousel -->
     <div class="slider" id="slider">
       <ul class="slides">
         <li>
@@ -76,6 +79,7 @@
         </li>
       </ul>
 
+      <!-- Landing page Search Form -->
       <div class="text-on-slider" id="text-on-slider">
         <div class="row form-container">
           <form
@@ -227,6 +231,7 @@
       </div>
     </div>
 
+    <!-- Modal -->
     <div class="modal" id="details">
       <h4 class="m-1 center-align" id="h4-modal"></h4>
       <div class="container details-container">
@@ -245,26 +250,26 @@
       <form class="m-1 row" id="set-to-wishlist">
         <input
           type="text"
-          class="col s10 m10 l10 offset-l1 center-align text-white"
+          class="col s10 offset-l1 offset-m1 center-align text-white"
           id="comments-input"
           placeholder="Enter Comments"
         />
         <input
           type="text"
-          class="datepicker col s10 m10 l10 offset-l1 center-align text-white"
+          class="datepicker col s10 offset-l1 offset-m1 text-white"
           id="date-input"
           placeholder="Select your date"
         />
         <button
           href="#"
-          class="btn btn-save mb-1 col s10 m5 l5 offset-l1"
+          class="btn btn-save mb-1 col m5 s10 offset-l1 offset-m1"
           type="submit"
         >
           Add to wishlist
         </button>
         <a
           href="#"
-          class="btn red mb-1 col s10 m5 l5 modal-close"
+          class="btn red mb-1 col m5 s10 modal-close"
           id="close-button"
           >Close</a
         >
