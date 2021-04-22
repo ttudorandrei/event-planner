@@ -12,6 +12,16 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: var(--bg);
+  font-family: Raleway;
+  color: white;
+}
+
+h1 {
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
+  font-size: 45px;
 }
 
 main {
@@ -21,17 +31,126 @@ main {
 .header {
   padding-top: 1px;
   padding-bottom: 1px;
-  background-color: var(--highlight);
+  background-color: var(--bg);
 }
 
 .format-header {
-  margin-top: 8px;
+  margin-top: 15px;
   margin-bottom: 5px;
-  font-size: 40px;
+  font-size: 30px;
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
+}
+
+h4 {
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
+}
+
+.nav-colour {
+  background-color: var(--highlight);
 }
 
 .navbar-item-color {
-  background-color: #ee6e73;
+  background-color: var(--highlight);
+}
+
+.card-panel {
+  background-color: var(--border);
+  border-radius: 10px;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 2px var(--highlight);
+  color: white;
+  align-content: center;
+}
+
+.modal {
+  background-color: var(--highlight);
+  padding: 1rem;
+  border: 2px solid var(--font);
+  border-radius: 10px;
+}
+
+a {
+  color: var(--bg);
+}
+
+.btn {
+  background-color: var(--font);
+}
+
+th {
+  background-color: var(--font);
+  border: 1px solid white;
+}
+
+.is-today {
+  color: white;
+}
+
+.is-selected {
+  color: white;
+}
+
+.datepicker-date-display {
+  background-color: var(--highlight);
+}
+
+.datepicker-day-button {
+  color: white;
+}
+
+.datepicker-table abbr {
+  color: white;
+}
+
+.datepicker-table td.is-selected {
+  background-color: var(--link);
+}
+
+.datepicker-day-button:active {
+  background-color: var(--font);
+}
+.datepicker-day-button:hover {
+  background-color: var(--font);
+}
+
+.datepicker-done {
+  background-color: var(--font);
+  color: white;
+}
+
+.datepicker-cancel {
+  background-color: tomato;
+  color: white;
+}
+
+input[type="text"]:not(.browser-default):not([readonly]) {
+  border-bottom: var(--font) solid 2px;
+  color: white;
+}
+
+input[type="text"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: var(--font) solid 2px;
+  color: white;
+}
+
+#form-input-search {
+  width: 10rem;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#form-input:focus,
+#form-input:active {
+  background: transparent;
+}
+
+.page-footer {
+  background-color: var(--highlight);
 }
 
 /* padding and margin classes */
@@ -135,26 +254,33 @@ main {
 
 .header-font-size {
   font-size: 38px;
-  font-weight: 600;
 }
 
-/* @media screen and (max-width: 1024px) {
-  .header-responsive {
+@media screen and (max-width: 1024px) {
+  h1 {
     font-size: 32px;
-    font-weight: 600;
+  }
+
+  .format-header {
+    font-size: 26px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .header-responsive {
-    font-size: 25px;
-    font-weight: 600;
+  h1 {
+    font-size: 28px;
+  }
+
+  .format-header {
+    font-size: 22px;
   }
 }
 
 @media screen and (max-width: 350px) {
-  .header-responsive {
-    font-size: 20px;
-    font-weight: 600;
+  h1 {
+    font-size: 25px;
   }
-} */
+  .format-header {
+    font-size: 20px;
+  }
+}
