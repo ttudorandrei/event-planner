@@ -189,6 +189,11 @@ th {
   color: white;
 }
 
+input[type="text"]:not(.browser-default):not([readonly]) {
+  border-bottom: var(--font) solid 2px;
+  color: white;
+}
+
 input[type="text"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: var(--font) solid 2px;
   color: white;
