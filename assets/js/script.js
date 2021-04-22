@@ -5,7 +5,6 @@ const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 const getFormData = () => {
   const city = $("#form-input-search").val();
   const countryValue = $("#country-input").val();
-  console.log(countryValue);
 
   const wantsRestaurants = $("#restaurant").is(":checked");
   const wantsArts = $("#arts-entertainment").is(":checked");
@@ -56,9 +55,7 @@ const fetchData = async (url) => {
     const response = await fetch(url);
     const data = await response.json();
     return data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 const fetchFoursquareData = async (url) => {
@@ -223,7 +220,6 @@ const onClick = async (event) => {
 
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
-  console.log(venue);
   const venueData = getDataAboutVenue(venue);
   renderModal(venueData);
 };

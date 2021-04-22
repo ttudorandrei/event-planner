@@ -15,7 +15,6 @@ const onRemoveFromFavorites = (event) => {
   const filterItemToBeRemoved = (favorite) => favorite.id !== favoriteId;
 
   const filteredFavorites = favoriteItems.filter(filterItemToBeRemoved);
-  console.log(favoriteId);
 
   // // we need to remove the old favorites
   localStorage.removeItem("favorites");
@@ -75,7 +74,6 @@ const updateWishlist = (event) => {
 };
 
 const renderModal = (data) => {
-  console.log(data);
   $("#url").empty();
   $("#modal-image").empty();
 
@@ -98,14 +96,12 @@ const renderModal = (data) => {
   $("#url").append(modalUrl);
   $("#details").attr("data-venue-id", data.id);
   $("#details").data("venue-id", data.id);
-  console.log("thing", data.hours);
   $("#comments-input").val(data.textInput);
 };
 
 const onDetailsClick = (event) => {
   // const currentTarget = event.currentTarget;
   const venueId = event.data.favoriteId;
-  // console.log(event.data);
   const favorites = getFromLocalStorage();
   const findId = (favorites) => {
     return favorites.id === venueId;
@@ -161,10 +157,6 @@ const appendWishlistCard = (favorites) => {
   favorites.forEach(appendCard);
 };
 
-//take the favorites as an array or go an re fetch the favorites from local storage
-//update favorites array without the favorite that we are deleting
-//reset favorites in storage
-
 const onReady = () => {
   //this sets the mock array in local storage
   const favorites = getFromLocalStorage();
@@ -175,11 +167,6 @@ const onReady = () => {
   $(".modal").modal();
 };
 
-// $("#wishlist-card-container").click(onRemoveFromFavorites);
-
 $("#set-to-wishlist").submit(updateWishlist);
 
 $(document).ready(onReady);
-
-// DONE change scope of the on click to be the details button
-// get the favorite id when clicking the remove button
