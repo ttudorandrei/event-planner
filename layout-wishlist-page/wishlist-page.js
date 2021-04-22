@@ -117,7 +117,7 @@ const onDetailsClick = (event) => {
 // this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
-    const wishlistCard = `<div class="col m10 offset-m1" >
+    const wishlistCard = `<div class="col m10 s12 offset-m1" >
     <div class="card-panel grey lighten-5 z-depth-1">
       <div class="row">
         <div class="col m1 s12 center-align mt-1">${favorite.dateInput}</div>

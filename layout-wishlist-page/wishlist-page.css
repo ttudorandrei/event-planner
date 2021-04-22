@@ -24,39 +24,10 @@ main {
   background-color: var(--highlight);
 }
 
-.button {
-  margin-left: 1.2rem;
-}
-
-.form {
-  margin: 0 15rem;
-  padding: 1rem;
-  border: 1px solid black;
-  box-shadow: 10px 10px 5px grey;
-  border-radius: 5px;
-}
-
-.form-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.form {
-  margin: 0 15rem;
-  padding: 1rem;
-  border-radius: 10px;
-}
-
 .format-header {
   margin-top: 8px;
   margin-bottom: 5px;
   font-size: 40px;
-}
-
-.checkbox {
-  margin: 5px;
 }
 
 .navbar-item-color {
