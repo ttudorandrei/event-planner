@@ -118,7 +118,7 @@ const onDetailsClick = (event) => {
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
     const wishlistCard = `<div class="col m10 s12 offset-m1" >
-    <div class="card-panel grey lighten-5 z-depth-1">
+    <div class="card-panel z-depth-1">
       <div class="row">
         <div class="col m1 s12 center-align mt-1">${favorite.dateInput}</div>
         <div class="col m2 s12 center-align mt-1">
@@ -135,10 +135,10 @@ const appendWishlistCard = (favorites) => {
           <span class="black-text">${favorite.name}</span>
         </div>
         <div class="col m3 s12 center-align mt-1 ">
-        <a href="#details" class="btn orange modal-trigger details" data-favorite-id="${favorite.id}"><div >Details</div></a>
+        <a href="#details" class="btn modal-trigger details" data-favorite-id="${favorite.id}"><div >Details</div></a>
         </div>
         <div class="col m3 s12 center-align mt-1">
-          <button class="btn remove-button remove" name="remove-btn" data-favorite-id="${favorite.id}">Remove</button>
+          <button class="btn red remove-button remove" name="remove-btn" data-favorite-id="${favorite.id}">Remove</button>
         </div>
       </div>
     </div>

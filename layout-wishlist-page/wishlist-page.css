@@ -43,11 +43,39 @@ main {
   text-shadow: 1px 1px 1px black;
 }
 
+h4 {
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
+}
+
 .nav-colour {
   background-color: var(--highlight);
 }
 
 .navbar-item-color {
+  background-color: var(--highlight);
+}
+
+.card-panel {
+  background-color: var(--border);
+  border-radius: 10px;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 2px var(--highlight);
+}
+
+.modal {
+  background-color: var(--highlight);
+  padding: 1rem;
+  border: 2px solid var(--font);
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: var(--font);
+}
+
+.page-footer {
   background-color: var(--highlight);
 }
 
