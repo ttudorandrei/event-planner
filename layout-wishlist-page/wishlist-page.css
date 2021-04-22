@@ -12,6 +12,15 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: var(--bg);
+  font-family: Raleway;
+  color: white;
+}
+
+h4 {
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
 }
 
 main {
@@ -21,7 +30,7 @@ main {
 .header {
   padding-top: 1px;
   padding-bottom: 1px;
-  background-color: var(--highlight);
+  background-color: var(--bg);
 }
 
 .format-header {
