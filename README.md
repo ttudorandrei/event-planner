@@ -2,6 +2,8 @@
 
 ## Introduction
 
+**Sights & Sounds** allows you to easily find events and venues, based on your selected location. You can then save the ones you are interested in to your wishlist and - Voila! Your weekend plans are already looking a lot more exciting!
+
 ## Table of Contents
 
 [Introduction](#introduction)  
