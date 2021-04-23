@@ -73,6 +73,7 @@ const updateWishlist = (event) => {
   saveWishlistItem(wishlistItem);
 };
 
+//this function will render the modal for every object in local storage array
 const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
@@ -99,8 +100,8 @@ const renderModal = (data) => {
   $("#comments-input").val(data.textInput);
 };
 
+//thiss will make modal pop up on click of the DETAILS button
 const onDetailsClick = (event) => {
-  // const currentTarget = event.currentTarget;
   const venueId = event.data.favoriteId;
   const favorites = getFromLocalStorage();
   const findId = (favorites) => {
@@ -110,7 +111,7 @@ const onDetailsClick = (event) => {
   renderModal(favoriteItem);
 };
 
-// this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
+// this will generate and append the card based on objects in local storage. Utlimately, it should contain data from the object.
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
     const wishlistCard = `<div class="col m10 s12 offset-m1" >
