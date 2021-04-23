@@ -120,7 +120,7 @@ const appendWishlistCard = (favorites) => {
         <div class="col m1 s12 center-align mt-1">${favorite.dateInput}</div>
         <div class="col m2 s12 center-align mt-1">
           <img
-            src="/assets/images/favourites.png"
+            src="./assets/images/favourites.png"
             alt="golden star icon"
             class="circle"
             width="80px" 
