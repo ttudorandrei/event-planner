@@ -438,7 +438,7 @@ const renderNavBar = () => {
           <!-- Link to Wishlist page -->
           <span class="col navbar-item-color l4 m6 s6 offset-l4">
             <ul id="nav-mobile" class="right">
-              <li><a href="/wishlist-page.html">Wishlist</a></li>
+              <li><a href="./wishlist-page.html">Wishlist</a></li>
             </ul>
           </span>
         </div>
