@@ -10,10 +10,12 @@
  [Table of Contents](#table-of-contents)  
  [Description](#description)  
  [User Story](#user-story)  
+ [Deployed Link to Application](#deployed-link-to-application)  
+ [Getting Started](#getting-started)  
  [Tech](#tech)  
  [Wire Frames](#wire-frames)  
- [Deployed Link to Application](#deployed-link-to-application)  
- [Getting Started](#getting-started)
+ [Screenshots](#screenshots)  
+[Future Improvements](#future-improvements)
 
 ## Description
 
@@ -85,6 +87,18 @@ I WANT to view the events in the area I have searched for with a link to book a 
 SO THAT I can view be linked to current events in the area
 ```
 
+## Deployed Link to Application
+
+Click [here](https://chelseanicholls95.github.io/event-planner/) to view our project!
+
+## Getting Started
+
+```
+git clone git@github.com:chelseanicholls95/event-planner.git
+cd event-planner
+code .
+```
+
 ## Tech
 
 ### CSS Framework - [Materialize](https://materializecss.com/)
@@ -112,17 +126,30 @@ To use the Event Discovery Widget, we rendered the code that was provided to us 
 
 ## Wire Frames
 
-## Deployed Link to Application
+We used draw.io to create the wire frames for our application. We started with a very high-level design, laying out what elements we would like on the page and where we would like to put them. At this stage, we also decided what elements would be linked to javascript functions and what would happen when buttons are clicked or forms are submitted.
 
-Click [here](https://chelseanicholls95.github.io/event-planner/) to view our project!
+![Wireframes](assets/images/screenshots/wireframe.png)
+Click [here](https://app.diagrams.net/#Hchelseanicholls95%2Fevent-planner%2Fmaster%2FEvent-Planner.drawio) to view on draw.io
 
-## Getting Started
+## Screenshots
 
-```
-git clone git@github.com:chelseanicholls95/event-planner.git
-cd event-planner
-code .
-```
+Landing Page
+![Landing Page](assets/images/screenshots/landing-page.png)
+
+Search Results Page
+![Search Results Page](assets/images/screenshots/search-results-page.png)
+
+Search Results Modal
+![Search Results Modal](assets/images/screenshots/search-results-modal-screenshot.png)
+
+Wishlist Page
+![Wishlist Page](assets/images/screenshots/wishlist-page.png)
+
+Wishlist Modal
+![Wishlist Modal](assets/images/screenshots/wishlist-modal-screenshot.png)
+
+Error Message
+![Error Message](assets/images/screenshots/error-message.png)
 
 ## Future Improvements
 
