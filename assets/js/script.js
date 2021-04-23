@@ -19,6 +19,7 @@ const addToWishlist = (data) => {
 };
 
 const onSubmitAddToWishlist = (event) => {
+  // get data from the modal and create an object
   event.preventDefault();
   const image = $("#image").attr("src");
   const name = $("#h4-modal").text();
@@ -102,6 +103,7 @@ const getDataFromSearch = (venue) => {
 };
 
 const getImages = (venueImages) => {
+  // if there is an image for that venue, access image and construct image url
   if (venueImages.count === 0) {
     return "/assets/images/placeholder.png";
   } else {
@@ -120,10 +122,10 @@ const getOpeningHours = (openingHours) => {
 };
 
 const getContactDetails = (contactDetails) => {
-  if (contactDetails === undefined || contactDetails === "") {
+  if (contactDetails === undefined) {
     return "Currently Unavailable";
   } else {
-    return contactDetails.phone;
+    return contactDetails;
   }
 };
 
@@ -160,7 +162,7 @@ const getDataAboutVenue = (venue) => {
     url: getUrl(venue.url),
     openingHours: getOpeningHours(venue.defaultHours),
     address: venue.location.formattedAddress,
-    contactDetails: getContactDetails(venue.contact),
+    contactDetails: getContactDetails(venue.contact.phone),
     rating: getRating(venue.rating),
   };
   return data;
@@ -212,7 +214,6 @@ const createFoursquareUrl = (data) => {
 };
 
 const constructImageUrl = (image) => {
-  console.log(image);
   const prefix = image.prefix;
   const suffix = image.suffix;
   return `${prefix}300x500${suffix}`;
@@ -225,13 +226,14 @@ const onClickClose = () => {
 };
 
 const onClickModal = async (event) => {
+  // get id from current target and pass into url
   const currentTarget = event.currentTarget;
   const venueId = $(currentTarget).data("id");
   const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
 
+  // fetch data from foursquare api and render modal
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
-  console.log(venue);
   const venueData = getDataAboutVenue(venue);
   renderModal(venueData);
 };
@@ -259,6 +261,7 @@ const renderModal = (data) => {
   $("#modal-image").empty();
   $("#contact-details").text("");
 
+  // construct modal url and image
   const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
   const modalImage = `<img
   src="${data.image}"
@@ -436,6 +439,7 @@ const renderNavBar = () => {
   </form>
 </div>`;
 
+  // append navbar
   $(".header").after(navbarContainer);
   $("#navbar-wrapper").append(navBar);
   $("select").formSelect();
@@ -492,14 +496,18 @@ const renderSearchResultsPage = (data) => {
 const onSubmit = async (event) => {
   // on submit of form - get the data from the form, create foursquare url and fetch foursquare data using that url
   event.preventDefault();
-  const formData = getFormData();
-  const foursquareUrl = createFoursquareUrl(formData);
-  const foursquareData = await fetchFoursquareData(foursquareUrl);
+  if ($("#form-input-search").val() !== "") {
+    const formData = getFormData();
+    const foursquareUrl = createFoursquareUrl(formData);
+    const foursquareData = await fetchFoursquareData(foursquareUrl);
 
-  // if the foursquare data is not returned undefined - render the search results page and the cards
-  if (foursquareData !== undefined) {
-    renderSearchResultsPage(formData);
-    foursquareData.forEach(renderFoursquareCards);
+    // if the foursquare data is not returned undefined - render the search results page and the cards
+    if (foursquareData !== undefined) {
+      renderSearchResultsPage(formData);
+      foursquareData.forEach(renderFoursquareCards);
+    }
+  } else {
+    renderErrorMessage();
   }
 };
 
