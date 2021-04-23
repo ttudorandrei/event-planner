@@ -15,6 +15,34 @@
 
 ## Description
 
+Our team of developers was tasked with building a Web Application that would help the user find Venues and Events in a certain city.
+
+When the user first opens the application, he will be presented with a form that accepts input for a city, country and preferred filters (Restaurants, Arts & Entertainment or Outdoor & Recreation) and a SEARCH button;
+
+When the user submits his preferred city and filters, the page will be emptied, in its place being loaded the search results page with its navbar containing a search form and a link to the wishlist page, the results cards and the Ticketmaster Widget;
+
+When the user clicks on one of the results, a modal pops up containing extra information: Name and Photo of the Venue, Opening Hours, Address, Contact Details, Rating, URL, an Input Field for adding comments, a Date Picker, an ADD TO WISHLIST button and a CLOSE button;
+
+When the user wants to add a venue to the Wishlist, he can type in a comment, select a date and, on click of the ADD TO WISHLIST button, the venue information will be saved in the Local Memory;
+
+When the user wants to attend an event displayed on the Ticketmaster Widget, he can use the built-in BUY NOW button and he will be redirected to the page selling tickets for that specific event;
+
+When the user chooses to search for another city, he can perform the search completing the form in the navbar, without needing to reload the landing page;
+
+When the user clicks on the WISHLIST button, he will be redirected to the Wishlist page;
+
+When loading the Wishlist Page, the user will be presented with cards displaying all of the venues he previously saved;
+
+Every card will display a date (if previously typed in by the user), an icon, the name of the venue, a DETAILS button and a REMOVE button;
+
+On click of the DETAILS button, a modal will pop up containing the name of the venue, a photo taken at the venue, a short description (if available), the opening hours, the address, the contact details, the rating, the url, the comment previously added by the user (if available), the date (if available) a SAVE button and a CLOSE button;
+
+If the user chooses to update the comment, he can do so by typing his preferred comment over the previous one and save it by clicking the SAVE button;
+
+When the user chooses to remove a venue from the Wishlist, he can do so by clicking the REMOVE button that is displayed on the card;
+
+When the user decides to search for another city he can do so by clicking on the RETURN HOME button;
+
 ## User Story
 
 ```
