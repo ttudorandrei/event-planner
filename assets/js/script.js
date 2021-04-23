@@ -250,7 +250,7 @@ const renderErrorMessage = () => {
   // create and append error message
   const errorMessage = `<div class="row error-container">
   <div class="col l6 offset-l3 error">
-  <h3>Something went wrong!</h3>
+  <h3 class="center-align">Something went wrong!</h3>
   <div class="p-2">Oops, we were not able to find the city you are looking for. Please enter a valid city name. If the problem persists, please try again at a later time.</div>
   </div>
   </div>`;

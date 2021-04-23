@@ -94,6 +94,21 @@ input {
   color: white;
 }
 
+.select-dropdown {
+  color: white;
+  border-bottom: 1px solid var(--link);
+}
+
+.select-wrapper input.select-dropdown {
+  border-bottom: 2px solid var(--font);
+}
+
+.dropdown-content li > a,
+.dropdown-content li > span {
+  color: white;
+  background-color: var(--bg);
+}
+
 #form-input-search {
   width: 10rem;
   padding: 0;
@@ -127,7 +142,7 @@ input {
 .error-container {
   width: 90vw;
   position: absolute;
-  top: 20%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
