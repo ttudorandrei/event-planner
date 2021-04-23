@@ -3,13 +3,16 @@ const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
 const getFormData = () => {
+  // ge the city and country from the inputs
   const city = $("#form-input-search").val();
   const countryValue = $("#country-input").val();
 
+  // check which checkbox has been checked
   const wantsRestaurants = $("#restaurant").is(":checked");
   const wantsArts = $("#arts-entertainment").is(":checked");
   const wantsOutdoors = $("#outdoor-recreation").is(":checked");
 
+  // add data into an object
   const formData = {
     city,
     countryValue,
@@ -30,6 +33,7 @@ const getVenueType = (venue) => {
 };
 
 const getVenueTypeIcon = (venue) => {
+  // if a venue icon is returned, construct icon url
   const venueIcon = venue[0].icon;
   if (venueIcon === undefined) {
     return "";
@@ -41,6 +45,7 @@ const getVenueTypeIcon = (venue) => {
 };
 
 const getDataFromSearch = (venue) => {
+  // pull necessary data from the api
   const data = {
     venueName: venue.name,
     venueId: venue.id,
@@ -66,17 +71,18 @@ const fetchFoursquareData = async (url) => {
 };
 
 const constructImageUrl = (image) => {
+  console.log(image);
   const prefix = image.prefix;
   const suffix = image.suffix;
   return `${prefix}300x500${suffix}`;
 };
 
 const getImages = (venueImages) => {
-  if (venueImages.groups.length === 0) {
-    return "no image";
+  if (venueImages.count === 0) {
+    return "/assets/images/placeholder.png";
   } else {
     const imagesArray = venueImages.groups[0].items;
-    const imageUrl = imagesArray.map(constructImageUrl);
+    const imageUrl = constructImageUrl(imagesArray[0]);
     return imageUrl;
   }
 };
@@ -126,7 +132,7 @@ const getDataAboutVenue = (venue) => {
     name: venue.name,
     id: venue.id,
     description: getDescription(venue.description),
-    images: getImages(venue.photos),
+    image: getImages(venue.photos),
     url: getUrl(venue.url),
     openingHours: getOpeningHours(venue.defaultHours),
     address: venue.location.formattedAddress,
@@ -143,7 +149,7 @@ const renderModal = (data) => {
 
   const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
   const modalImage = `<img
-  src="${data.images[0]}"
+  src="${data.image}"
   width="100"
   height="auto"
   alt=""
@@ -220,6 +226,7 @@ const onClick = async (event) => {
 
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
+  console.log(venue);
   const venueData = getDataAboutVenue(venue);
   renderModal(venueData);
 };
