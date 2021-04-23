@@ -59,6 +59,7 @@ const renderErrorMessage = () => {
   // // clear any info on page
   $("#slider").empty();
 
+  renderNavBar();
   // create and append error message
   const errorMessage = `<div class="row error-container">
   <div class="col l6 offset-l3 error">
@@ -242,7 +243,7 @@ const onClickClose = () => {
   $("#date-input").val("");
 };
 
-const onClick = async (event) => {
+const onClickModal = async (event) => {
   const currentTarget = event.currentTarget;
   const venueId = $(currentTarget).data("id");
   const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
@@ -276,19 +277,12 @@ const renderFoursquareCards = (data) => {
 >`;
 
   $("#foursquare-container").append(card);
-  $(`[data-id='${data.venueId}']`).click(onClick);
+  $(`[data-id='${data.venueId}']`).click(onClickModal);
 };
 
-const renderSearchResultsPage = (data) => {
-  $("#slider").empty();
-  $("#navbar-wrapper").remove();
-  $("#search-results-page-container").empty();
-  $("#slider").remove();
-  $("#search-results-footer").remove();
-
+const renderNavBar = () => {
   const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
-
-  //generates navbar
+  //generate navbar
   const navBar = `
   <div>
   <form id="nav-form" class="nav-wrapper row">
@@ -415,6 +409,20 @@ const renderSearchResultsPage = (data) => {
   </form>
 </div>`;
 
+  $(".header").after(navbarContainer);
+  $("#navbar-wrapper").append(navBar);
+  $("select").formSelect();
+};
+
+const renderSearchResultsPage = (data) => {
+  // remove previous content
+  $("#slider").remove();
+  $("#navbar-wrapper").remove();
+  $("#search-results-footer").remove();
+  $("#search-results-page-container").empty();
+
+  renderNavBar();
+
   //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
 
@@ -429,7 +437,7 @@ const renderSearchResultsPage = (data) => {
                     <div class="container" id="ticketmaster-container"></div>
         </section>`;
 
-  //widget source code
+    //widget source code
   const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${data.city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="${data.countryValue}" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
@@ -440,56 +448,48 @@ const renderSearchResultsPage = (data) => {
     <div class="container center-align pb-1">© 2021 Copyright Sights & Sounds Team</div>
   </footer>`;
 
-  $(".header").after(navbarContainer);
-
-  $("#navbar-wrapper").append(navBar);
-
-  // Function to facilitate form select in navbar
-  $("select").formSelect();
+  // append all elements 
   $("#content-container").addClass("mt-2");
   $("#content-container").append(searchResultsPageContainer);
-
   $("#search-results-page-container").append(
     foursquareSection,
     ticketmasterSection
   );
-
   $("#ticketmaster-container").append(widget);
-
   $("#widget-script").append(widgetScript);
-
   $("#nav-form").submit(onSubmit);
-
   $("body").append(footer);
 };
 
 const createFoursquareUrl = (data) => {
-  let url = "";
+  // if the user wants a category, add the category id to the url
+  let categories = "";
 
   if (data.wantsRestaurants) {
-    url += "4d4b7105d754a06374d81259,";
+    categories += "4d4b7105d754a06374d81259,";
   }
 
   if (data.wantsArts) {
-    url += "4d4b7104d754a06370d81259,";
+    categories += "4d4b7104d754a06370d81259,";
   }
 
   if (data.wantsOutdoors) {
-    url += "4d4b7105d754a06377d81259,";
+    categories += "4d4b7105d754a06377d81259,";
   }
 
-  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${url}`;
+  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${categories}`;
 
   return foursquareUrl;
 };
 
 const onSubmit = async (event) => {
+  // on submit of form - get the data from the form, create foursquare url and fetch foursquare data using that url
   event.preventDefault();
   const formData = getFormData();
-
   const foursquareUrl = createFoursquareUrl(formData);
   const foursquareData = await fetchFoursquareData(foursquareUrl);
 
+  // if the foursquare data is not returned undefined - render the search results page and the cards
   if (foursquareData !== undefined) {
     renderSearchResultsPage(formData);
     foursquareData.forEach(renderFoursquareCards);
@@ -515,9 +515,6 @@ const onReady = () => {
 
   // activates date picker in results modal
   $(".datepicker").datepicker();
-
-  //this will read data from local storage
-  getFromLocalStorage();
 };
 
 $(document).ready(onReady);
