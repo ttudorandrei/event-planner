@@ -17,15 +17,16 @@ body {
   color: white;
 }
 
+main {
+  flex: 1 0 auto;
+}
+
+/* header */
 h1 {
   font-family: Pacifico;
   color: var(--font);
   text-shadow: 1px 1px 1px black;
   font-size: 45px;
-}
-
-main {
-  flex: 1 0 auto;
 }
 
 .header {
@@ -49,6 +50,11 @@ h4 {
   text-shadow: 1px 1px 1px black;
 }
 
+.header-font-size {
+  font-size: 38px;
+}
+
+/* navbar */
 .nav-colour {
   background-color: var(--highlight);
 }
@@ -57,6 +63,7 @@ h4 {
   background-color: var(--highlight);
 }
 
+/* card styling */
 .card-panel {
   background-color: var(--border);
   border-radius: 10px;
@@ -66,6 +73,7 @@ h4 {
   align-content: center;
 }
 
+/* modal styling */
 .modal {
   background-color: var(--highlight);
   padding: 1rem;
@@ -94,6 +102,7 @@ th {
   color: white;
 }
 
+/* datepicker styling */
 .datepicker-date-display {
   background-color: var(--highlight);
 }
@@ -248,14 +257,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) {
   margin-right: 30px;
 }
 
-.border-test {
-  border: red 2px solid;
-}
-
-.header-font-size {
-  font-size: 38px;
-}
-
+/* media queries */
 @media screen and (max-width: 1024px) {
   h1 {
     font-size: 32px;
