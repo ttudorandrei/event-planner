@@ -16,10 +16,10 @@ const onRemoveFromFavorites = (event) => {
 
   const filteredFavorites = favoriteItems.filter(filterItemToBeRemoved);
 
-  // // we need to remove the old favorites
+  // we need to remove the old favorites
   localStorage.removeItem("favorites");
 
-  // // set the local storage to the new favorites
+  // set the local storage to the new favorites
   localStorage.setItem("favorites", JSON.stringify(filteredFavorites));
 
   appendWishlistCard(filteredFavorites);
@@ -100,7 +100,7 @@ const renderModal = (data) => {
   $("#comments-input").val(data.textInput);
 };
 
-//thiss will make modal pop up on click of the DETAILS button
+//this will make modal pop up on click of the DETAILS button
 const onDetailsClick = (event) => {
   const venueId = event.data.favoriteId;
   const favorites = getFromLocalStorage();
@@ -111,7 +111,7 @@ const onDetailsClick = (event) => {
   renderModal(favoriteItem);
 };
 
-// this will generate and append the card based on objects in local storage. Utlimately, it should contain data from the object.
+// this will generate and append the card based on objects in local storage
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
     const wishlistCard = `<div class="col m10 s12 offset-m1" >

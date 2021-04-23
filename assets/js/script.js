@@ -50,7 +50,7 @@ const onSubmitAddToWishlist = (event) => {
 
 // get data functions
 const getFormData = () => {
-  // ge the city and country from the inputs
+  // get the city and country from the inputs
   const city = $("#form-input-search").val();
   const countryValue = $("#country-input").val();
 
@@ -102,7 +102,6 @@ const getDataFromSearch = (venue) => {
   return data;
 };
 
-//if no image is available, a placeholder is injected into the img field
 const getImages = (venueImages) => {
   // if there is an image for that venue, access image and construct image url
   if (venueImages.count === 0) {
@@ -229,7 +228,6 @@ const onClickClose = () => {
   $("#date-input").val("");
 };
 
-//this function will display the modal with the specific data
 const onClickModal = async (event) => {
   // get id from current target and pass into url
   const currentTarget = event.currentTarget;
@@ -245,7 +243,7 @@ const onClickModal = async (event) => {
 
 // render functions
 const renderErrorMessage = () => {
-  // // clear any info on page
+  // clear any info on page
   $("#slider").empty();
 
   renderNavBar();
