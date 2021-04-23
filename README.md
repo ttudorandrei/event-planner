@@ -124,7 +124,7 @@ code .
 
 ## Future Improvements
 
-We do have some areas that we feel that we could improve on. Firstly, the multiple select dropdown on the navbar displays ‘choose a category’ even after you have selected a category. We tried to remove this but the materialize multiple select element is designed this way. If we were to create this application again, we would find a CSS framework that has a design that is more in-line with what we would like or design the dropdown ourselves.
+We have some areas that we feel that we could improve on. Firstly, the multiple select dropdown on the navbar displays ‘choose a category’ even after you have selected a category. We tried to remove this but the materialize multiple select element is designed this way. If we were to create this application again, we would find a CSS framework that has a design that is more in-line with what we would like or design the dropdown ourselves.
 
 Secondly, our initial plan was to separate the search results into categories. This was mentioned as one of the challenges earlier. The endpoints that we called from the API did not give us the required information to separate the venues into categories. If we were to create this application again, we would explore more endpoints and parameters in the Foursquare API to investigate whether we can separate the results.
 
