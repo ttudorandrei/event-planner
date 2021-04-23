@@ -2,6 +2,52 @@ const CLIENT_ID = "IKFBFDDPWTL4CBLFKOWMQ0KLJVBZCPZH0R0ZO3Q3RLW54XOK";
 const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
+// local storage functions
+const getFromLocalStorage = () => {
+  const localStorageData = JSON.parse(localStorage.getItem("favorites"));
+  if (localStorageData === null) {
+    return [];
+  } else {
+    return localStorageData;
+  }
+};
+
+const addToWishlist = (data) => {
+  const favoriteItems = getFromLocalStorage();
+  favoriteItems.push(data);
+  localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+};
+
+const onSubmitAddToWishlist = (event) => {
+  event.preventDefault();
+  const image = $("#image").attr("src");
+  const name = $("#h4-modal").text();
+  const description = $("#description").text();
+  const hours = $("#opening-hours").text();
+  const address = $("#address").text();
+  const contact = $("#contact-details").text();
+  const rating = $("#rating").text();
+  const url = $("#modal-url").attr("href");
+  const textInput = $("#comments-input").val();
+  const dateInput = $("#date-input").val();
+  const id = $("#details").data("venue-id");
+  const wishlistItem = {
+    id,
+    image,
+    name,
+    description,
+    hours,
+    address,
+    contact,
+    rating,
+    url,
+    textInput,
+    dateInput,
+  };
+  addToWishlist(wishlistItem);
+};
+
+// get data functions
 const getFormData = () => {
   // ge the city and country from the inputs
   const city = $("#form-input-search").val();
@@ -53,52 +99,6 @@ const getDataFromSearch = (venue) => {
     venueTypeIcon: getVenueTypeIcon(venue.categories),
   };
   return data;
-};
-
-const renderErrorMessage = () => {
-  // // clear any info on page
-  $("#slider").empty();
-
-  renderNavBar();
-  // create and append error message
-  const errorMessage = `<div class="row error-container">
-  <div class="col l6 offset-l3 error">
-  <h3>Something went wrong!</h3>
-  <div class="p-2">Oops, we were not able to find the city you are looking for. Please enter a valid city name. If the problem persists, please try again at a later time.</div>
-  </div>
-  </div>`;
-
-  // append to slider
-  $("#slider").append(errorMessage);
-};
-
-const fetchData = async (url) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    if (data.meta.code !== 200) {
-      renderErrorMessage();
-    } else {
-      return data;
-    }
-  } catch (error) {}
-};
-
-const fetchFoursquareData = async (url) => {
-  const data = await fetchData(url);
-
-  if (data !== undefined) {
-    const venue = data.response.venues;
-    const venueData = venue.map(getDataFromSearch);
-    return venueData;
-  }
-};
-
-const constructImageUrl = (image) => {
-  console.log(image);
-  const prefix = image.prefix;
-  const suffix = image.suffix;
-  return `${prefix}300x500${suffix}`;
 };
 
 const getImages = (venueImages) => {
@@ -166,6 +166,94 @@ const getDataAboutVenue = (venue) => {
   return data;
 };
 
+// fetch data functions
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.meta.code !== 200) {
+      renderErrorMessage();
+    } else {
+      return data;
+    }
+  } catch (error) {}
+};
+
+const fetchFoursquareData = async (url) => {
+  const data = await fetchData(url);
+
+  if (data !== undefined) {
+    const venue = data.response.venues;
+    const venueData = venue.map(getDataFromSearch);
+    return venueData;
+  }
+};
+
+// construct url functions
+const createFoursquareUrl = (data) => {
+  // if the user wants a category, add the category id to the url
+  let categories = "";
+
+  if (data.wantsRestaurants) {
+    categories += "4d4b7105d754a06374d81259,";
+  }
+
+  if (data.wantsArts) {
+    categories += "4d4b7104d754a06370d81259,";
+  }
+
+  if (data.wantsOutdoors) {
+    categories += "4d4b7105d754a06377d81259,";
+  }
+
+  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${categories}`;
+
+  return foursquareUrl;
+};
+
+const constructImageUrl = (image) => {
+  console.log(image);
+  const prefix = image.prefix;
+  const suffix = image.suffix;
+  return `${prefix}300x500${suffix}`;
+};
+
+// on click functions
+const onClickClose = () => {
+  $("#comments-input").val("");
+  $("#date-input").val("");
+};
+
+const onClickModal = async (event) => {
+  const currentTarget = event.currentTarget;
+  const venueId = $(currentTarget).data("id");
+  const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
+
+  const data = await fetchData(venueUrl);
+  const venue = data.response.venue;
+  console.log(venue);
+  const venueData = getDataAboutVenue(venue);
+  renderModal(venueData);
+};
+
+// render functions
+const renderErrorMessage = () => {
+  // // clear any info on page
+  $("#slider").empty();
+
+  renderNavBar();
+  // create and append error message
+  const errorMessage = `<div class="row error-container">
+  <div class="col l6 offset-l3 error">
+  <h3>Something went wrong!</h3>
+  <div class="p-2">Oops, we were not able to find the city you are looking for. Please enter a valid city name. If the problem persists, please try again at a later time.</div>
+  </div>
+  </div>`;
+
+  // append to slider
+  $("#slider").append(errorMessage);
+};
+
 const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
@@ -192,67 +280,6 @@ const renderModal = (data) => {
   $("#url").append(modalUrl);
   $("#details").attr("data-venue-id", data.id);
   $("#details").data("venue-id", data.id);
-};
-
-const getFromLocalStorage = () => {
-  const localStorageData = JSON.parse(localStorage.getItem("favorites"));
-  if (localStorageData === null) {
-    return [];
-  } else {
-    return localStorageData;
-  }
-};
-
-const addToWishlist = (data) => {
-  const favoriteItems = getFromLocalStorage();
-  favoriteItems.push(data);
-  localStorage.setItem("favorites", JSON.stringify(favoriteItems));
-};
-
-const onSubmitAddToWishlist = (event) => {
-  event.preventDefault();
-  const image = $("#image").attr("src");
-  const name = $("#h4-modal").text();
-  const description = $("#description").text();
-  const hours = $("#opening-hours").text();
-  const address = $("#address").text();
-  const contact = $("#contact-details").text();
-  const rating = $("#rating").text();
-  const url = $("#modal-url").attr("href");
-  const textInput = $("#comments-input").val();
-  const dateInput = $("#date-input").val();
-  const id = $("#details").data("venue-id");
-  const wishlistItem = {
-    id,
-    image,
-    name,
-    description,
-    hours,
-    address,
-    contact,
-    rating,
-    url,
-    textInput,
-    dateInput,
-  };
-  addToWishlist(wishlistItem);
-};
-
-const onClickClose = () => {
-  $("#comments-input").val("");
-  $("#date-input").val("");
-};
-
-const onClickModal = async (event) => {
-  const currentTarget = event.currentTarget;
-  const venueId = $(currentTarget).data("id");
-  const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
-
-  const data = await fetchData(venueUrl);
-  const venue = data.response.venue;
-  console.log(venue);
-  const venueData = getDataAboutVenue(venue);
-  renderModal(venueData);
 };
 
 const renderFoursquareCards = (data) => {
@@ -412,6 +439,7 @@ const renderNavBar = () => {
   $(".header").after(navbarContainer);
   $("#navbar-wrapper").append(navBar);
   $("select").formSelect();
+  $("#nav-form").submit(onSubmit);
 };
 
 const renderSearchResultsPage = (data) => {
@@ -437,7 +465,7 @@ const renderSearchResultsPage = (data) => {
                     <div class="container" id="ticketmaster-container"></div>
         </section>`;
 
-    //widget source code
+  //widget source code
   const widget = `<div w-type="event-discovery" w-tmapikey="0GNTLEb6ffjAj82DU3Zip5wqIzQqqi1f" w-googleapikey="YOUR_GOOGLE_API_KEY" w-keyword="" w-theme="simple" w-colorscheme="light" w-width="" w-height="500" w-size="10" w-border="0" w-borderradius="10" w-postalcode="" w-radius="25" w-city="${data.city}" w-period="week" w-layout="fullwidth" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="custom" w-titlelink="off" w-sorting="groupByName" w-id="id_9npyeo7" w-countrycode="${data.countryValue}" w-source="" w-branding="Ticketmaster" w-latlong=""></div>`;
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
@@ -448,7 +476,7 @@ const renderSearchResultsPage = (data) => {
     <div class="container center-align pb-1">© 2021 Copyright Sights & Sounds Team</div>
   </footer>`;
 
-  // append all elements 
+  // append all elements
   $("#content-container").addClass("mt-2");
   $("#content-container").append(searchResultsPageContainer);
   $("#search-results-page-container").append(
@@ -457,31 +485,10 @@ const renderSearchResultsPage = (data) => {
   );
   $("#ticketmaster-container").append(widget);
   $("#widget-script").append(widgetScript);
-  $("#nav-form").submit(onSubmit);
   $("body").append(footer);
 };
 
-const createFoursquareUrl = (data) => {
-  // if the user wants a category, add the category id to the url
-  let categories = "";
-
-  if (data.wantsRestaurants) {
-    categories += "4d4b7105d754a06374d81259,";
-  }
-
-  if (data.wantsArts) {
-    categories += "4d4b7104d754a06370d81259,";
-  }
-
-  if (data.wantsOutdoors) {
-    categories += "4d4b7105d754a06377d81259,";
-  }
-
-  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${categories}`;
-
-  return foursquareUrl;
-};
-
+// on submit and on ready functions
 const onSubmit = async (event) => {
   // on submit of form - get the data from the form, create foursquare url and fetch foursquare data using that url
   event.preventDefault();
