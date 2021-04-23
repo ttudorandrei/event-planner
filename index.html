@@ -4,266 +4,326 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- title and description -->
+    <title>Sights & Sounds | Your Event Planner</title>
+    <meta
+      name="description"
+      content="Plan your upcoming outings with a click of a button!"
+    />
+
+    <!-- tags for SEO -->
+    <link
+      rel="canonical"
+      href="https://chelseanicholls95.github.io/event-planner/"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sights & Sounds | Your Event Planner" />
+    <meta
+      property="og:description"
+      content="Plan your upcoming outings with a click of a button!"
+    />
+    <meta property="og:image" content="/assets/favicon/apple-touch-icon.png" />
+    <meta
+      property="og:image:alt"
+      content="Sights & Sounds logo"
+      property="og:url"
+      content="https://chelseanicholls95.github.io/event-planner/"
+    />
+
+    <!-- favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+
+    <!-- stylesheet links -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Sights & Sounds | Your Event Planner</title>
   </head>
+
   <body id="body">
-    <header class="header">
+    <!-- Header -->
+    <header class="header pb-1">
       <h4 class="landing-header center">
         Sights & Sounds | Your Event Planner
       </h4>
     </header>
 
-    <main id="content-container"></main>
-    <div class="slider" id="slider">
-      <ul class="slides">
-        <li>
-          <img
-            src="assets/unsplash-images/jay-wennington-N_Y88TWmGwA-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/mercedes-mehling-7J7x8HLXQKA-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/jana-raganova-rpXIL2uEpYI-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/borna-bevanda-a4LLbMYUjE4-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/aranxa-esteve-pOXHU0UEDcg-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/alexander-popov-2GNBoMgKYEo-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/kyle-nieber-eE-ffApg7oI-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/samantha-weisburg-hFTcxZFsG6g-unsplash.jpg"
-          />
-        </li>
-        <li>
-          <img
-            src="assets/unsplash-images/juliet-furst-tFteUnwflA0-unsplash.jpg"
-          />
-        </li>
-      </ul>
+    <main id="content-container">
+      <!-- Carousel -->
+      <div class="slider" id="slider">
+        <ul class="slides">
+          <li>
+            <img src="assets/images/jay-wennington-N_Y88TWmGwA-unsplash.jpg" />
+          </li>
+          <li>
+            <img
+              src="assets/images/mercedes-mehling-7J7x8HLXQKA-unsplash.jpg"
+            />
+          </li>
+          <li>
+            <img src="assets/images/jana-raganova-rpXIL2uEpYI-unsplash.jpg" />
+          </li>
+          <li>
+            <img src="assets/images/borna-bevanda-a4LLbMYUjE4-unsplash.jpg" />
+          </li>
+          <li>
+            <img src="assets/images/aranxa-esteve-pOXHU0UEDcg-unsplash.jpg" />
+          </li>
+          <li>
+            <img src="assets/images/alexander-popov-2GNBoMgKYEo-unsplash.jpg" />
+          </li>
+          <li>
+            <img src="assets/images/kyle-nieber-eE-ffApg7oI-unsplash.jpg" />
+          </li>
+          <li>
+            <img
+              src="assets/images/samantha-weisburg-hFTcxZFsG6g-unsplash.jpg"
+            />
+          </li>
+          <li>
+            <img src="assets/images/juliet-furst-tFteUnwflA0-unsplash.jpg" />
+          </li>
+        </ul>
 
-      <div class="text-on-slider" id="text-on-slider">
-        <div class="row form-container">
-          <form
-            class="col m12 container center-align z-depth-4 form row"
-            id="form"
+        <!-- Landing page Search Form -->
+        <div class="text-on-slider" id="text-on-slider">
+          <div class="row form-container">
+            <form
+              class="col m12 container center-align z-depth-4 form row"
+              id="form"
+            >
+              <div class="col l12 m12 s12 white-text">
+                <div class="text-center white-text">
+                  <h4>Search for a City</h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col l5 s12 offset-l1 white-text">
+                  <input
+                    placeholder="Enter a city..."
+                    id="form-input-search"
+                    type="text"
+                    class="white-text"
+                  />
+                </div>
+                <div class="input-field col l5 s12">
+                  <select id="country-input">
+                    <option value="" disabled selected>Choose a Country</option>
+                    <option value="GB">Great Britain</option>
+                    <option value="AD">Andorra</option>
+                    <option value="AR">Argentina</option>
+                    <option value="AU">Australia</option>
+                    <option value="AT">Austria</option>
+                    <option value="AZ">Azerbaijan</option>
+                    <option value="BS">Bahamas</option>
+                    <option value="BB">Barbados</option>
+                    <option value="BE">Belgium</option>
+                    <option value="BM">Bermuda</option>
+                    <option value="BR">Brazil</option>
+                    <option value="BG">Bulgaria</option>
+                    <option value="CA">Canada</option>
+                    <option value="CL">Chile</option>
+                    <option value="CN">China</option>
+                    <option value="CO">Colombia</option>
+                    <option value="CR">Costa Rica</option>
+                    <option value="HR">Croatia</option>
+                    <option value="CY">Cyprus</option>
+                    <option value="CZ">Czech Republic</option>
+                    <option value="DK">Denmark</option>
+                    <option value="DO">Dominican Republic</option>
+                    <option value="EC">Ecuador</option>
+                    <option value="EE">Estonia</option>
+                    <option value="FO">Faroe Islands</option>
+                    <option value="FI">Finland</option>
+                    <option value="FR">France</option>
+                    <option value="GE">Georgia</option>
+                    <option value="DE">Germany</option>
+                    <option value="GH">Ghana</option>
+                    <option value="GI">Gibraltar</option>
+                    <option value="GR">Greece</option>
+                    <option value="HK">Hong Kong</option>
+                    <option value="HU">Hungary</option>
+                    <option value="IS">Iceland</option>
+                    <option value="IN">India</option>
+                    <option value="IE">Ireland</option>
+                    <option value="IL">Israel</option>
+                    <option value="IT">Italy</option>
+                    <option value="JM">Jamaica</option>
+                    <option value="JP">Japan</option>
+                    <option value="KR">Korea, Republic of</option>
+                    <option value="LV">Latvia</option>
+                    <option value="LB">Lebanon</option>
+                    <option value="LT">Lithuania</option>
+                    <option value="LU">Luxembourg</option>
+                    <option value="MY">Malaysia</option>
+                    <option value="MT">Malta</option>
+                    <option value="MX">Mexico</option>
+                    <option value="MC">Monaco</option>
+                    <option value="ME">Montenegro</option>
+                    <option value="MA">Morocco</option>
+                    <option value="NL">Netherlands</option>
+                    <option value="AN">Netherlands Antilles</option>
+                    <option value="NZ">New Zealand</option>
+                    <option value="ND">Northern Ireland</option>
+                    <option value="NO">Norway</option>
+                    <option value="PE">Peru</option>
+                    <option value="PL">Poland</option>
+                    <option value="PT">Portugal</option>
+                    <option value="RO">Romania</option>
+                    <option value="RU">Russian Federation</option>
+                    <option value="LC">Saint Lucia</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="RS">Serbia</option>
+                    <option value="SG">Singapore</option>
+                    <option value="SK">Slovakia</option>
+                    <option value="SI">Slovenia</option>
+                    <option value="ZA">South Africa</option>
+                    <option value="ES">Spain</option>
+                    <option value="SE">Sweden</option>
+                    <option value="CH">Switzerland</option>
+                    <option value="TW">Taiwan</option>
+                    <option value="TH">Thailand</option>
+                    <option value="TT">Trinidad and Tobago</option>
+                    <option value="TR">Turkey</option>
+                    <option value="UA">Ukraine</option>
+                    <option value="AE">United Arab Emirates</option>
+                    <option value="US">United States of America</option>
+                    <option value="UY">Uruguay</option>
+                    <option value="VE">Venezuela</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="center-align m-1 col l12 m12 s12">
+                  Choose a venue type
+                </div>
+                <label
+                  for="restaurant"
+                  class="m-1 col l3 m12 s12 offset-l1 white-text"
+                >
+                  <input
+                    type="checkbox"
+                    class="filled-in"
+                    checked
+                    id="restaurant"
+                  />
+                  <span>Restaurants</span>
+                </label>
+
+                <label class="m-1 col l3 m12 s12 white-text">
+                  <input
+                    type="checkbox"
+                    class="filled-in"
+                    checked="checked"
+                    id="arts-entertainment"
+                  />
+                  <span>Arts & Entertainment</span>
+                </label>
+
+                <label class="m-1 col l3 m12 s12 white-text">
+                  <input
+                    type="checkbox"
+                    class="filled-in"
+                    checked="checked"
+                    id="outdoor-recreation"
+                  />
+                  <span>Outdoor & Recreation</span>
+                </label>
+
+                <div class="row col l12 m12 s12">
+                  <button class="waves-effect waves-light btn m-1">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal" id="details">
+        <h4 class="m-1 center-align" id="h4-modal"></h4>
+        <div class="container details-container">
+          <div id="modal-image"></div>
+          <div class="info-container m-1 border-test" id="modal-info">
+            <div id="description"></div>
+            <ul>
+              <li>- Opening Hours: <span id="opening-hours"></span></li>
+              <li>- Address: <span id="address"></span></li>
+              <li>- Contact Details: <span id="contact-details"></span></li>
+              <li>- Rating: <span id="rating"></span></li>
+              <li>- URL: <span id="url"></span></li>
+            </ul>
+          </div>
+        </div>
+        <form class="m-1 row" id="set-to-wishlist">
+          <input
+            type="text"
+            class="col s10 offset-l1 offset-m1 offset-s1 center-align text-white"
+            id="comments-input"
+            placeholder="Enter Comments"
+          />
+          <input
+            type="text"
+            class="datepicker col s10 offset-l1 offset-m1 offset-s1 text-white center-align"
+            id="date-input"
+            placeholder="Select your date"
+          />
+          <button
+            href="#"
+            class="btn btn-save mb-1 col m5 s10 offset-l1 offset-s1 offset-m1"
+            type="submit"
           >
-            <div class="col l12 m12 s12">
-              <div class="text-center">
-                <h4>Search for a City</h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col l5 s12 offset-l1">
-                <input
-                  placeholder="Enter a city..."
-                  id="form-input"
-                  type="text"
-                />
-              </div>
-              <div class="input-field col l5 s12">
-                <select id="country-input">
-                  <option value="" disabled selected>Choose a Country</option>
-                  <option value="GB">Great Britain</option>
-                  <option value="AD">Andorra</option>
-                  <option value="AR">Argentina</option>
-                  <option value="AU">Australia</option>
-                  <option value="AT">Austria</option>
-                  <option value="AZ">Azerbaijan</option>
-                  <option value="BS">Bahamas</option>
-                  <option value="BB">Barbados</option>
-                  <option value="BE">Belgium</option>
-                  <option value="BM">Bermuda</option>
-                  <option value="BR">Brazil</option>
-                  <option value="BG">Bulgaria</option>
-                  <option value="CA">Canada</option>
-                  <option value="CL">Chile</option>
-                  <option value="CN">China</option>
-                  <option value="CO">Colombia</option>
-                  <option value="CR">Costa Rica</option>
-                  <option value="HR">Croatia</option>
-                  <option value="CY">Cyprus</option>
-                  <option value="CZ">Czech Republic</option>
-                  <option value="DK">Denmark</option>
-                  <option value="DO">Dominican Republic</option>
-                  <option value="EC">Ecuador</option>
-                  <option value="EE">Estonia</option>
-                  <option value="FO">Faroe Islands</option>
-                  <option value="FI">Finland</option>
-                  <option value="FR">France</option>
-                  <option value="GE">Georgia</option>
-                  <option value="DE">Germany</option>
-                  <option value="GH">Ghana</option>
-                  <option value="GI">Gibraltar</option>
-                  <option value="GR">Greece</option>
-                  <option value="HK">Hong Kong</option>
-                  <option value="HU">Hungary</option>
-                  <option value="IS">Iceland</option>
-                  <option value="IN">India</option>
-                  <option value="IE">Ireland</option>
-                  <option value="IL">Israel</option>
-                  <option value="IT">Italy</option>
-                  <option value="JM">Jamaica</option>
-                  <option value="JP">Japan</option>
-                  <option value="KR">Korea, Republic of</option>
-                  <option value="LV">Latvia</option>
-                  <option value="LB">Lebanon</option>
-                  <option value="LT">Lithuania</option>
-                  <option value="LU">Luxembourg</option>
-                  <option value="MY">Malaysia</option>
-                  <option value="MT">Malta</option>
-                  <option value="MX">Mexico</option>
-                  <option value="MC">Monaco</option>
-                  <option value="ME">Montenegro</option>
-                  <option value="MA">Morocco</option>
-                  <option value="NL">Netherlands</option>
-                  <option value="AN">Netherlands Antilles</option>
-                  <option value="NZ">New Zealand</option>
-                  <option value="ND">Northern Ireland</option>
-                  <option value="NO">Norway</option>
-                  <option value="PE">Peru</option>
-                  <option value="PL">Poland</option>
-                  <option value="PT">Portugal</option>
-                  <option value="RO">Romania</option>
-                  <option value="RU">Russian Federation</option>
-                  <option value="LC">Saint Lucia</option>
-                  <option value="SA">Saudi Arabia</option>
-                  <option value="RS">Serbia</option>
-                  <option value="SG">Singapore</option>
-                  <option value="SK">Slovakia</option>
-                  <option value="SI">Slovenia</option>
-                  <option value="ZA">South Africa</option>
-                  <option value="ES">Spain</option>
-                  <option value="SE">Sweden</option>
-                  <option value="CH">Switzerland</option>
-                  <option value="TW">Taiwan</option>
-                  <option value="TH">Thailand</option>
-                  <option value="TT">Trinidad and Tobago</option>
-                  <option value="TR">Turkey</option>
-                  <option value="UA">Ukraine</option>
-                  <option value="AE">United Arab Emirates</option>
-                  <option value="US">United States of America</option>
-                  <option value="UY">Uruguay</option>
-                  <option value="VE">Venezuela</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="center-align m-1 col l12 m12 s12">
-                Choose a venue type
-              </div>
-              <label for="restaurant" class="m-1 col l3 m12 s12 offset-l1">
-                <input
-                  type="checkbox"
-                  class="filled-in"
-                  checked
-                  id="restaurant"
-                />
-                <span>Restaurants</span>
-              </label>
-              <label class="m-1 col l3 m12 s12">
-                <input
-                  type="checkbox"
-                  class="filled-in"
-                  checked="checked"
-                  id="arts-entertainment"
-                />
-                <span>Arts & Entertainment</span>
-              </label>
-              <label class="m-1 col l3 m12 s12">
-                <input
-                  type="checkbox"
-                  class="filled-in"
-                  checked="checked"
-                  id="outdoor-recreation"
-                />
-                <span>Outdoor & Recreation</span>
-              </label>
-
-              <div class="row col l12 m12 s12">
-                <button class="waves-effect waves-light btn m-1">button</button>
-              </div>
-            </div>
-          </form>
-        </div>
+            Add to wishlist
+          </button>
+          <a
+            href="#"
+            class="btn red mb-1 col m5 s10 offset-s1 modal-close"
+            id="close-button"
+            >Close</a
+          >
+        </form>
       </div>
-    </div>
+    </main>
 
-    <div class="modal" id="details">
-      <h4 class="m-1 center-align" id="h4-modal"></h4>
-      <div class="container details-container">
-        <div id="modal-image"></div>
-        <div class="info-container m-1 border-test" id="modal-info">
-          <div id="description"></div>
-          <ul>
-            <li>- Opening Hours: <span id="opening-hours"></span></li>
-            <li>- Address: <span id="address"></span></li>
-            <li>- Contact Details: <span id="contact-details"></span></li>
-            <li>- Rating: <span id="rating"></span></li>
-            <li>- URL: <span id="url"></span></li>
-          </ul>
-        </div>
-      </div>
-      <form class="m-1 row" id="set-to-wishlist">
-        <input
-          type="text"
-          class="col s10 m10 l10 offset-l1 center-align"
-          id="comments-input"
-          placeholder="User can write text here"
-        />
-        <input
-          type="text"
-          class="datepicker col s10 m10 l10 offset-l1 center-align"
-          id="date-input"
-          placeholder="Select your date"
-        />
-        <button
-          href="#"
-          class="btn blue mb-1 col s10 m5 l5 offset-l1"
-          type="submit"
-        >
-          Add to wishlist
-        </button>
-        <a
-          href="#"
-          class="btn red mb-1 col s10 m5 l5 modal-close"
-          id="close-button"
-          >Close</a
-        >
-      </form>
-    </div>
+    <!-- script tags -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- the ticketmaster script will be injected here -->
     <div id="widget-script"></div>
     <script src="./assets/js/script.js"></script>
   </body>

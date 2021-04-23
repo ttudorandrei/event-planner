@@ -2,170 +2,7 @@ const CLIENT_ID = "IKFBFDDPWTL4CBLFKOWMQ0KLJVBZCPZH0R0ZO3Q3RLW54XOK";
 const CLIENT_SECRET = "04FJNRC04P5EGF5QOKKSB0QLBJRYOZBQ4G2BL4LZE1GWJOUF";
 const FOURSQUARE_BASE_URL = `https://api.foursquare.com/v2`;
 
-const getFormData = () => {
-  const city = $("#form-input").val();
-  const countryValue = $("#country-input").val();
-  console.log(countryValue);
-
-  const wantsRestaurants = $("#restaurant").is(":checked");
-  const wantsArts = $("#arts-entertainment").is(":checked");
-  const wantsOutdoors = $("#outdoor-recreation").is(":checked");
-
-  const formData = {
-    city,
-    countryValue,
-    wantsRestaurants,
-    wantsArts,
-    wantsOutdoors,
-  };
-
-  return formData;
-};
-
-const getVenueType = (venue) => {
-  if (venue.length === 0) {
-    return "Unknown";
-  } else {
-    return venue[0].name;
-  }
-};
-
-const getVenueTypeIcon = (venue) => {
-  const venueIcon = venue[0].icon;
-  if (venueIcon === undefined) {
-    return "";
-  } else {
-    const prefix = venueIcon.prefix;
-    const suffix = venueIcon.suffix;
-    return `${prefix}64${suffix}`;
-  }
-};
-
-const getDataFromSearch = (venue) => {
-  const data = {
-    venueName: venue.name,
-    venueId: venue.id,
-    venueType: getVenueType(venue.categories),
-    venueTypeIcon: getVenueTypeIcon(venue.categories),
-  };
-  return data;
-};
-
-const fetchData = async (url) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const fetchFoursquareData = async (url) => {
-  const data = await fetchData(url);
-  const venue = data.response.venues;
-  const venueData = venue.map(getDataFromSearch);
-  return venueData;
-};
-
-const constructImageUrl = (image) => {
-  const prefix = image.prefix;
-  const suffix = image.suffix;
-  return `${prefix}300x500${suffix}`;
-};
-
-const getImages = (venueImages) => {
-  if (venueImages.groups.length === 0) {
-    return "no image";
-  } else {
-    const imagesArray = venueImages.groups[0].items;
-    const imageUrl = imagesArray.map(constructImageUrl);
-    return imageUrl;
-  }
-};
-
-const getOpeningHours = (openingHours) => {
-  if (openingHours === undefined) {
-    return "Currently Unavailable";
-  } else {
-    return openingHours.status;
-  }
-};
-
-const getContactDetails = (contactDetails) => {
-  if (contactDetails === undefined) {
-    return "Currently Unavailable";
-  } else {
-    return contactDetails.phone;
-  }
-};
-
-const getRating = (rating) => {
-  if (rating === undefined) {
-    return "Currently Unavailable";
-  } else {
-    return rating;
-  }
-};
-
-const getDescription = (description) => {
-  if (description === undefined) {
-    return "";
-  } else {
-    return description;
-  }
-};
-
-const getUrl = (url) => {
-  if (url === undefined) {
-    return "Currently Unavailable";
-  } else {
-    return url;
-  }
-};
-
-const getDataAboutVenue = (venue) => {
-  const data = {
-    name: venue.name,
-    id: venue.id,
-    description: getDescription(venue.description),
-    images: getImages(venue.photos),
-    url: getUrl(venue.url),
-    openingHours: getOpeningHours(venue.defaultHours),
-    address: venue.location.formattedAddress,
-    contactDetails: getContactDetails(venue.contact),
-    rating: getRating(venue.rating),
-  };
-  return data;
-};
-
-const renderModal = (data) => {
-  $("#url").empty();
-  $("#modal-image").empty();
-
-  const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
-  const modalImage = `<img
-  src="${data.images[1]}"
-  width="100"
-  height="auto"
-  alt=""
-  class="center-block"
-  id="image"
-/>`;
-
-  // append modal display information
-  $("#modal-image").append(modalImage);
-  $("#h4-modal").text(data.name);
-  $("#description").text(data.description);
-  $("#opening-hours").text(data.openingHours);
-  $("#address").text(data.address);
-  $("#contact-details").text(data.contactDetails);
-  $("#rating").text(data.rating);
-  $("#url").append(modalUrl);
-  $("#details").attr("data-venue-id", data.id);
-  $("#details").data("venue-id", data.id);
-};
-
+// local storage functions
 const getFromLocalStorage = () => {
   const localStorageData = JSON.parse(localStorage.getItem("favorites"));
   if (localStorageData === null) {
@@ -182,6 +19,7 @@ const addToWishlist = (data) => {
 };
 
 const onSubmitAddToWishlist = (event) => {
+  // get data from the modal and create an object
   event.preventDefault();
   const image = $("#image").attr("src");
   const name = $("#h4-modal").text();
@@ -210,38 +48,263 @@ const onSubmitAddToWishlist = (event) => {
   addToWishlist(wishlistItem);
 };
 
+// get data functions
+const getFormData = () => {
+  // get the city and country from the inputs
+  const city = $("#form-input-search").val();
+  const countryValue = $("#country-input").val();
+
+  // check which checkbox has been checked
+  const wantsRestaurants = $("#restaurant").is(":checked");
+  const wantsArts = $("#arts-entertainment").is(":checked");
+  const wantsOutdoors = $("#outdoor-recreation").is(":checked");
+
+  // add data into an object
+  const formData = {
+    city,
+    countryValue,
+    wantsRestaurants,
+    wantsArts,
+    wantsOutdoors,
+  };
+
+  return formData;
+};
+
+const getVenueType = (venue) => {
+  if (venue.length === 0) {
+    return "Unknown";
+  } else {
+    return venue[0].name;
+  }
+};
+
+const getVenueTypeIcon = (venue) => {
+  // if a venue icon is returned, construct icon url
+  const venueIcon = venue[0].icon;
+  if (venueIcon === undefined) {
+    return "";
+  } else {
+    const prefix = venueIcon.prefix;
+    const suffix = venueIcon.suffix;
+    return `${prefix}64${suffix}`;
+  }
+};
+
+const getDataFromSearch = (venue) => {
+  // pull necessary data from the api
+  const data = {
+    venueName: venue.name,
+    venueId: venue.id,
+    venueType: getVenueType(venue.categories),
+    venueTypeIcon: getVenueTypeIcon(venue.categories),
+  };
+  return data;
+};
+
+const getImages = (venueImages) => {
+  // if there is an image for that venue, access image and construct image url
+  if (venueImages.count === 0) {
+    return "/assets/images/placeholder.png";
+  } else {
+    const imagesArray = venueImages.groups[0].items;
+    const imageUrl = constructImageUrl(imagesArray[0]);
+    return imageUrl;
+  }
+};
+
+//if this piece of information is missing, the "Currently Unavailable"
+const getOpeningHours = (openingHours) => {
+  if (openingHours === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return openingHours.status;
+  }
+};
+
+const getContactDetails = (contactDetails) => {
+  if (contactDetails === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return contactDetails;
+  }
+};
+
+const getRating = (rating) => {
+  if (rating === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return rating;
+  }
+};
+
+const getDescription = (description) => {
+  if (description === undefined) {
+    return "";
+  } else {
+    return description;
+  }
+};
+
+const getUrl = (url) => {
+  if (url === undefined) {
+    return "Currently Unavailable";
+  } else {
+    return url;
+  }
+};
+
+//this stores the venue data into an object
+const getDataAboutVenue = (venue) => {
+  const data = {
+    name: venue.name,
+    id: venue.id,
+    description: getDescription(venue.description),
+    image: getImages(venue.photos),
+    url: getUrl(venue.url),
+    openingHours: getOpeningHours(venue.defaultHours),
+    address: venue.location.formattedAddress,
+    contactDetails: getContactDetails(venue.contact.phone),
+    rating: getRating(venue.rating),
+  };
+  return data;
+};
+
+// fetch data functions
+const fetchData = async (url) => {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.meta.code !== 200) {
+      renderErrorMessage();
+    } else {
+      return data;
+    }
+  } catch (error) {}
+};
+
+const fetchFoursquareData = async (url) => {
+  const data = await fetchData(url);
+
+  if (data !== undefined) {
+    const venue = data.response.venues;
+    const venueData = venue.map(getDataFromSearch);
+    return venueData;
+  }
+};
+
+// construct url functions
+const createFoursquareUrl = (data) => {
+  // if the user wants a category, add the category id to the url
+  let categories = "";
+
+  if (data.wantsRestaurants) {
+    categories += "4d4b7105d754a06374d81259,";
+  }
+
+  if (data.wantsArts) {
+    categories += "4d4b7104d754a06370d81259,";
+  }
+
+  if (data.wantsOutdoors) {
+    categories += "4d4b7105d754a06377d81259,";
+  }
+
+  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${categories}`;
+
+  return foursquareUrl;
+};
+
+//this is constructing the img url
+const constructImageUrl = (image) => {
+  const prefix = image.prefix;
+  const suffix = image.suffix;
+  return `${prefix}300x500${suffix}`;
+};
+
+// on click functions
 const onClickClose = () => {
   $("#comments-input").val("");
   $("#date-input").val("");
 };
 
-const onClick = async (event) => {
+const onClickModal = async (event) => {
+  // get id from current target and pass into url
   const currentTarget = event.currentTarget;
   const venueId = $(currentTarget).data("id");
   const venueUrl = `${FOURSQUARE_BASE_URL}/venues/${venueId}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406`;
 
+  // fetch data from foursquare api and render modal
   const data = await fetchData(venueUrl);
   const venue = data.response.venue;
-  console.log(venue);
   const venueData = getDataAboutVenue(venue);
   renderModal(venueData);
 };
 
+// render functions
+const renderErrorMessage = () => {
+  // clear any info on page
+  $("#slider").empty();
+
+  renderNavBar();
+  // create and append error message
+  const errorMessage = `<div class="row error-container">
+  <div class="col l6 offset-l3 error">
+  <h3>Something went wrong!</h3>
+  <div class="p-2">Oops, we were not able to find the city you are looking for. Please enter a valid city name. If the problem persists, please try again at a later time.</div>
+  </div>
+  </div>`;
+
+  // append to slider
+  $("#slider").append(errorMessage);
+};
+
+//this function is used to render the modal
+const renderModal = (data) => {
+  $("#url").empty();
+  $("#modal-image").empty();
+  $("#contact-details").text("");
+
+  // construct modal url and image
+  const modalUrl = `<a href="${data.url}" target="_blank" id="modal-url">${data.url}</a>`;
+  const modalImage = `<img
+  src="${data.image}"
+  width="100"
+  height="auto"
+  alt=""
+  class="center-block"
+  id="image"
+/>`;
+
+  // append modal display information
+  $("#modal-image").append(modalImage);
+  $("#h4-modal").text(data.name);
+  $("#description").text(data.description);
+  $("#opening-hours").text(data.openingHours);
+  $("#address").text(data.address);
+  $("#contact-details").text(data.contactDetails);
+  $("#rating").text(data.rating);
+  $("#url").append(modalUrl);
+  $("#details").attr("data-venue-id", data.id);
+  $("#details").data("venue-id", data.id);
+};
+
+//this function builds and appends the venue cards
 const renderFoursquareCards = (data) => {
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
-  <div class="card-panel black p-1" data-id="${data.venueId}">
-    <div class="row valign-wrapper>
-      <div class="col s3">
+  <div class="card-panel p-1" data-id="${data.venueId}">
+    <div class="row">
+      <div class="col l3 s3">
         <img
           src="${data.venueTypeIcon}"
           alt=""
           class="responsive-img"
         />
       </div>
-      <div class="col s9">
+      <div class="col l8 s8 m-1">
         <div class="white-text">${data.venueName}</div>
-        <div class="white-text">${data.venueType}</div>
+        <div class="white-text venue-type">${data.venueType}</div>
       </div>
     </div>
   </div>
@@ -249,27 +312,20 @@ const renderFoursquareCards = (data) => {
 >`;
 
   $("#foursquare-container").append(card);
-  $(`[data-id='${data.venueId}']`).click(onClick);
+  $(`[data-id='${data.venueId}']`).click(onClickModal);
 };
 
-const renderSearchResultsPage = (data) => {
-  $("#slider").empty();
-  $("#navbar-wrapper").remove();
-  $("#search-results-page-container").empty();
-  $("#slider").remove();
-
+//this will render the navbar in the search-results page
+const renderNavBar = () => {
   const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
-
-  //generates navbar
+  //generate navbar
   const navBar = `
-  <div >
+  <div>
   <form id="nav-form" class="nav-wrapper row">
     <!-- search icon -->
-    <div class="input-field col l2">
-      <input id="form-input" type="search" required />
-      <label class="label-icon" for="search"
-        ><i class="fas fa-icon">Search</i></label
-      >
+    <div class="input-field  col l2 text-black">
+        <input id="form-input-search" class="city-input text-black" type="search" placeholder="Search for a city" required />
+      
     </div>
 
     <!-- Choose a Country dropdown -->
@@ -376,18 +432,34 @@ const renderSearchResultsPage = (data) => {
     <div class="row col l6 m12 s12 navbar-item-color">
           <!-- button -->
           <div class="col navbar-item-color l4 m6 s6">
-            <a class="waves-effect waves-light btn-small">Button</a>
+            <button class="waves-effect waves-light btn-small">Search</button>
           </div>
 
           <!-- Link to Wishlist page -->
           <span class="col navbar-item-color l4 m6 s6 offset-l4">
             <ul id="nav-mobile" class="right">
-              <li><a href="wishlist.html">Wishlist</a></li>
+              <li><a href="./wishlist-page.html">Wishlist</a></li>
             </ul>
           </span>
         </div>
   </form>
 </div>`;
+
+  // append navbar
+  $(".header").after(navbarContainer);
+  $("#navbar-wrapper").append(navBar);
+  $("select").formSelect();
+  $("#nav-form").submit(onSubmit);
+};
+
+const renderSearchResultsPage = (data) => {
+  // remove previous content
+  $("#slider").remove();
+  $("#navbar-wrapper").remove();
+  $("#search-results-footer").remove();
+  $("#search-results-page-container").empty();
+
+  renderNavBar();
 
   //creates the search result container
   const searchResultsPageContainer = `<div class="row" id="search-results-page-container"></div>`;
@@ -408,55 +480,41 @@ const renderSearchResultsPage = (data) => {
 
   const widgetScript = `<script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>`;
 
-  $(".header").after(navbarContainer);
+  // Footer Code
+  const footer = `<!-- Footer -->
+  <footer class="page-footer" id="search-results-footer">
+    <div class="container center-align pb-1">© 2021 Copyright Sights & Sounds Team</div>
+  </footer>`;
 
-  $("#navbar-wrapper").append(navBar);
-
-  // Function to facilitate form select in navbar
-  $("select").formSelect();
+  // append all elements
   $("#content-container").addClass("mt-2");
   $("#content-container").append(searchResultsPageContainer);
-
   $("#search-results-page-container").append(
     foursquareSection,
     ticketmasterSection
   );
-
   $("#ticketmaster-container").append(widget);
-
   $("#widget-script").append(widgetScript);
-
-  $("#nav-form").submit(onSubmit);
+  $("body").append(footer);
 };
 
-const createFoursquareUrl = (data) => {
-  let url = "";
-
-  if (data.wantsRestaurants) {
-    url += "4d4b7105d754a06374d81259,";
-  }
-
-  if (data.wantsArts) {
-    url += "4d4b7104d754a06370d81259,";
-  }
-
-  if (data.wantsOutdoors) {
-    url += "4d4b7105d754a06377d81259,";
-  }
-
-  const foursquareUrl = `${FOURSQUARE_BASE_URL}/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=20210406&near=${data.city},${data.countryValue}&categoryId=${url}`;
-
-  return foursquareUrl;
-};
-
+// on submit and on ready functions
 const onSubmit = async (event) => {
+  // on submit of form - get the data from the form, create foursquare url and fetch foursquare data using that url
   event.preventDefault();
-  const formData = getFormData();
+  if ($("#form-input-search").val() !== "") {
+    const formData = getFormData();
+    const foursquareUrl = createFoursquareUrl(formData);
+    const foursquareData = await fetchFoursquareData(foursquareUrl);
 
-  const foursquareUrl = createFoursquareUrl(formData);
-  const foursquareData = await fetchFoursquareData(foursquareUrl);
-  renderSearchResultsPage(formData);
-  foursquareData.forEach(renderFoursquareCards);
+    // if the foursquare data is not returned undefined - render the search results page and the cards
+    if (foursquareData !== undefined) {
+      renderSearchResultsPage(formData);
+      foursquareData.forEach(renderFoursquareCards);
+    }
+  } else {
+    renderErrorMessage();
+  }
 };
 
 const onReady = () => {
@@ -478,13 +536,12 @@ const onReady = () => {
 
   // activates date picker in results modal
   $(".datepicker").datepicker();
-
-  //this will read data from local storage
-  getFromLocalStorage();
 };
 
+//function to run on ready
 $(document).ready(onReady);
 
+//function to run on submit
 $("#set-to-wishlist").submit(onSubmitAddToWishlist);
 
 $("#close-button").click(onClickClose);

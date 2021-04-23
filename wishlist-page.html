@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title and description-->
+    <title>Sights & Sounds | Wishlist</title>
+    <meta
+      name="description"
+      content="Plan your upcoming outings with a click of a button!"
+    />
+
+    <!-- tags for SEO -->
+    <link
+      rel="canonical"
+      href="https://chelseanicholls95.github.io/event-planner/wishlist-page.html"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sights & Sounds | Wishlist" />
+    <meta
+      property="og:description"
+      content="Plan your upcoming outings with a click of a button!"
+    />
+    <meta property="og:image" content="/assets/favicon/apple-touch-icon.png" />
+    <meta
+      property="og:image:alt"
+      content="Sights & Sounds logo"
+      property="og:url"
+      content="https://chelseanicholls95.github.io/event-planner/wishlist-page.html"
+    />
+
+    <!-- favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="images/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+  </head>
+  <!-- stylesheet links -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./assets/css/wishlist-page.css" />
+
+  <body>
+    <header class="header">
+      <!-- Header -->
+      <h1 class="landing-header center">
+        Sights & Sounds | Your Event Planner
+      </h1>
+
+      <!-- Navbar -->
+      <nav class="nav-colour">
+        <div class="row">
+          <div class="col l3 m6 s12 center-align navbar-item-color">
+            <h3 class="format-header">My Wishlist</h3>
+          </div>
+          <div class="col l3 m6 s12 offset-l6 center-align navbar-item-color">
+            <a href="./index.html" class="btn">Return Home</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <div class="row mt-2" id="wishlist-card-container"></div>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="details">
+      <h4 class="m-1 center-align" id="h4-modal"></h4>
+      <div class="container details-container">
+        <div id="modal-image"></div>
+        <div class="info-container m-1" id="modal-info">
+          <div id="description"></div>
+          <ul>
+            <li>- Opening Hours: <span id="opening-hours"></span></li>
+            <li>- Address: <span id="address"></span></li>
+            <li>- Contact Details: <span id="contact-details"></span></li>
+            <li>- Rating: <span id="rating"></span></li>
+            <li>- URL: <span id="url"></span></li>
+          </ul>
+        </div>
+      </div>
+      <form class="m-1 row center-align" id="set-to-wishlist">
+        <input
+          type="text"
+          class="col s10 m10 l10 offset-l1 offset-m1 offset-s1 center-align"
+          id="comments-input"
+          placeholder="User can write text here"
+        />
+
+        <input
+          type="text"
+          class="datepicker col s10 m10 l10 offset-l1 offset-m1 offset-s1 center-align"
+          id="date-input"
+          placeholder="Select your date"
+        />
+
+        <button
+          href="#"
+          class="btn mb-1 col s10 m5 l5 offset-l1 offset-m1 offset-s1"
+          type="submit"
+        >
+          Save
+        </button>
+
+        <a
+          href="#"
+          class="btn red mb-1 col s10 m5 l5 modal-close offset-s1"
+          id="close-button"
+          >Close</a
+        >
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <div class="container mb-1 center-align">
+        © 2021 Copyright Sights & Sounds Team
+      </div>
+    </footer>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/wishlist-page.js"></script>
+  </body>
+</html>

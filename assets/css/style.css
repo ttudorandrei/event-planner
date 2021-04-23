@@ -9,62 +9,56 @@
 body {
   margin: 0;
   padding: 0;
-}
-.landing-header {
-  padding: 0;
-  margin: 0;
-}
-.header {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  background-color: #219ebc;
-  padding: 10px;
-  position: static;
+  background-color: var(--bg);
+  font-family: Raleway;
   font-size: 10px;
+  color: white;
 }
 
-.slider {
-  width: 100%;
-  height: auto;
+/* padding and margin classes */
+.p-2 {
+  padding: 2rem;
 }
 
-.button {
-  margin-left: 1.2rem;
-}
-
-.form {
-  margin: 0;
-  padding: 1rem;
-  border: 1px solid black;
-  box-shadow: 5px 5px 5px grey;
-  border-radius: 10px;
-  background-color: white;
-  opacity: 0.8;
-}
-
-.form-container {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.checkbox {
-  margin: 5px;
+.pb-1 {
+  padding-bottom: 1rem;
 }
 
 .m-1 {
   margin: 1rem;
 }
 
-.navbar-item-color {
-  background-color: #ee6e73;
+.mt-2 {
+  margin-top: 2rem;
 }
 
+/* header text */
+h4,
+h3 {
+  font-family: Pacifico;
+  color: var(--font);
+  text-shadow: 1px 1px 1px black;
+}
+
+/* main header */
+.header {
+  background-color: var(--bg);
+  position: static;
+  font-size: 3.8rem;
+  font-weight: 600;
+}
+
+/* landing page carousel */
+.slider {
+  width: 100%;
+  height: auto;
+}
+
+/* landing page form */
 .text-on-slider {
   position: absolute;
   height: calc(80vh);
-  margin-top: 10px;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,23 +68,174 @@ body {
   width: 100%;
 }
 
-.mt-2 {
-  margin-top: 20px;
+.form-container {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* .h1-m {
-  font-size: 20px;
+.form,
+.error {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  box-shadow: 5px 5px 5px var(--highlight);
+  border-radius: 1rem;
+  background-color: var(--bg);
+  opacity: 0.9;
 }
 
-.h1-s {
-  font-size: 13px;
-} */
-
-.header-font-size {
-  font-size: 38px;
-  font-weight: 600;
+input {
+  border-bottom: 1px solid var(--link);
 }
 
+#country-input {
+  color: white;
+}
+
+#form-input-search {
+  width: 10rem;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#form-input:focus,
+#form-input:active {
+  background: transparent;
+}
+
+.checkbox {
+  margin: 0.5rem;
+}
+
+[type="checkbox"].filled-in:checked + span:not(.lever):after {
+  background-color: var(--link);
+  border: var(--font) 1px solid;
+}
+
+.button {
+  margin-left: 1.2rem;
+}
+
+.waves-light {
+  background-color: var(--font);
+}
+
+/* error message  */
+.error-container {
+  width: 90vw;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* navbar */
+#navbar-wrapper,
+.navbar-item-color {
+  background-color: var(--highlight);
+}
+
+.city-input {
+  margin: auto 0 !important;
+  height: 4rem !important;
+}
+
+/* search results page - cards */
+.card-panel {
+  background-color: var(--link);
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 2px var(--highlight);
+}
+
+.venue-type {
+  font-size: 0.8rem;
+}
+
+/* modal */
+.modal {
+  background-color: var(--highlight);
+  font-size: 1rem;
+  padding: 1rem;
+  border: 2px solid var(--font);
+  border-radius: 1rem;
+}
+
+#modal-url {
+  color: var(--bg);
+}
+
+input[type="text"]:not(.browser-default):not([readonly]) {
+  border-bottom: var(--font) solid 2px;
+  color: white;
+}
+
+input[type="text"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: var(--font) solid 2px;
+  color: white;
+}
+
+.btn-save {
+  background-color: var(--font);
+}
+
+/* date picker */
+th {
+  background-color: var(--font);
+  border: 1px solid white;
+}
+
+.is-today {
+  color: white;
+}
+
+.is-selected {
+  color: white;
+}
+
+.datepicker-date-display {
+  background-color: var(--highlight);
+}
+
+.datepicker-day-button {
+  color: white;
+}
+
+.datepicker-table abbr {
+  color: white;
+}
+
+.datepicker-table td.is-selected {
+  background-color: var(--link);
+}
+
+.datepicker-day-button:active {
+  background-color: var(--font);
+}
+.datepicker-day-button:hover {
+  background-color: var(--font);
+}
+
+.datepicker-done {
+  background-color: var(--font);
+  color: white;
+}
+
+.datepicker-cancel {
+  background-color: tomato;
+  color: white;
+}
+
+/* footer */
+.page-footer {
+  background-color: var(--font);
+}
+
+/* responsive designs */
 @media screen and (max-width: 1024px) {
   .header-responsive {
     font-size: 32px;
@@ -100,7 +245,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .header-responsive {
-    font-size: 25px;
+    font-size: 2.5rem;
     font-weight: 600;
   }
   .form {
@@ -111,7 +256,7 @@ body {
 
 @media screen and (max-width: 350px) {
   .header-responsive {
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 600;
   }
   .form {

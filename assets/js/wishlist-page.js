@@ -15,12 +15,11 @@ const onRemoveFromFavorites = (event) => {
   const filterItemToBeRemoved = (favorite) => favorite.id !== favoriteId;
 
   const filteredFavorites = favoriteItems.filter(filterItemToBeRemoved);
-  console.log(favoriteId);
 
-  // // we need to remove the old favorites
+  // we need to remove the old favorites
   localStorage.removeItem("favorites");
 
-  // // set the local storage to the new favorites
+  // set the local storage to the new favorites
   localStorage.setItem("favorites", JSON.stringify(filteredFavorites));
 
   appendWishlistCard(filteredFavorites);
@@ -74,8 +73,8 @@ const updateWishlist = (event) => {
   saveWishlistItem(wishlistItem);
 };
 
+//this function will render the modal for every object in local storage array
 const renderModal = (data) => {
-  console.log(data);
   $("#url").empty();
   $("#modal-image").empty();
 
@@ -91,21 +90,19 @@ const renderModal = (data) => {
   $("#modal-image").append(modalImage);
   $("#h4-modal").text(data.name);
   $("#description").text(data.description);
-  $("#opening-hours").text(data.openingHours);
+  $("#opening-hours").text(data.hours);
   $("#address").text(data.address);
-  $("#contact-details").text(data.contactDetails);
+  $("#contact-details").text(data.contact);
   $("#rating").text(data.rating);
   $("#url").append(modalUrl);
   $("#details").attr("data-venue-id", data.id);
   $("#details").data("venue-id", data.id);
-  console.log("thing", data.textInput);
   $("#comments-input").val(data.textInput);
 };
 
+//this will make modal pop up on click of the DETAILS button
 const onDetailsClick = (event) => {
-  // const currentTarget = event.currentTarget;
   const venueId = event.data.favoriteId;
-  // console.log(event.data);
   const favorites = getFromLocalStorage();
   const findId = (favorites) => {
     return favorites.id === venueId;
@@ -114,29 +111,31 @@ const onDetailsClick = (event) => {
   renderModal(favoriteItem);
 };
 
-// this will generate the card based on objects in local storage. Utlimately, it should contain data from the object.
+// this will generate and append the card based on objects in local storage
 const appendWishlistCard = (favorites) => {
   const appendCard = (favorite) => {
-    const wishlistCard = `<div class="col m12 l10 offset-l1" >
-    <div class="card-panel grey lighten-5 z-depth-1">
-      <div class="row valign-wrapper">
-        <div class="col l1 m12">${favorite.dateInput}</div>
-        <div class="col l2 m12">
+    const wishlistCard = `<div class="col m10 s12 offset-m1" >
+    <div class="card-panel z-depth-1">
+      <div class="row">
+        <div class="col m1 s12 center-align mt-1">${favorite.dateInput}</div>
+        <div class="col m2 s12 center-align mt-1">
           <img
-            src="https://images.unsplash.com/photo-1577997352779-c4db787d35c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80"
-            alt=""
+            src="/assets/images/favourites.png"
+            alt="golden star icon"
             class="circle"
             width="80px" 
             height="auto"
           />
           <!-- notice the "circle" class -->
         </div>
-        <div class="col l2 m12">
+        <div class="col m3 s12 center-align mt-1">
           <span class="black-text">${favorite.name}</span>
         </div>
-        <a href="#details" class="btn orange modal-trigger details" data-favorite-id="${favorite.id}"><div class="col l5 m12 offset-m1">Details</div></a>
-        <div class="col l2 m12">
-          <button class="btn remove-button remove" name="remove-btn" data-favorite-id="${favorite.id}">Remove</button>
+        <div class="col m3 s12 center-align mt-1 ">
+        <a href="#details" class="btn modal-trigger details" data-favorite-id="${favorite.id}"><div >Details</div></a>
+        </div>
+        <div class="col m3 s12 center-align mt-1">
+          <button class="btn red remove-button remove" name="remove-btn" data-favorite-id="${favorite.id}">Remove</button>
         </div>
       </div>
     </div>
@@ -159,10 +158,6 @@ const appendWishlistCard = (favorites) => {
   favorites.forEach(appendCard);
 };
 
-//take the favorites as an array or go an re fetch the favorites from local storage
-//update favorites array without the favorite that we are deleting
-//reset favorites in storage
-
 const onReady = () => {
   //this sets the mock array in local storage
   const favorites = getFromLocalStorage();
@@ -173,11 +168,6 @@ const onReady = () => {
   $(".modal").modal();
 };
 
-// $("#wishlist-card-container").click(onRemoveFromFavorites);
-
 $("#set-to-wishlist").submit(updateWishlist);
 
 $(document).ready(onReady);
-
-// DONE change scope of the on click to be the details button
-// get the favorite id when clicking the remove button
