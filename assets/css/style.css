@@ -14,10 +14,15 @@ body {
   color: white;
 }
 
-h4 {
+h4,
+h3 {
   font-family: Pacifico;
   color: var(--font);
   text-shadow: 1px 1px 1px black;
+}
+
+.p-2 {
+  padding: 20px;
 }
 
 .pb-1 {
@@ -57,7 +62,8 @@ input {
   margin-left: 1.2rem;
 }
 
-.form {
+.form,
+.error {
   margin: 0;
   padding: 1rem;
   border: 1px solid var(--border);
@@ -70,6 +76,14 @@ input {
 .form-container {
   position: absolute;
   top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.error-container {
+  width: 90vw;
+  position: absolute;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

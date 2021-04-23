@@ -55,19 +55,39 @@ const getDataFromSearch = (venue) => {
   return data;
 };
 
+const renderErrorMessage = () => {
+  // // clear any info on page
+  $("#slider").empty();
+  // create and append error message
+  const errorMessage = `<div class="row pb-2 error-container">
+  <div class="col l6 offset-l3 error">
+  <h3>Something went wrong!</h3>
+  <div class="p-2">Oops, we were not able to find the city you are looking for. Please enter a valid city name. If the problem persists, please try again at a later time.</div>
+  </div>
+  </div>`;
+  $("#slider").append(errorMessage);
+};
+
 const fetchData = async (url) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    return data;
+    if (data.meta.code !== 200) {
+      renderErrorMessage();
+    } else {
+      return data;
+    }
   } catch (error) {}
 };
 
 const fetchFoursquareData = async (url) => {
   const data = await fetchData(url);
-  const venue = data.response.venues;
-  const venueData = venue.map(getDataFromSearch);
-  return venueData;
+
+  if (data !== undefined) {
+    const venue = data.response.venues;
+    const venueData = venue.map(getDataFromSearch);
+    return venueData;
+  }
 };
 
 const constructImageUrl = (image) => {
@@ -267,7 +287,7 @@ const renderSearchResultsPage = (data) => {
 
   //generates navbar
   const navBar = `
-  <div >
+  <div>
   <form id="nav-form" class="nav-wrapper row">
     <!-- search icon -->
     <div class="input-field  col l2 text-black">
@@ -466,8 +486,11 @@ const onSubmit = async (event) => {
 
   const foursquareUrl = createFoursquareUrl(formData);
   const foursquareData = await fetchFoursquareData(foursquareUrl);
-  renderSearchResultsPage(formData);
-  foursquareData.forEach(renderFoursquareCards);
+
+  if (foursquareData !== undefined) {
+    renderSearchResultsPage(formData);
+    foursquareData.forEach(renderFoursquareCards);
+  }
 };
 
 const onReady = () => {
