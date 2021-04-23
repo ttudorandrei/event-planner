@@ -102,6 +102,7 @@ const getDataFromSearch = (venue) => {
   return data;
 };
 
+//if no image is available, a placeholder is injected into the img field
 const getImages = (venueImages) => {
   // if there is an image for that venue, access image and construct image url
   if (venueImages.count === 0) {
@@ -113,6 +114,7 @@ const getImages = (venueImages) => {
   }
 };
 
+//if this piece of information is missing, the "Currently Unavailable"
 const getOpeningHours = (openingHours) => {
   if (openingHours === undefined) {
     return "Currently Unavailable";
@@ -153,6 +155,7 @@ const getUrl = (url) => {
   }
 };
 
+//this stores the venue data into an object
 const getDataAboutVenue = (venue) => {
   const data = {
     name: venue.name,
@@ -213,6 +216,7 @@ const createFoursquareUrl = (data) => {
   return foursquareUrl;
 };
 
+//this is constructing the img url
 const constructImageUrl = (image) => {
   const prefix = image.prefix;
   const suffix = image.suffix;
@@ -225,6 +229,7 @@ const onClickClose = () => {
   $("#date-input").val("");
 };
 
+//this function will display the modal with the specific data
 const onClickModal = async (event) => {
   // get id from current target and pass into url
   const currentTarget = event.currentTarget;
@@ -256,6 +261,7 @@ const renderErrorMessage = () => {
   $("#slider").append(errorMessage);
 };
 
+//this function is used to render the modal
 const renderModal = (data) => {
   $("#url").empty();
   $("#modal-image").empty();
@@ -285,6 +291,7 @@ const renderModal = (data) => {
   $("#details").data("venue-id", data.id);
 };
 
+//this function builds and appends the venue cards
 const renderFoursquareCards = (data) => {
   const card = `<a href="#details" class="modal-trigger"
 ><div class="col s12 l6">
@@ -310,6 +317,7 @@ const renderFoursquareCards = (data) => {
   $(`[data-id='${data.venueId}']`).click(onClickModal);
 };
 
+//this will render the navbar in the search-results page
 const renderNavBar = () => {
   const navbarContainer = `<nav id="navbar-wrapper"></nav>`;
   //generate navbar
@@ -532,8 +540,10 @@ const onReady = () => {
   $(".datepicker").datepicker();
 };
 
+//function to run on ready
 $(document).ready(onReady);
 
+//function to run on submit
 $("#set-to-wishlist").submit(onSubmitAddToWishlist);
 
 $("#close-button").click(onClickClose);
