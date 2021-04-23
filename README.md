@@ -123,3 +123,11 @@ code .
 ```
 
 ## Future Improvements
+
+We do have some areas that we feel that we could improve on. Firstly, the multiple select dropdown on the navbar displays ‘choose a category’ even after you have selected a category. We tried to remove this but the materialize multiple select element is designed this way. If we were to create this application again, we would find a CSS framework that has a design that is more in-line with what we would like or design the dropdown ourselves.
+
+Secondly, our initial plan was to separate the search results into categories. This was mentioned as one of the challenges earlier. The endpoints that we called from the API did not give us the required information to separate the venues into categories. If we were to create this application again, we would explore more endpoints and parameters in the Foursquare API to investigate whether we can separate the results.
+
+In the future, we would like to expand on the application and add more features. One of these would be links to social media such as Facebook, Twitter, Instagram etc. This would enable the user to like the venue, share their plans to visit a venue and share their experiences at the venue. This could also allow for collaboration with friends to make plans.
+
+We would also like to expand on our use of the Ticketmaster API and have a more in-depth search for the events that are happening in that area. We would add a ‘view more events’ button underneath the widget which would take the user to a new page and show the events in more detail. The user would also be able to input a date and the search will be narrowed to around that date.
