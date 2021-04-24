@@ -98,6 +98,7 @@ const renderModal = (data) => {
   $("#details").attr("data-venue-id", data.id);
   $("#details").data("venue-id", data.id);
   $("#comments-input").val(data.textInput);
+  $("#date-input").val(data.dateInput);
 };
 
 //this will make modal pop up on click of the DETAILS button
