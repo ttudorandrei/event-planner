@@ -89,7 +89,7 @@ SO THAT I can view be linked to current events in the area
 
 ## Deployed Link to Application
 
-Click [here](https://chelseanicholls95.github.io/event-planner/) to view our project!
+Click [here](https://ttudorandrei.github.io/event-planner/) to view our project!
 
 ## Getting Started
 
