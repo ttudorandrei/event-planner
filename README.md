@@ -15,8 +15,8 @@
  [Tech](#tech)  
  [Wire Frames](#wire-frames)  
  [Screenshots](#screenshots)  
-[Future Improvements](#future-improvements)
-[License](#license)
+[Future Improvements](#future-improvements)  
+[License](#license)  
 [Contact Us](#contact-us)
 
 ## Description
