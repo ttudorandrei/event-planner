@@ -15,7 +15,9 @@
  [Tech](#tech)  
  [Wire Frames](#wire-frames)  
  [Screenshots](#screenshots)  
-[Future Improvements](#future-improvements)
+[Future Improvements](#future-improvements)  
+[License](#license)  
+[Contact Us](#contact-us)
 
 ## Description
 
@@ -160,3 +162,16 @@ Secondly, our initial plan was to separate the search results into categories. T
 In the future, we would like to expand on the application and add more features. One of these would be links to social media such as Facebook, Twitter, Instagram etc. This would enable the user to like the venue, share their plans to visit a venue and share their experiences at the venue. This could also allow for collaboration with friends to make plans.
 
 We would also like to expand on our use of the Ticketmaster API and have a more in-depth search for the events that are happening in that area. We would add a ‘view more events’ button underneath the widget which would take the user to a new page and show the events in more detail. The user would also be able to input a date and the search will be narrowed to around that date.
+
+## License
+
+This project is licensed under the MIT license.
+
+## Contact Us
+
+- Visit our GitHub profiles:
+  - [Chelsea Nicholls](https://github.com/chelseanicholls95)
+  - [Lee Farnell](https://github.com/LeeFarnell)
+  - [Misha Shtebunaeva](https://github.com/misha244)
+  - [Nazim Rasheed](https://github.com/MRasheed1991)
+  - [Tudor Tocan](https://github.com/ttudorandrei)
